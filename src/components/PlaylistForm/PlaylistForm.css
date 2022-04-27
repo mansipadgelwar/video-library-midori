@@ -1,0 +1,50 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container .h3 {
+  color: var(--light-raisin-black);
+  padding-bottom: 1rem;
+}
+
+.authentication-form-container {
+  margin-top: 1.88rem;
+  z-index: 1;
+}
+
+.input {
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  min-width: 25rem;
+  padding: 1rem;
+  box-shadow: var(--btn-box-shadow);
+  color: var(--light-raisin-black);
+  font-weight: bolder;
+}
+
+.h3,
+.checkbox,
+.btn-link {
+  text-align: center;
+}
+
+.input-label {
+  color: var(--raisin-black);
+  text-align: left;
+}
+
+.form .btn-link {
+  margin: 0;
+}
+
+.login-form {
+  margin-top: 6.25rem;
+}

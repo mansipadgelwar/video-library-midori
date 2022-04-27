@@ -1,0 +1,42 @@
+.video-card-container {
+  max-width: 18.75rem;
+  height: 15.63rem;
+  border: 1px solid var(--hover-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.video-description {
+  gap: 7px;
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+.video-cta {
+  width: 100%;
+  background-color: grey;
+  height: 6vh;
+  margin-top: 0.5rem;
+}
+
+.video-cta .btn-text {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding-top: 0.4rem;
+  cursor: pointer;
+}
+
+.video-card-container .icon {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  cursor: pointer;
+  color: black;
+  font-size: 1.3rem;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.18rem;
+}
