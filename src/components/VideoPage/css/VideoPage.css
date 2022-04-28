@@ -1,0 +1,60 @@
+.video-description {
+  gap: 7px;
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+.video-page {
+  position: sticky;
+  width: 53.13rem;
+  height: 34.38rem;
+  left: 0;
+  top: 0;
+  flex: 0.7;
+}
+
+.video-panel {
+  display: flex;
+  flex-direction: row;
+}
+
+.video-sub-menus {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+}
+
+.video-sub-menus > .btn {
+  box-shadow: none;
+  margin: 0;
+}
+
+.video-sub-menus .btn-icon {
+  gap: 0rem;
+}
+
+.video-stats {
+  padding: 1rem;
+}
+
+.h3 {
+  text-align: left;
+  padding-bottom: 1rem;
+}
+
+.video-page-container {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.video-page-sidebar {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-page-sidebar > .video-card-container {
+  margin-bottom: 1.25rem;
+}

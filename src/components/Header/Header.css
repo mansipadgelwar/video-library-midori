@@ -1,0 +1,40 @@
+.simple-header > .header {
+  height: 10vh;
+  width: 100%;
+  border: none;
+  box-shadow: var(--btn-box-shadow);
+}
+
+.header-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.sub-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.header-icon {
+  padding-left: 0.5rem;
+}
+
+.nav-brand {
+  font-family: "Comforter", cursive;
+  font-weight: bolder;
+  letter-spacing: 0.1rem;
+  font-size: 2.8rem;
+  color: var(--light-raisin-black);
+}
+
+.header-menu-icon .material-icons {
+  font-size: 2.5rem;
+  color: var(--grey);
+  cursor: pointer;
+}
