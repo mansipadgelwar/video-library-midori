@@ -2,7 +2,7 @@
   max-width: 18.75rem;
   width: 100%;
   height: 6.25rem;
-  border: 1px solid black;
+  border: 1px solid var(--raisin-black);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,9 +22,9 @@
 
 .playlist-container .icon {
   cursor: pointer;
-  color: black;
+  color: var(--raisin-black);
   font-size: 1.3rem;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 50%;
   background-color: var(--hover-grey);
   padding: 0.3rem;

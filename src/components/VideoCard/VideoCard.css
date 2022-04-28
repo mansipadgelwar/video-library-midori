@@ -16,14 +16,14 @@
 
 .video-cta {
   width: 100%;
-  background-color: grey;
+  background-color: var(--grey);
   height: 6vh;
   margin-top: 0.5rem;
 }
 
 .video-cta .btn-text {
   background-color: transparent;
-  color: white;
+  color: var(--white);
   text-align: center;
   padding-top: 0.4rem;
   cursor: pointer;
@@ -34,9 +34,9 @@
   top: 0.3rem;
   right: 0.3rem;
   cursor: pointer;
-  color: black;
+  color: var(--raisin-black);
   font-size: 1.3rem;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 50%;
   padding: 0.18rem;
 }
