@@ -6,3 +6,4 @@ export { PlaylistListingPage } from "./PlaylistListingPage/PlaylistLisingPage";
 export { VideoListingPage } from "./VideoListingPage/VideoListingPage";
 export { VideoPage } from "./VideoPage/VideoPage";
 export { WatchLaterPage } from "./WatchLaterPage/WatchLaterPage";
+export { Logout } from "./Athentication/Logout/Logout";

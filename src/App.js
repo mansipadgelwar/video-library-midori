@@ -9,7 +9,8 @@ import {
   PlaylistListingPage,
   VideoListingPage,
   VideoPage,
-  WatchLaterPage
+  WatchLaterPage,
+  Logout
 } from "./pages";
 
 import { NavBar } from "./components";
@@ -26,7 +27,7 @@ function App() {
         <Route path="/videolist" element={<VideoListingPage />} />
         <Route path="/videopage" element={<VideoPage />} />
         <Route path="/watchlater" element={<WatchLaterPage />} />
-
+        <Route path="/logout" element={<Logout />} />
         <Route path="/mockman-test" element={<Mockman />} />
       </Routes>
     </div>
