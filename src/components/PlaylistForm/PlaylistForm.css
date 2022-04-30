@@ -1,4 +1,4 @@
-.form-container {
+.playlist-form .form-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,16 +9,16 @@
   padding-bottom: 1rem;
 }
 
-.authentication-form-container {
+.playlist-form .authentication-form-container {
   margin-top: 1.88rem;
   z-index: 1;
 }
 
-.input {
+.playlist-form .input {
   margin: 0;
 }
 
-.form {
+.playlist-form .form {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -30,21 +30,17 @@
   font-weight: bolder;
 }
 
-.h3,
+.playlist-form .h3,
 .checkbox,
 .btn-link {
   text-align: center;
 }
 
-.input-label {
+.playlist-form .input-label {
   color: var(--raisin-black);
   text-align: left;
 }
 
 .form .btn-link {
   margin: 0;
-}
-
-.login-form {
-  margin-top: 6.25rem;
 }
