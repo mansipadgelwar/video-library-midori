@@ -13,5 +13,6 @@ code {
 }
 
 :root {
-  --primary-color: red;
+  --primary-color: rgb(216, 22, 22);
+  --primary-light-shade: rgb(245, 130, 130);
 }

@@ -10,7 +10,6 @@
 }
 
 .form-container .h3 {
-  color: var(--primary-color);
   padding-bottom: 1rem;
 }
 
@@ -108,4 +107,8 @@
 
 .authentication-page .btn-cta {
   color: white;
+}
+
+.btn-cta:hover {
+  background-color: var(--primary-light-shade);
 }
