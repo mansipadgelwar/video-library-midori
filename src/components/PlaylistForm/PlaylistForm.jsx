@@ -1,4 +1,4 @@
-import "PlaylistForm.css";
+import "../PlaylistForm/PlaylistForm.css";
 
 const PlaylistForm = () => {
   return (

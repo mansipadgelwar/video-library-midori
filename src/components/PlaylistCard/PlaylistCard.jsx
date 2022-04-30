@@ -1,4 +1,4 @@
-import "PlaylistCard.css";
+import "../PlaylistCard/PlaylistCard.css";
 import { Link } from "react-router-dom";
 
 const PlaylistCard = () => {
