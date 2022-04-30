@@ -19,12 +19,12 @@
   background-color: var(--grey);
   height: 6vh;
   margin-top: 0.5rem;
+  text-align: center;
 }
 
 .video-cta .btn-text {
   background-color: transparent;
   color: var(--white);
-  text-align: center;
   padding-top: 0.4rem;
   cursor: pointer;
 }
