@@ -1,4 +1,4 @@
-import "Sidebar.css";
+import "../Sidebar/Sidebar.css";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -13,26 +13,26 @@ const Sidebar = () => {
             <div>Home</div>
           </li>
           <li className="video-side-links">
-            <Link to="/">
+            <Link to="/allplaylists">
               <span className="material-icons">playlist_play</span>
             </Link>
             <div>Playlist</div>
           </li>
           <li className="video-side-links">
-            <Link to="/">
+            <Link to="/videolist">
               <span className="material-icons">explore</span>
             </Link>
             <div>Explore</div>
           </li>
           <li className="video-side-links">
-            <Link to="/">
+            <Link to="/watchlater">
               <span className="material-icons">favorite</span>
             </Link>
             <div>Favorite</div>
           </li>
 
           <li className="video-side-links">
-            <Link to="/">
+            <Link to="/history">
               <span className="material-icons">watch_later</span>
             </Link>
             <div>History</div>

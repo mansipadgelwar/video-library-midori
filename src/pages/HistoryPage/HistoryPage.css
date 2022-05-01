@@ -1,0 +1,28 @@
+.menu-bar {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-bar .btn-cta {
+  background-color: red;
+  border: none;
+  margin-right: 0;
+}
+
+.main-content-page {
+  max-width: 62.5rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.history-video-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3.125rem;
+  flex-wrap: wrap;
+}

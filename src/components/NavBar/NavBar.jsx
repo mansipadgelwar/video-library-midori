@@ -1,11 +1,14 @@
-import "Header.css";
+import "../NavBar/NavBar.css";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const NavBar = () => {
   return (
     <div className="simple-header">
       <header className="header">
         <div className="header-items">
-          <div className="nav-brand">Midori</div>
+          <Link to="/" className="nav-brand">
+            Midori
+          </Link>
           <div className="input-icon icons-left">
             <span className="material-icons">search</span>
             <input
@@ -13,7 +16,6 @@ const Header = () => {
               type="text"
               id="search-bar"
               name="search-bar"
-              placeholder="search"
             />
           </div>
           <div className="sub-menu">
@@ -28,4 +30,4 @@ const Header = () => {
   );
 };
 
-export { Header };
+export { NavBar };
