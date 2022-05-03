@@ -9,6 +9,8 @@ const Login = () => {
 
   const [formDetails, setFormDetails] = useState(initialFormDetails);
 
+  const formDetailsHandler = () => {};
+
   return (
     <div className="authentication-page">
       <article className="form-container login-form">
@@ -26,6 +28,14 @@ const Login = () => {
                 id="email"
                 name="email"
                 placeholder="Enter Email ID"
+                value={formDetails?.email}
+                onChange={(e) =>
+                  setFormDetails((details) => ({
+                    ...details,
+                    email: e.target.value
+                  }))
+                }
+                required
               />
             </div>
 
@@ -40,6 +50,14 @@ const Login = () => {
                 id="password"
                 name="password"
                 placeholder="Enter Password"
+                value={formDetails?.password}
+                onChange={(e) =>
+                  setFormDetails((details) => ({
+                    ...details,
+                    password: e.target.value
+                  }))
+                }
+                required
               />
             </div>
 
@@ -60,7 +78,9 @@ const Login = () => {
               </Link>
             </div>
 
-            <button className="btn btn-cta">Login</button>
+            <button className="btn btn-cta" onClick={formDetailsHandler}>
+              Login
+            </button>
             <Link to="/signup" className="btn-link">
               Create New Account &gt;
             </Link>
