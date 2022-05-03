@@ -1,6 +1,14 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const initialFormDetails = {
+    email: "",
+    password: ""
+  };
+
+  const [formDetails, setFormDetails] = useState(initialFormDetails);
+
   return (
     <div className="authentication-page">
       <article className="form-container login-form">
