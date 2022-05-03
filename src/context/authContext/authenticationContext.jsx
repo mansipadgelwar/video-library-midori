@@ -4,8 +4,12 @@ import { userLoginservice } from "../../services";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState("");
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("login")).token
+  );
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")).user
+  );
 
   const loginUser = async (email, password) => {
     try {
@@ -27,7 +31,11 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  return <AuthContext.Provider>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ token, setToken, user, setUser, loginUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 const useAuth = () => useContext(AuthContext);
