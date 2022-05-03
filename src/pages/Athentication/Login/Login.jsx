@@ -5,7 +5,7 @@ const Login = () => {
     <div className="authentication-page">
       <article className="form-container login-form">
         <div className="authentication-form-container">
-          <form className="form" action="">
+          <form className="form" onSubmit={(e) => e.preventDefault()}>
             <h3 className="h3">LOGIN</h3>
             <label htmlFor="email" className="input-label">
               Email Address:{" "}
