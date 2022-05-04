@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from "../../utils";
+import { ACTION_TYPE } from "../utils";
 
 const initialAuthState = { authToken: "", authUser: {}, isAuthorized: false };
 
@@ -18,4 +18,4 @@ const authReducer = (authState, action) => {
   }
 };
 
-export { authReducer };
+export { authReducer, initialAuthState };

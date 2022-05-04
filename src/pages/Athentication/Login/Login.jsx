@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/authContext/authenticationContext";
 
 const Login = () => {
   const initialFormDetails = {
@@ -7,9 +8,17 @@ const Login = () => {
     password: ""
   };
 
+  const currentLocation = useNavigate();
+  const { loginUser, isAuthorized } = useAuth();
   const [formDetails, setFormDetails] = useState(initialFormDetails);
 
-  const formDetailsHandler = () => {};
+  const formDetailsHandler = () => {
+    loginUser(formDetails.email, formDetails.password);
+  };
+
+  if (isAuthorized) {
+    currentLocation("/");
+  }
 
   return (
     <div className="authentication-page">
