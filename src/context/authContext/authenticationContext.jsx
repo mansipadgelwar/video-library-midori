@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { userLoginService } from "../../services";
+import { userLoginService, userSignupService } from "../../services";
 import { authReducer, initialAuthState } from "../../reducers";
 
 const AuthContext = createContext();
@@ -21,7 +21,6 @@ const AuthProvider = ({ children }) => {
 
   const [authState, authDispatch] = useReducer(authReducer, setAuthState);
   const loginUser = async (email, password) => {
-    // console.log(email, password);
     try {
       const { data, status } = await userLoginService(email, password);
       if (status === 200) {
@@ -40,8 +39,39 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const signUpUser = async (
+    email,
+    firstName,
+    lastName,
+    password,
+    confirmPassword
+  ) => {
+    if (confirmPassword !== password) {
+      console.error("Password do not match");
+    }
+    try {
+      const { data, status } = await userSignupService(email, password);
+      if (status === 201) {
+        console.log("success");
+        authDispatch({
+          type: "INIT_AUTH",
+          payload: {
+            authToken: data.encodedToken,
+            authUser: data.createdUser
+          }
+        });
+        localStorage.setItem("token", data.encodedToken);
+        localStorage.setItem("user", JSON.stringify(data.createdUser));
+      }
+    } catch (error) {
+      console.error("Error in signup functionality", error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ ...authState, authDispatch, loginUser }}>
+    <AuthContext.Provider
+      value={{ ...authState, authDispatch, loginUser, signUpUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
