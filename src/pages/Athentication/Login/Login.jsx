@@ -16,6 +16,13 @@ const Login = () => {
     loginUser(formDetails.email, formDetails.password);
   };
 
+  function loginWithTestCredentials() {
+    setFormDetails({
+      email: "adarshbalika@gmail.com",
+      password: "adarshBalika123"
+    });
+  }
+
   if (isAuthorized) {
     currentLocation("/");
   }
@@ -90,6 +97,12 @@ const Login = () => {
 
             <button className="btn btn-cta" onClick={formDetailsHandler}>
               Login
+            </button>
+            <button
+              className="btn btn-primary-outline"
+              onClick={loginWithTestCredentials}
+            >
+              Login with test credentials
             </button>
             <Link to="/signup" className="btn-link">
               Create New Account &gt;

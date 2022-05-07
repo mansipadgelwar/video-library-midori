@@ -4,7 +4,7 @@ const useToast = () => {
   const showToast = (toastDescription, toastType) => {
     const notify = () => {
       toast[toastType](toastDescription, {
-        theme: "dark",
+        theme: "colored",
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
