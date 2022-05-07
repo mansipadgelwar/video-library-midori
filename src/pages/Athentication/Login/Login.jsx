@@ -33,6 +33,7 @@ const Login = () => {
               <span className="material-icons">email</span>
               <input
                 className="input"
+                autocomplete="off"
                 type="email"
                 id="email"
                 name="email"

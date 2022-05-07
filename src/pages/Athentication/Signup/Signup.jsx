@@ -40,6 +40,7 @@ const Signup = () => {
             </label>
             <input
               className="input"
+              autocomplete="off"
               type="email"
               id="email"
               name="email"
@@ -58,6 +59,7 @@ const Signup = () => {
             </label>
             <input
               className="input"
+              autocomplete="off"
               type="text"
               id="fname"
               name="fname"
@@ -77,6 +79,7 @@ const Signup = () => {
             </label>
             <input
               className="input"
+              autocomplete="off"
               type="text"
               id="lname"
               name="lname"
