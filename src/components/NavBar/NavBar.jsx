@@ -1,7 +1,9 @@
 import "../NavBar/NavBar.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext/authenticationContext";
 
 const NavBar = () => {
+  const { isAuthorized } = useAuth();
   return (
     <div className="simple-header">
       <header className="header">
@@ -18,12 +20,17 @@ const NavBar = () => {
               name="search-bar"
             />
           </div>
-          <div className="sub-menu">
-            <button className="btn btn-secondary">Login</button>
-            <div className="header-menu-icon">
-              <span className="material-icons">account_circle</span>
+          {isAuthorized ? (
+            <div className="sub-menu">
+              <div className="header-menu-icon">
+                <button className="material-icons">account_circle</button>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="sub-menu">
+              <button className="btn btn-secondary">Login</button>
+            </div>
+          )}
         </div>
       </header>
     </div>
