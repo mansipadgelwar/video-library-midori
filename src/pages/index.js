@@ -9,3 +9,4 @@ export { WatchLaterPage } from "./WatchLaterPage/WatchLaterPage";
 export { Logout } from "./Athentication/Logout/Logout";
 export { Login } from "./Athentication/Login/Login";
 export { Signup } from "./Athentication/Signup/Signup";
+export { NotFound } from "./NotFound/NotFound";
