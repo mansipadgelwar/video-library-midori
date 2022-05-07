@@ -1,9 +1,17 @@
 import "../NavBar/NavBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext/authenticationContext";
 
 const NavBar = () => {
-  const { isAuthorized } = useAuth();
+  const { isAuthorized, authDispatch } = useAuth();
+  const navigate = useNavigate();
+
+  const logoutUser = () => {
+    authDispatch({ type: "RESET_AUTH" });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/logout");
+  };
   return (
     <div className="simple-header">
       <header className="header">
@@ -22,14 +30,14 @@ const NavBar = () => {
           </div>
           {isAuthorized ? (
             <div className="sub-menu">
-              <div className="header-menu-icon">
-                <button className="material-icons">account_circle</button>
-              </div>
+              <button className="btn btn-secondary" onClick={logoutUser}>
+                Logout
+              </button>
             </div>
           ) : (
-            <div className="sub-menu">
-              <button className="btn btn-secondary">Login</button>
-            </div>
+            <Link to="/login" className="sub-menu">
+              <span className="btn btn-secondary">Login</span>
+            </Link>
           )}
         </div>
       </header>
