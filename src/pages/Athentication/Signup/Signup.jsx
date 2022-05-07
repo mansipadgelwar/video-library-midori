@@ -14,6 +14,8 @@ const Signup = () => {
   const currentLocation = useNavigate();
   const { signUpUser, isAuthorized } = useAuth();
   const [formDetails, setFormDetails] = useState(initialFormDetails);
+  const [showConfirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
+  const [showPasswordIcon, setPasswordIcon] = useState(false);
 
   const formDetailsHandler = () => {
     signUpUser(
@@ -40,7 +42,7 @@ const Signup = () => {
             </label>
             <input
               className="input"
-              autocomplete="off"
+              autoComplete="off"
               type="email"
               id="email"
               name="email"
@@ -59,7 +61,7 @@ const Signup = () => {
             </label>
             <input
               className="input"
-              autocomplete="off"
+              autoComplete="off"
               type="text"
               id="fname"
               name="fname"
@@ -79,7 +81,7 @@ const Signup = () => {
             </label>
             <input
               className="input"
-              autocomplete="off"
+              autoComplete="off"
               type="text"
               id="lname"
               name="lname"
@@ -100,7 +102,7 @@ const Signup = () => {
               </label>
               <input
                 className="input"
-                type="password"
+                type={showPasswordIcon ? "text" : "password"}
                 id="password"
                 name="password"
                 placeholder="Enter password"
@@ -113,8 +115,13 @@ const Signup = () => {
                 }
                 required
               />
-              <button className="btn-link material-icons icons-right">
-                visibility
+              <button
+                className="btn-link material-icons icons-right"
+                onClick={() =>
+                  setPasswordIcon((showPasswordIcon) => !showPasswordIcon)
+                }
+              >
+                {showPasswordIcon ? "visibility" : "visibility_off"}
               </button>
             </div>
 
@@ -124,7 +131,7 @@ const Signup = () => {
               </label>
               <input
                 className="input"
-                type="password"
+                type={showConfirmPasswordIcon ? "text" : "password"}
                 id="confirm-password"
                 name="confirm-password"
                 placeholder="Confirm your password"
@@ -137,8 +144,15 @@ const Signup = () => {
                 }
                 required
               />
-              <button className="btn-link material-icons icons-right">
-                visibility
+              <button
+                className="btn-link material-icons icons-right"
+                onClick={() =>
+                  setConfirmPasswordIcon(
+                    (showConfirmPasswordIcon) => !showConfirmPasswordIcon
+                  )
+                }
+              >
+                {showConfirmPasswordIcon ? "visibility" : "visibility_off"}
               </button>
             </div>
 
