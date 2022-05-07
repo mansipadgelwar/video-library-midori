@@ -1,10 +1,10 @@
 import { toast } from "react-toastify";
 
 const useToast = () => {
-  const showToast = () => {
+  const showToast = (toastDescription, toastType) => {
     const notify = () => {
-      toast.success("🦄 Wow so easy!", {
-        theme: "colored",
+      toast[toastType](toastDescription, {
+        theme: "light",
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,

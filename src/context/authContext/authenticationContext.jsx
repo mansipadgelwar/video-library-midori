@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
     try {
       const { data, status } = await userLoginService(email, password);
       if (status === 200) {
-        showToast();
+        showToast("Login Successful", "success");
         authDispatch({
           type: "INIT_AUTH",
           payload: {
@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("user", JSON.stringify(data.foundUser));
       }
     } catch (error) {
+      showToast(`Error while login`, "error");
       console.error("Error in login functionality", error);
     }
   };
@@ -49,6 +50,7 @@ const AuthProvider = ({ children }) => {
     confirmPassword
   ) => {
     if (confirmPassword !== password) {
+      showToast(`Passwords do not match`, "error");
       console.error("Password do not match");
     }
     try {
@@ -59,7 +61,7 @@ const AuthProvider = ({ children }) => {
         lastName
       );
       if (status === 201) {
-        showToast();
+        showToast("Signup Successful", "success");
         authDispatch({
           type: "INIT_AUTH",
           payload: {
@@ -71,6 +73,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("user", JSON.stringify(data.createdUser));
       }
     } catch (error) {
+      showToast(`Error while signing up user`, "error");
       console.error("Error in signup functionality", error);
     }
   };
