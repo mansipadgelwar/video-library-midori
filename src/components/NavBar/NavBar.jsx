@@ -1,12 +1,15 @@
 import "../NavBar/NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext/authenticationContext";
+import { useToast } from "../../custom-hooks/useToast";
 
 const NavBar = () => {
   const { isAuthorized, authDispatch } = useAuth();
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const logoutUser = () => {
+    showToast("Logout Successful", "success");
     authDispatch({ type: "RESET_AUTH" });
     localStorage.removeItem("user");
     localStorage.removeItem("token");
