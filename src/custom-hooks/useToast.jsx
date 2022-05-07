@@ -1,18 +1,22 @@
 import { toast } from "react-toastify";
 
-const showToast = () => {
-  const notify = () => {
-    toast.success("🦄 Wow so easy!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    });
+const useToast = () => {
+  const showToast = () => {
+    const notify = () => {
+      toast.success("🦄 Wow so easy!", {
+        theme: "colored",
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+    };
+    notify();
   };
-  notify();
+  return { showToast };
 };
 
-export { showToast };
+export { useToast };

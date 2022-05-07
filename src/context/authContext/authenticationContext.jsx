@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { userLoginService, userSignupService } from "../../services";
 import { authReducer, initialAuthState } from "../../reducers";
+import { useToast } from "../../custom-hooks/useToast";
 
 const AuthContext = createContext();
 
@@ -18,12 +19,13 @@ const AuthProvider = ({ children }) => {
     }
     return initialAuthState;
   };
-
+  const { showToast } = useToast();
   const [authState, authDispatch] = useReducer(authReducer, setAuthState);
   const loginUser = async (email, password) => {
     try {
       const { data, status } = await userLoginService(email, password);
       if (status === 200) {
+        showToast();
         authDispatch({
           type: "INIT_AUTH",
           payload: {
@@ -50,9 +52,14 @@ const AuthProvider = ({ children }) => {
       console.error("Password do not match");
     }
     try {
-      const { data, status } = await userSignupService(email, password);
+      const { data, status } = await userSignupService(
+        email,
+        password,
+        firstName,
+        lastName
+      );
       if (status === 201) {
-        console.log("success");
+        showToast();
         authDispatch({
           type: "INIT_AUTH",
           payload: {
