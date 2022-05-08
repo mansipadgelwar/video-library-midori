@@ -8,20 +8,32 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
+    categoryName: "Contemporary",
     description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+      "Known for its emphasis on strong torso and legwork, contract and release, fall and recovery and floor work, it is often known for unpredictable and disordered changes in speed and rhythm throughout a performance."
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
+    categoryName: "Ballroom",
     description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+      "Ballroom dance is a type of partner dance originating at the end of the sixteenth century in France"
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
+    categoryName: "Hip-hop",
     description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+      "Main styles of hip-hop dancing include Breaking, Locking and Popping, with derivative styles emerging out of these including Memphis Jookin’, Turfing, Jerkin’ and Krumping"
   },
+  {
+    _id: uuid(),
+    categoryName: "Indian classical",
+    description:
+      "India has many dances, coming from every state in the country, although there are only six forms of the classical dances recognised by India on a national level. They are Bharatnatyam, Kathak, Kathakali, Manipuri, Kuchipudi, and Odissi."
+  },
+  {
+    _id: uuid(),
+    categoryName: "Bollywood",
+    description:
+      "The term Bollywood was created by combining two names, Bombay (the city now called Mumbai) and Hollywood. Bollywood based in Mumbai (Bombay), is India’s – and the world’s - largest film industry in terms of the number of films produced, and also the number of tickets sold each year"
+  }
 ];
