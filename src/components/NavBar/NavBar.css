@@ -37,4 +37,6 @@
   font-size: 2.5rem;
   color: var(--grey);
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }

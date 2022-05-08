@@ -12,7 +12,8 @@ import {
   WatchLaterPage,
   Logout,
   Login,
-  Signup
+  Signup,
+  NotFound
 } from "./pages";
 
 import { NavBar } from "./components";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/mockman-test" element={<Mockman />} />
       </Routes>
     </div>
