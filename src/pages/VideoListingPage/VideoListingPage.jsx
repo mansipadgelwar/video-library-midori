@@ -3,7 +3,7 @@ import { CategoryChips, VideoCard } from "../../components";
 
 const VideoListingPage = () => {
   return (
-    <div className="main-content-page">
+    <div className="main-content-page video-listing-page">
       <CategoryChips />
       <div className="menu-bar">
         <div className="page-title h3 text-bold">Trending Videos</div>
