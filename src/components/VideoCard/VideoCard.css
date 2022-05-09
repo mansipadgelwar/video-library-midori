@@ -1,6 +1,7 @@
 .video-card-container {
   max-width: 18.75rem;
-  height: 15.63rem;
+  width: 100%;
+  height: auto;
   border: 1px solid var(--hover-grey);
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
 .video-cta {
   width: 100%;
   background-color: var(--grey);
-  height: 6vh;
+  height: 4vh;
   margin-top: 0.5rem;
   text-align: center;
 }
