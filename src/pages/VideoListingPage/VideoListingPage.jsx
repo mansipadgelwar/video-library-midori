@@ -1,9 +1,10 @@
 import "../VideoListingPage/VideoListingPage.css";
-import { VideoCard } from "../../components";
+import { CategoryChips, VideoCard } from "../../components";
 
 const VideoListingPage = () => {
   return (
     <div className="main-content-page">
+      <CategoryChips />
       <div className="menu-bar">
         <div className="page-title h3 text-bold">Trending Videos</div>
       </div>

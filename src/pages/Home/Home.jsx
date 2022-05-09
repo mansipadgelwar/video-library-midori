@@ -1,5 +1,5 @@
 import "../Home/Home.css";
-import { CategoryChips, Sidebar, VideoCard } from "../../components";
+import { Sidebar, VideoCard } from "../../components";
 
 const Home = () => {
   return (
@@ -9,7 +9,6 @@ const Home = () => {
       </div>
 
       <div className="main-content-page">
-        <CategoryChips />
         <div className="hero-img">
           <img src="https://picsum.photos/300/1000" alt="hero-img" />
           <div className="hero-img-overlay">
