@@ -6,7 +6,7 @@ import { useToast } from "../../custom-hooks/useToast";
 
 const CategoryChips = ({ categoryName }) => {
   const [categoryType, setCategory] = useState([]);
-  const { setClickedCategory } = useData();
+  const { clickedCategory, setClickedCategory } = useData();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -28,21 +28,25 @@ const CategoryChips = ({ categoryName }) => {
   return (
     <div className="chips-container">
       <ul className="chips-list">
-        <li
-          className="chips text-bold active"
+        <button
+          className={`chips text-bold ${
+            clickedCategory === "All" ? "active" : ""
+          }`}
           onClick={() => setClickedCategory("All")}
         >
           All
-        </li>
+        </button>
         {categoryType.map(({ _id, categoryName }) => {
           return (
-            <li
+            <button
               key={_id}
-              className="chips text-bold"
-              onClick={() => setClickedCategory(categoryName)}
+              className={`chips text-bold ${
+                clickedCategory === categoryName ? "active" : ""
+              }`}
+              onClick={(e) => setClickedCategory(categoryName)}
             >
               {categoryName}
-            </li>
+            </button>
           );
         })}
       </ul>
