@@ -2,20 +2,27 @@ import "../VideoListingPage/VideoListingPage.css";
 import { CategoryChips, VideoCard } from "../../components";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useData } from "../../context/dataContext/dataContext";
 
 const VideoListingPage = () => {
   const [video, setVideo] = useState([]);
-
-  const getAllVideos = async () => {
-    const response = await axios.get("/api/videos");
-    const data = response.data.videos;
-    setVideo(data);
-    return data;
-  };
+  const { clickedCategory } = useData();
 
   useEffect(() => {
-    getAllVideos();
-  }, []);
+    (async () => {
+      const response = await axios.get("/api/videos");
+      const data = response.data.videos;
+      if (clickedCategory !== "All") {
+        const filterData = [...data].filter(
+          (item) => item.category === clickedCategory
+        );
+        setVideo(filterData);
+        return filterData;
+      }
+      setVideo(data);
+      return data;
+    })();
+  }, [clickedCategory]);
 
   return (
     <div className="main-content-page video-listing-page">
