@@ -4,7 +4,7 @@ import "../CategoryChips/CategoryChips.css";
 import { useData } from "../../context/dataContext/dataContext";
 import { useToast } from "../../custom-hooks/useToast";
 
-const CategoryChips = ({ categoryName }) => {
+const CategoryChips = () => {
   const [categoryType, setCategory] = useState([]);
   const { clickedCategory, setClickedCategory } = useData();
   const { showToast } = useToast();
