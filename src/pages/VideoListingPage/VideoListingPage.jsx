@@ -31,15 +31,9 @@ const VideoListingPage = () => {
         <div className="page-title h3 text-bold">Trending Videos</div>
       </div>
       <div className="history-video-container">
-        {video.map(({ _id, title, category, url }) => {
+        {video.map(({ _id, title, category }) => {
           return (
-            <VideoCard
-              key={_id}
-              id={_id}
-              title={title}
-              category={category}
-              url={url}
-            />
+            <VideoCard key={_id} id={_id} title={title} category={category} />
           );
         })}
       </div>
