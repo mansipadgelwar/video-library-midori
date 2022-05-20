@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const DataContext = createContext();
@@ -6,6 +6,10 @@ const DataContext = createContext();
 const DataProvider = ({ children }) => {
   const [clickedCategory, setClickedCategory] = useState("All");
   const [video, setVideo] = useState([]);
+
+  useEffect(() => {
+    getAllVideosFromDatabase();
+  });
 
   const getAllVideosFromDatabase = async () => {
     const response = await axios.get("/api/videos");

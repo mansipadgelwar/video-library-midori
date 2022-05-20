@@ -1,9 +1,9 @@
 import "../css/VideoPage.css";
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ id, title }) => {
   return (
     <div>
-      <div className="h3">SEN Sinatra leaks his stream</div>
+      <div className="h3">{title}</div>
       <div className="video-player">
         <img
           src="https://picsum.photos/850/450"

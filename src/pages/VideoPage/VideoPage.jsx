@@ -5,14 +5,24 @@ import {
   VideoPlayer,
   VideoCard
 } from "../../components";
+import { useData } from "../../context/dataContext/dataContext";
+import { useParams } from "react-router-dom";
 
 const VideoPage = () => {
+  const { video } = useData();
+  const { videoId } = useParams();
+  const currentVideo = video.find((item) => item._id === videoId);
+
   return (
     <div className="video-page-container">
       <div className="video-page">
-        <VideoPlayer key={_id} id={_id} title={title} />
+        <VideoPlayer
+          id={currentVideo._id}
+          title={currentVideo.title}
+          description={currentVideo.description}
+        />
         <VideoPanel />
-        <VideoDescription />
+        <VideoDescription description={currentVideo.description} />
       </div>
 
       <div className="video-page-sidebar">
