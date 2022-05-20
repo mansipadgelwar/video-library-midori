@@ -1,9 +1,14 @@
 import "../VideoListingPage/VideoListingPage.css";
 import { CategoryChips, VideoCard } from "../../components";
 import { useData } from "../../context/dataContext/dataContext";
+import { useEffect } from "react";
 
 const VideoListingPage = () => {
-  const { video } = useData();
+  const { video, getAllVideosFromDatabase } = useData();
+
+  useEffect(() => {
+    getAllVideosFromDatabase();
+  }, [getAllVideosFromDatabase]);
 
   return (
     <div className="main-content-page video-listing-page">
