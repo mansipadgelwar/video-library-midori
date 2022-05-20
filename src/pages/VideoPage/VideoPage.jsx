@@ -10,7 +10,7 @@ const VideoPage = () => {
   return (
     <div className="video-page-container">
       <div className="video-page">
-        <VideoPlayer />
+        <VideoPlayer key={_id} id={_id} title={title} />
         <VideoPanel />
         <VideoDescription />
       </div>

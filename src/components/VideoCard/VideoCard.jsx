@@ -8,11 +8,13 @@ const VideoCard = ({ id, title }) => {
         <Link to="/">
           <span className="material-icons icon">favorite_border</span>
         </Link>
-        <img
-          src={`http://i3.ytimg.com/vi/${id}/hqdefault.jpg`}
-          alt={`${title} thumbnail`}
-          className="video-thumbnail img-responsive"
-        />
+        <Link to={`/videopage/${id}`}>
+          <img
+            src={`http://i3.ytimg.com/vi/${id}/hqdefault.jpg`}
+            alt={`${title} thumbnail`}
+            className="video-thumbnail img-responsive"
+          />
+        </Link>
       </div>
       <div className="video-description">
         <div className="video-heading">{title}</div>
