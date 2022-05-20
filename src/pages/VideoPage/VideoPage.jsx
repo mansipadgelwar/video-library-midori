@@ -12,25 +12,23 @@ const VideoPage = () => {
   const { video } = useData();
   const { videoId } = useParams();
   const currentVideo = video.find((item) => item._id === videoId);
+  const currentVideoCategory = video.filter(
+    (video) => video.category === currentVideo.category
+  );
 
   return (
     <div className="video-page-container">
       <div className="video-page">
-        <VideoPlayer
-          id={currentVideo._id}
-          title={currentVideo.title}
-          description={currentVideo.description}
-        />
-        <VideoPanel />
+        <VideoPlayer id={currentVideo._id} title={currentVideo.title} />
+        <VideoPanel id={currentVideo._id} />
         <VideoDescription description={currentVideo.description} />
       </div>
 
       <div className="video-page-sidebar">
         <div className="h3">Must Watch</div>
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
+        {currentVideoCategory.map(({ _id, title }) => {
+          return <VideoCard key={_id} id={_id} title={title} />;
+        })}
       </div>
     </div>
   );
