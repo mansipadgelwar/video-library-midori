@@ -1,8 +1,28 @@
 import { addVideoToLikedVideo } from "../../../services/like-services/addVideoToLikedVideo";
 import "../css/VideoPage.css";
+import { useToast } from "../../../custom-hooks/useToast";
+import { useAuth } from "../../../context/authContext/authenticationContext";
 
-const VideoPanel = () => {
-  const handleLikedVideos = () => {};
+const VideoPanel = ({ video }) => {
+  const { showToast } = useToast();
+  const { isAuthorized, authToken } = useAuth();
+
+  const handleLikedVideos = async (e) => {
+    e.preventDefault();
+    if (!isAuthorized) {
+      showToast("Please login to like video.", "info");
+    } else {
+      try {
+        const {
+          data: { likes }
+        } = await addVideoToLikedVideo(authToken, video);
+        showToast("Video added as liked video.", "success");
+      } catch (error) {
+        showToast("Error in adding video to liked videos.", "error");
+        console.error("Error in adding video to liked videos", error);
+      }
+    }
+  };
   return (
     <div className="video-panel">
       <div className="video-sub-menus">

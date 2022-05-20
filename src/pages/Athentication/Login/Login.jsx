@@ -40,7 +40,7 @@ const Login = () => {
               <span className="material-icons">email</span>
               <input
                 className="input"
-                autocomplete="off"
+                autoComplete="off"
                 type="email"
                 id="email"
                 name="email"

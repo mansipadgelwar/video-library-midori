@@ -20,7 +20,7 @@ const VideoPage = () => {
     <div className="video-page-container">
       <div className="video-page">
         <VideoPlayer id={currentVideo._id} title={currentVideo.title} />
-        <VideoPanel id={currentVideo._id} />
+        <VideoPanel video={video} />
         <VideoDescription description={currentVideo.description} />
       </div>
 
