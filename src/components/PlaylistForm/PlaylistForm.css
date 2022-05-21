@@ -21,6 +21,7 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+  animation: fadeInDown 1s;
 }
 
 .form-container .h3 {
@@ -64,4 +65,15 @@
   border: none;
   cursor: pointer;
   background-color: transparent;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
