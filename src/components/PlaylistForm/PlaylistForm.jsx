@@ -2,15 +2,15 @@ import { useState } from "react";
 import "../PlaylistForm/PlaylistForm.css";
 import axios from "axios";
 import { useAuth } from "../../context/authContext/authenticationContext";
+import { useServices } from "../../context/servicesContext/servicesContext";
 import { useToast } from "../../custom-hooks/useToast";
 
 const PlaylistForm = ({ show, onClose }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
-  // const { dispatch, playlists } = useServices();
+  const { dispatch } = useServices();
 
-  const playlist = { playlistTitle: "", videoInPlaylist: [] };
-  const [newPlaylist, setNewPlaylist] = useState(playlist);
+  const [newPlaylistName, setNewPlaylistName] = useState("");
 
   if (!show) {
     return null;
@@ -26,10 +26,17 @@ const PlaylistForm = ({ show, onClose }) => {
           data: { playlists }
         } = await axios.post(
           "/api/user/playlists",
-          { playlist },
+          {
+            playlist: {
+              title: newPlaylistName,
+              description: ""
+            }
+          },
           { headers: { authorization: authToken } }
         );
-        dispatch({ type: "CREATE_NEW_PLAYLIST", payload: { playlists } });
+        setNewPlaylistName("");
+        onClose();
+        dispatch({ type: "CREATE_NEW_PLAYLIST", payload: playlists });
         showToast("Playlist created.", "success");
       } catch (error) {
         console.error("error creating new playlist", error);
@@ -55,9 +62,8 @@ const PlaylistForm = ({ show, onClose }) => {
               id="playlist"
               name="playlist"
               placeholder="My Playlist"
-              onChange={(e) =>
-                setNewPlaylist({ playlistTitle: e.target.value })
-              }
+              onChange={(e) => setNewPlaylistName(e.target.value)}
+              value={newPlaylistName}
             />
           </div>
           <button

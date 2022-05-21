@@ -1,11 +1,12 @@
 import "../PlaylistCard/PlaylistCard.css";
 import { Link } from "react-router-dom";
 
-const PlaylistCard = () => {
+const PlaylistCard = ({ playlist }) => {
+  console.log("card: ", playlist);
   return (
     <div className="playlist-container">
       <div className="playlist-description">
-        <div className="text-bold">My Playlist #1</div>
+        <div className="text-bold">{playlist.title}</div>
         <div>10 videos</div>
       </div>
       <div>
