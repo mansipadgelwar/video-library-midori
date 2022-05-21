@@ -1,9 +1,41 @@
+import { useState } from "react";
 import "../PlaylistForm/PlaylistForm.css";
+import axios from "axios";
+import { useAuth } from "../../context/authContext/authenticationContext";
+import { useToast } from "../../custom-hooks/useToast";
 
 const PlaylistForm = ({ show, onClose }) => {
+  const { isAuthorized, authToken } = useAuth();
+  const { showToast } = useToast();
+  // const { dispatch, playlists } = useServices();
+
+  const playlist = { playlistTitle: "", videoInPlaylist: [] };
+  const [newPlaylist, setNewPlaylist] = useState(playlist);
+
   if (!show) {
     return null;
   }
+
+  const handleCreateNewPlaylist = async (e) => {
+    e.preventDefault();
+    if (!isAuthorized) {
+      showToast("Please login to create new playlist.", "info");
+    } else {
+      try {
+        const {
+          data: { playlists }
+        } = await axios.post(
+          "/api/user/playlists",
+          { playlist },
+          { headers: { authorization: authToken } }
+        );
+        dispatch({ type: "CREATE_NEW_PLAYLIST", payload: { playlists } });
+        showToast("Playlist created.", "success");
+      } catch (error) {
+        console.error("error creating new playlist", error);
+      }
+    }
+  };
 
   return (
     <div className="modal-wrapper">
@@ -23,9 +55,17 @@ const PlaylistForm = ({ show, onClose }) => {
               id="playlist"
               name="playlist"
               placeholder="My Playlist"
+              onChange={(e) =>
+                setNewPlaylist({ playlistTitle: e.target.value })
+              }
             />
           </div>
-          <button className="btn btn-secondary">Create Playlist</button>
+          <button
+            className="btn btn-secondary"
+            onClick={handleCreateNewPlaylist}
+          >
+            Create Playlist
+          </button>
         </form>
       </article>
     </div>
