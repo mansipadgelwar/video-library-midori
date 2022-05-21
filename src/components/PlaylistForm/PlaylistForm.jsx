@@ -1,10 +1,14 @@
 import "../PlaylistForm/PlaylistForm.css";
 
-const PlaylistForm = () => {
+const PlaylistForm = ({ show, onClose }) => {
+  if (!show) {
+    return null;
+  }
+
   return (
     <div className="modal-wrapper">
       <article className="playlist-form-container modal">
-        <button className="modal-close-icon">
+        <button className="modal-close-icon" onClick={onClose}>
           <span className="material-icons">close</span>
         </button>
         <form className="playlist-form" action="">
@@ -21,7 +25,6 @@ const PlaylistForm = () => {
               placeholder="My Playlist"
             />
           </div>
-
           <button className="btn btn-secondary">Create Playlist</button>
         </form>
       </article>
