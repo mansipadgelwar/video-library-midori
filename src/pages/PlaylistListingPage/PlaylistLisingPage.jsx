@@ -6,7 +6,6 @@ import { useServices } from "../../context/servicesContext/servicesContext";
 const PlaylistListingPage = () => {
   const [show, setShow] = useState(false);
   const { state } = useServices();
-  console.log(state.playlists);
 
   return (
     <div>
@@ -25,11 +24,6 @@ const PlaylistListingPage = () => {
             {state.playlists.map((element) => {
               return <PlaylistCard key={element._id} playlist={element} />;
             })}
-
-            {/* <PlaylistCard />
-            <PlaylistCard />
-            <PlaylistCard />
-            <PlaylistCard /> */}
           </div>
         </div>
       </div>
