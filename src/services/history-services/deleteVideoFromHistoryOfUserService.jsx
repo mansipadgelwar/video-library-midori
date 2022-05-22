@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const deleteVideoFromHistoryOfUserService = (authToken, videoId) => {
-  axios.delete(`/api/user/history/${videoId}`, {
+  return axios.delete(`/api/user/history/${videoId}`, {
     headers: { authorization: authToken }
   });
 };

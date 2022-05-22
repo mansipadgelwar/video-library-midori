@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const addVideoToWatchLaterService = (authToken, video) => {
-  axios.post(
+  return axios.post(
     "/api/user/watchlater",
     { video },
     { headers: { authorization: authToken } }

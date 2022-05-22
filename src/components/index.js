@@ -7,3 +7,4 @@ export { VideoDescription } from "./VideoPage/VideoDescription/VideoDescription"
 export { VideoPanel } from "./VideoPage/VideoPanel/VideoPanel";
 export { VideoPlayer } from "./VideoPage/VideoPlayer/VideoPlayer";
 export { CategoryChips } from "./CategoryChips/CategoryChips";
+export { playlistModal } from "./modals/playlist-modal/playlist-modal";

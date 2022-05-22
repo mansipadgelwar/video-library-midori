@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const addVideoToLikedVideo = (authToken, video) => {
-  axios.post(
+  return axios.post(
     "/api/user/likes",
     { video },
     {
