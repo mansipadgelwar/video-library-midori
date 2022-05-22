@@ -31,8 +31,11 @@ const PlaylistCard = ({ playlist }) => {
         <div>10 videos</div>
       </div>
       <div>
-        <button onClick={(e) => deletePlaylistFromDb(e, playlist._id)}>
-          <span className="material-icons icon">delete_outline</span>
+        <button
+          className="btn-icon"
+          onClick={(e) => deletePlaylistFromDb(e, playlist._id)}
+        >
+          <span className="material-icons">delete_outline</span>
         </button>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { useToast } from "../../custom-hooks/useToast";
 const PlaylistForm = ({ show, onClose }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
-  const { dispatch } = useServices();
+  const { state, dispatch } = useServices();
 
   const [newPlaylistName, setNewPlaylistName] = useState("");
 
@@ -22,6 +22,12 @@ const PlaylistForm = ({ show, onClose }) => {
       showToast("Please login to create new playlist.", "info");
     } else {
       try {
+        const titleExists = state.playlists.some(
+          (element) => element.title === newPlaylistName
+        );
+        if (titleExists) {
+          return showToast("Playlist name already exists", "error");
+        }
         const {
           data: { playlists }
         } = await axios.post(
