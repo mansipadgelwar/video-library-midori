@@ -14,9 +14,11 @@ const CategoryChips = () => {
       try {
         const response = await axios.get("/api/categories");
         if (response.status === 200) {
-          const data = response.data.categories;
-          setCategory(data);
-          return data;
+          const {
+            data: { categories }
+          } = response;
+          setCategory(categories);
+          return categories;
         }
       } catch (error) {
         showToast(`Error fetching categories`, "error");
