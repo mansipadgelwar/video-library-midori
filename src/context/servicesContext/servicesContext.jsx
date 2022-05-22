@@ -18,7 +18,7 @@ const ServiceProvider = ({ children }) => {
     try {
       const {
         data: { playlists }
-      } = axios.get("/api/user/playlists", {
+      } = await axios.get("/api/user/playlists", {
         headers: { authorization: authToken }
       });
       dispatch({ type: "CREATE_NEW_PLAYLIST", payload: playlists });
