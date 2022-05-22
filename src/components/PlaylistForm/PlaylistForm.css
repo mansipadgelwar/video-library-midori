@@ -1,7 +1,27 @@
-.playlist-form .form-container {
+.modal-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+.modal {
+  position: relative;
+  background: var(--white);
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInDown 1s;
 }
 
 .form-container .h3 {
@@ -9,38 +29,51 @@
   padding-bottom: 1rem;
 }
 
-.playlist-form .authentication-form-container {
-  margin-top: 1.88rem;
-  z-index: 1;
-}
-
-.playlist-form .input {
+.input {
   margin: 0;
 }
 
-.playlist-form .form {
+.playlist-form {
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
-  min-width: 25rem;
-  padding: 1rem;
-  box-shadow: var(--btn-box-shadow);
+  min-width: 20rem;
+  width: 100%;
   color: var(--light-raisin-black);
   font-weight: bolder;
 }
 
-.playlist-form .h3,
+.h3,
 .checkbox,
 .btn-link {
   text-align: center;
 }
 
-.playlist-form .input-label {
+.input-label {
   color: var(--raisin-black);
   text-align: left;
 }
 
 .form .btn-link {
   margin: 0;
+}
+
+.modal-close-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
