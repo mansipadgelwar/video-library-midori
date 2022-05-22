@@ -46,7 +46,7 @@ const VideoPanel = ({ video }) => {
   return (
     <div className="video-panel">
       <div className="video-sub-menus">
-        <button className="btn btn-icon" onClick={handleLikedVideos}>
+        <button className="btn btn-icon" onClick={(e) => handleLikedVideos(e)}>
           <span className="material-icons-outlined">thumb_up</span>
           Like
         </button>
@@ -54,7 +54,10 @@ const VideoPanel = ({ video }) => {
           <span className="material-icons-outlined">thumb_down</span>
           Dislike
         </button>
-        <button className="btn btn-icon" onClick={handleAddToWatchLaterVideos}>
+        <button
+          className="btn btn-icon"
+          onClick={(e) => handleAddToWatchLaterVideos(e)}
+        >
           <span className="material-icons-outlined">favorite_border</span>
           Add to Watch Later
         </button>
