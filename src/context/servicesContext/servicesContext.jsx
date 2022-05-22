@@ -21,7 +21,7 @@ const ServiceProvider = ({ children }) => {
       } = await axios.get("/api/user/playlists", {
         headers: { authorization: authToken }
       });
-      dispatch({ type: "CREATE_NEW_PLAYLIST", payload: playlists });
+      dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
     } catch (error) {
       console.error("error in getting playlists", error);
     }

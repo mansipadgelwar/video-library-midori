@@ -18,7 +18,7 @@ const PlaylistCard = ({ playlist }) => {
         headers: { authorization: authToken }
       });
       showToast("Playlist deleted successfully", "success");
-      dispatch({ type: "CREATE_NEW_PLAYLIST", payload: playlists });
+      dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
     } catch (error) {
       console.error("Error deleting playlist", error);
     }

@@ -36,7 +36,7 @@ const PlaylistForm = ({ show, onClose }) => {
         );
         setNewPlaylistName("");
         onClose();
-        dispatch({ type: "CREATE_NEW_PLAYLIST", payload: playlists });
+        dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
         showToast("Playlist created.", "success");
       } catch (error) {
         console.error("error creating new playlist", error);
