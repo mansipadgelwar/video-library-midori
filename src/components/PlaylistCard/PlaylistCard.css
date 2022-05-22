@@ -20,12 +20,16 @@
   padding-left: 0.5rem;
 }
 
-.playlist-container .icon {
+.playlist-container .btn-icon {
   cursor: pointer;
   color: var(--raisin-black);
   font-size: 1.3rem;
-  background-color: var(--white);
-  border-radius: 50%;
   background-color: var(--hover-grey);
   padding: 0.3rem;
+  border-radius: 50%;
+  border: none;
+}
+
+.playlist-container .btn-icon:hover {
+  box-shadow: var(--btn-box-shadow);
 }
