@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "../PlaylistForm/PlaylistForm.css";
-import axios from "axios";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { useServices } from "../../context/servicesContext/servicesContext";
 import { useToast } from "../../custom-hooks/useToast";
+import { createNewPlaylistService } from "../../services";
 
 const PlaylistForm = ({ show, onClose }) => {
   const { isAuthorized, authToken } = useAuth();
@@ -30,16 +30,7 @@ const PlaylistForm = ({ show, onClose }) => {
         }
         const {
           data: { playlists }
-        } = await axios.post(
-          "/api/user/playlists",
-          {
-            playlist: {
-              title: newPlaylistName,
-              description: ""
-            }
-          },
-          { headers: { authorization: authToken } }
-        );
+        } = await createNewPlaylistService(authToken, newPlaylistName);
         setNewPlaylistName("");
         onClose();
         dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
