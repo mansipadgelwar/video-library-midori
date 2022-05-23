@@ -4,7 +4,9 @@ import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
 
 const initialDataState = {
-  playlists: []
+  playlists: [],
+  videos: [],
+  videoLoader: true
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -33,7 +35,7 @@ const ServiceProvider = ({ children }) => {
     }
   });
   return (
-    <ServiceContext.Provider value={{ state, dispatch }}>
+    <ServiceContext.Provider value={{ state, dispatch, initialDataState }}>
       {children}
     </ServiceContext.Provider>
   );

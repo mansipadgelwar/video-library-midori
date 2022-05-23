@@ -1,11 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+// import { useServices } from "../servicesContext/servicesContext";
 
-const DataContext = createContext();
+const DataContext = createContext(null);
 
 const DataProvider = ({ children }) => {
   const [clickedCategory, setClickedCategory] = useState("All");
   const [video, setVideo] = useState([]);
+  // const { state, dispatch } = useServices();
 
   const getAllVideosFromDatabase = async () => {
     try {
@@ -27,12 +29,15 @@ const DataProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    getAllVideosFromDatabase();
+  }, []);
+
   return (
     <DataContext.Provider
       value={{
         clickedCategory,
         setClickedCategory,
-        getAllVideosFromDatabase,
         video
       }}
     >
