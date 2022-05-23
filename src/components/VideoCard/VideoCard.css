@@ -13,6 +13,9 @@
   gap: 7px;
   text-align: left;
   padding-left: 0.5rem;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .video-cta {
@@ -48,7 +51,7 @@
   object-fit: cover;
 }
 
-.video-description button {
+.hamburger {
   position: absolute;
   top: 0;
   right: 0;
@@ -61,7 +64,7 @@
   position: relative;
 }
 
-.video-list-modal-container .modal {
+.video-list-modal-container .submenu-modal {
   position: absolute;
   top: 0;
   right: 5px;

@@ -1,4 +1,4 @@
-.modal-wrapper {
+.submenu-modal-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,11 +10,10 @@
   background: grey;
 }
 
-.modal {
+.submenu-modal {
   position: relative;
   max-width: 300px;
   min-height: 200px;
-  background: white;
   border-radius: 5px;
   padding: 1rem;
   display: flex;

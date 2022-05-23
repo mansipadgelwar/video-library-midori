@@ -5,11 +5,13 @@ import { useAuth } from "../../context/authContext/authenticationContext";
 import { addVideoToHistoryOfUserService } from "../../services";
 import { useServices } from "../../context/servicesContext/servicesContext";
 import { SubmenuModal } from "../modals/Submenu-modal/Submenu-modal";
+import { useState } from "react";
 
 const VideoCard = ({ id, title }) => {
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
   const { dispatch } = useServices();
+  const [showSubMenus, setShowSubMenus] = useState(false);
 
   const addViewedVideoToHistory = async () => {
     if (isAuthorized) {
@@ -43,9 +45,17 @@ const VideoCard = ({ id, title }) => {
       <div className="video-description">
         <div className="video-heading">
           {title}
-          <button className="material-icons">more_vert</button>
+          <button
+            className="material-icons hamburger"
+            onClick={() => setShowSubMenus(true)}
+          >
+            more_vert
+          </button>
           <div className="video-list-modal-container">
-            <SubmenuModal />
+            <SubmenuModal
+              showSubMenus={showSubMenus}
+              onClosingSubMenus={() => setShowSubMenus(false)}
+            />
           </div>
         </div>
         <div className="video-sub-heading">6K Views | 4 hours ago</div>

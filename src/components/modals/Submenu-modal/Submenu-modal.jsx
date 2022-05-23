@@ -1,11 +1,16 @@
 import "./Submenu-modal.css";
 
-const SubmenuModal = () => {
+const SubmenuModal = ({ showSubMenus, onClosingSubMenus }) => {
+  if (!showSubMenus) {
+    return null;
+  }
   return (
-    <div className="modal-wrapper">
-      <div className="modal">
+    <div className="submenu-modal-wrapper">
+      <div className="submenu-modal">
         <button className="modal-close-icon">
-          <span className="material-icons">close</span>
+          <span className="material-icons" onClick={onClosingSubMenus}>
+            close
+          </span>
         </button>
         <div className="modal-contents">
           <ul className="modal-content-list">
