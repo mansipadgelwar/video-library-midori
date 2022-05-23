@@ -3,7 +3,8 @@ import "../PlaylistForm/PlaylistForm.css";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { useServices } from "../../context/servicesContext/servicesContext";
 import { useToast } from "../../custom-hooks/useToast";
-import { createNewPlaylistService } from "../../services";
+// import { createNewPlaylistService } from "../../services";
+import axios from "axios";
 
 const PlaylistForm = ({ show, onClose }) => {
   const { isAuthorized, authToken } = useAuth();
@@ -30,7 +31,16 @@ const PlaylistForm = ({ show, onClose }) => {
         }
         const {
           data: { playlists }
-        } = await createNewPlaylistService(authToken, newPlaylistName);
+        } = await axios.post(
+          "/api/user/playlists",
+          {
+            playlist: {
+              title: newPlaylistName,
+              description: ""
+            }
+          },
+          { headers: { authorization: authToken } }
+        );
         setNewPlaylistName("");
         onClose();
         dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
