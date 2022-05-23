@@ -1,9 +1,9 @@
 const dataReducer = (state, { type, payload }) => {
   switch (type) {
     case "MANAGE_PLAYLIST":
-      return { ...state, playlists: payload.playlists };
+      return { ...state, playlists: [...payload] };
     case "MANAGE_HISTORY":
-      return { ...state, playlists: payload.history };
+      return { ...state, history: [...payload] };
     default:
       throw new Error("Invalid case");
   }
