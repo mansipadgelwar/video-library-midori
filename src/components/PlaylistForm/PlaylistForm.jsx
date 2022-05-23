@@ -54,7 +54,7 @@ const PlaylistForm = ({ show, onClose }) => {
   return (
     <div className="modal-wrapper">
       <article className="playlist-form-container modal">
-        <button className="modal-close-icon" onClick={onClose}>
+        <button className="playlist-modal-close-icon" onClick={onClose}>
           <span className="material-icons">close</span>
         </button>
         <form className="playlist-form" action="">
