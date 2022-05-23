@@ -1,7 +1,9 @@
 import "../HistoryPage/HistoryPage.css";
 import { VideoCard } from "../../components";
+import { useServices } from "../../context/servicesContext/servicesContext";
 
 const HistoryPage = () => {
+  const { state } = useServices();
   return (
     <div className="main-content-page">
       <div className="menu-bar">
@@ -11,11 +13,9 @@ const HistoryPage = () => {
         </div>
       </div>
       <div className="history-video-container">
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
+        {state.history.map(({ _id, title }) => {
+          return <VideoCard key={_id} id={_id} title={title} />;
+        })}
       </div>
     </div>
   );

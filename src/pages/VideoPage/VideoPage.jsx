@@ -5,16 +5,43 @@ import {
   VideoPlayer,
   VideoCard
 } from "../../components";
+import { useToast } from "../../custom-hooks/useToast";
+import { useAuth } from "../../context/authContext/authenticationContext";
 import { useData } from "../../context/dataContext/dataContext";
 import { useParams } from "react-router-dom";
+import { addVideoToHistoryOfUserService } from "../../services";
+import { useEffect } from "react";
+import { useServices } from "../../context/servicesContext/servicesContext";
 
 const VideoPage = () => {
   const { videos } = useData();
   const { videoId } = useParams();
+  const { showToast } = useToast();
+  const { isAuthorized, authToken } = useAuth();
+  const { dispatch } = useServices();
+
   const currentVideo = videos.find((item) => item._id === videoId);
   const currentVideoCategory = videos.filter(
     (video) => video.category === currentVideo.category
   );
+
+  const addViewedVideoToHistory = async () => {
+    if (isAuthorized) {
+      try {
+        const {
+          data: { history }
+        } = await addVideoToHistoryOfUserService(authToken, currentVideo);
+        dispatch({ type: "MANAGE_HISTORY", payload: history });
+        showToast(" Video added to history", "success");
+      } catch (error) {
+        showToast("Unable to add video to your history", "error");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (currentVideo) addViewedVideoToHistory();
+  }, [currentVideo]);
 
   return (
     <div className="video-page-container">

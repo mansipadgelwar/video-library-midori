@@ -2,9 +2,11 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
+import { getHistoryOfUserService } from "../../services";
 
 const initialDataState = {
-  playlists: []
+  playlists: [],
+  history: []
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -27,9 +29,21 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const getUserHistory = async () => {
+    try {
+      const {
+        data: { history }
+      } = await getHistoryOfUserService(authToken);
+      dispatch({ type: "MANAGE_HISTORY", payload: history });
+    } catch (error) {
+      console.error("error in getting user's history", error);
+    }
+  };
+
   useEffect(() => {
     if (isAuthorized) {
       getUserCreatedPlaylist();
+      getUserHistory();
     }
   });
   return (
