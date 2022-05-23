@@ -47,3 +47,26 @@
   height: 100%;
   object-fit: cover;
 }
+
+.video-description button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.video-list-modal-container {
+  position: relative;
+}
+
+.video-list-modal-container .modal {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  z-index: 1;
+  box-shadow: var(--btn-box-shadow);
+  background-color: rgb(36, 33, 33);
+  color: white;
+}

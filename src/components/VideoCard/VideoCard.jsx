@@ -4,6 +4,7 @@ import { useToast } from "../../custom-hooks/useToast";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { addVideoToHistoryOfUserService } from "../../services";
 import { useServices } from "../../context/servicesContext/servicesContext";
+import { SubmenuModal } from "../modals/Submenu-modal/Submenu-modal";
 
 const VideoCard = ({ id, title }) => {
   const { showToast } = useToast();
@@ -40,7 +41,13 @@ const VideoCard = ({ id, title }) => {
         </Link>
       </div>
       <div className="video-description">
-        <div className="video-heading">{title}</div>
+        <div className="video-heading">
+          {title}
+          <button className="material-icons">more_vert</button>
+          <div className="video-list-modal-container">
+            <SubmenuModal />
+          </div>
+        </div>
         <div className="video-sub-heading">6K Views | 4 hours ago</div>
       </div>
       <div className="video-cta">

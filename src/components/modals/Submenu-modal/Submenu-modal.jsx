@@ -1,3 +1,5 @@
+import "./Submenu-modal.css";
+
 const SubmenuModal = () => {
   return (
     <div className="modal-wrapper">
