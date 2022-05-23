@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-  useState,
-  useEffect
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import axios from "axios";
 import { videoReducer } from "../../reducers";
 
@@ -51,16 +45,13 @@ const DataProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getAllVideosFromDatabase();
-  }, []);
-
   return (
     <DataContext.Provider
       value={{
         ...videoState,
         clickedCategory,
         setClickedCategory,
+        getAllVideosFromDatabase,
         videoDispatch
       }}
     >

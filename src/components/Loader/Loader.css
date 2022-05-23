@@ -1,8 +1,11 @@
 .lds-grid {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  padding-top: 20rem;
   width: 80px;
-  height: 80px;
+  height: 100vh;
 }
 .lds-grid div {
   position: absolute;
