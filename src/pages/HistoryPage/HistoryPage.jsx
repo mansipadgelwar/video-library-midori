@@ -10,8 +10,6 @@ const HistoryPage = () => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
 
-  console.log(state.history);
-
   const clearAllHistory = async (e) => {
     e.preventDefault();
     try {
