@@ -55,6 +55,7 @@ const VideoCard = ({ id, title }) => {
             <SubmenuModal
               showSubMenus={showSubMenus}
               onClosingSubMenus={() => setShowSubMenus(false)}
+              id={id}
             />
           </div>
         </div>

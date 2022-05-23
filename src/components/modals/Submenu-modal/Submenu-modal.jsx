@@ -1,9 +1,31 @@
 import "./Submenu-modal.css";
+import { deleteVideoFromHistoryOfUserService } from "../../../services";
+import { useToast } from "../../../custom-hooks/useToast";
+import { useAuth } from "../../../context/authContext/authenticationContext";
+import { useServices } from "../../../context/servicesContext/servicesContext";
 
-const SubmenuModal = ({ showSubMenus, onClosingSubMenus }) => {
+const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id }) => {
+  const { showToast } = useToast();
+  const { authToken } = useAuth();
+  const { dispatch } = useServices();
   if (!showSubMenus) {
     return null;
   }
+
+  const deleteVideoFromHistory = async (e, videoId) => {
+    e.preventDefault();
+    try {
+      const {
+        data: { history }
+      } = await deleteVideoFromHistoryOfUserService(authToken, videoId);
+      dispatch({ type: "MANAGE_HISTORY", payload: history });
+      showToast(" Video removed from history", "success");
+    } catch (error) {
+      showToast("Unable to remove video from history", "error");
+      console.error("Error in deleting video from history", error);
+    }
+    onClosingSubMenus(false);
+  };
   return (
     <div className="submenu-modal-wrapper">
       <div className="submenu-modal">
@@ -14,7 +36,10 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus }) => {
         </button>
         <div className="modal-contents">
           <ul className="modal-content-list">
-            <li className="unordered-list text-bold">
+            <li
+              className="unordered-list text-bold"
+              onClick={(e) => deleteVideoFromHistory(e, id)}
+            >
               <span className="material-icons">delete</span>
               Remove from history
             </li>
