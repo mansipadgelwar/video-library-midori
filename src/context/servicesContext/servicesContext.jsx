@@ -4,9 +4,7 @@ import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
 
 const initialDataState = {
-  playlists: [],
-  videos: [],
-  videoLoader: true
+  playlists: []
 };
 
 const ServiceContext = createContext(initialDataState);

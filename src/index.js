@@ -16,13 +16,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <DataProvider>
-          <ToastContainer />
-          <App />
-        </DataProvider>
         <ServiceProvider>
-          <ToastContainer />
-          <App />
+          <DataProvider>
+            <ToastContainer />
+            <App />
+          </DataProvider>
         </ServiceProvider>
       </AuthProvider>
     </Router>
