@@ -8,11 +8,19 @@ import { useData } from "../../../context/dataContext/dataContext";
 import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 
-const PlaylistModal = ({ selectedVideo }) => {
+const PlaylistModal = ({
+  selectedVideo,
+  showPlaylistModal,
+  closePlaylistModal
+}) => {
   const { state, dispatch } = useServices();
   const { authToken } = useAuth();
   const { videos } = useData();
   const { showToast } = useToast();
+
+  if (!showPlaylistModal) {
+    return null;
+  }
 
   const videoExistsInThatPlaylist = false;
 
@@ -51,7 +59,10 @@ const PlaylistModal = ({ selectedVideo }) => {
   return (
     <div className={styles.modal_wrapper}>
       <div className={styles.modal}>
-        <button className={styles.modal_close_icon}>
+        <button
+          className={styles.modal_close_icon}
+          onClick={closePlaylistModal}
+        >
           <span className="material-icons">close</span>
         </button>
 

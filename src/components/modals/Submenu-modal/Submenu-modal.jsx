@@ -7,11 +7,13 @@ import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 import { PlaylistModal } from "../playlist-modal/playlist-modal";
+import { useState } from "react";
 
 const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
   const { dispatch, addVideoToWatchLater } = useServices();
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   if (!showSubMenus) {
     return null;
   }
@@ -47,6 +49,11 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
   };
   return (
     <div className="submenu-modal-wrapper">
+      <PlaylistModal
+        selectedVideo={{ id, title }}
+        showPlaylistModal={showPlaylistModal}
+        closePlaylistModal={() => setShowPlaylistModal(false)}
+      />
       <div className="submenu-modal">
         <button className="modal-close-icon">
           <span className="material-icons" onClick={onClosingSubMenus}>
@@ -69,10 +76,12 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
               <span className="material-icons">delete</span>
               Remove from watch later
             </li>
-            <li className="unordered-list text-bold">
-              <span className="material-icons">playlist_play</span>Save to
-              playlist
-              <PlaylistModal selectedVideo={{ id, title }} />
+            <li
+              className="unordered-list text-bold"
+              onClick={() => setShowPlaylistModal(true)}
+            >
+              <span className="material-icons">playlist_play</span>
+              Save to playlist
             </li>
             <li
               className="unordered-list text-bold"

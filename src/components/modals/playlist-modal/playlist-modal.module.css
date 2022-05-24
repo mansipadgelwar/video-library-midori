@@ -8,7 +8,6 @@
   left: 0;
   right: 0;
   background: transparent;
-  z-index: 1;
 }
 
 .modal {
@@ -25,6 +24,7 @@
   justify-content: center;
   align-items: center;
   animation: fadeInDown 1s;
+  z-index: 2;
 }
 
 .modal_content_list > li {
