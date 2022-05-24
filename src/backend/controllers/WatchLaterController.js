@@ -20,7 +20,7 @@ export const getWatchLaterVideosHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          errors: ["The email you entered is not Registered. Not Found error"]
         }
       );
     }
@@ -30,7 +30,7 @@ export const getWatchLaterVideosHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error
       }
     );
   }
@@ -51,7 +51,7 @@ export const addItemToWatchLaterVideos = function (schema, request) {
         409,
         {},
         {
-          errors: ["The video is already in your watch later videos"],
+          errors: ["The video is already in your watch later videos"]
         }
       );
     }
@@ -62,7 +62,7 @@ export const addItemToWatchLaterVideos = function (schema, request) {
     404,
     {},
     {
-      errors: ["The email you entered is not Registered. Not Found error"],
+      errors: ["The email you entered is not Registered. Not Found error"]
     }
   );
 };
@@ -77,7 +77,7 @@ export const removeItemFromWatchLaterVideos = function (schema, request) {
   if (user) {
     const videoId = request.params.videoId;
     const filteredVideos = user.watchlater.filter(
-      (item) => item._id !== videoId
+      (item) => item.id !== videoId
     );
     this.db.users.update({ watchlater: filteredVideos });
     return new Response(200, {}, { watchlater: filteredVideos });

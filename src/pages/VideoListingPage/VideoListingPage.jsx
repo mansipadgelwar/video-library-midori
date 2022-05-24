@@ -4,12 +4,7 @@ import { useData } from "../../context/dataContext/dataContext";
 import { useEffect } from "react";
 
 const VideoListingPage = () => {
-  const {
-    videoLoader,
-    videos,
-    videoDispatch,
-    getAllVideosFromDatabase
-  } = useData();
+  const { videoLoader, videos, videoDispatch } = useData();
 
   useEffect(() => {
     videoDispatch({
@@ -31,9 +26,6 @@ const VideoListingPage = () => {
     };
   }, [videoDispatch]);
 
-  useEffect(() => {
-    getAllVideosFromDatabase();
-  }, [getAllVideosFromDatabase]);
   return (
     <div className="main-content-page video-listing-page">
       {videoLoader ? (

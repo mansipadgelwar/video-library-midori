@@ -3,7 +3,7 @@ const videoReducer = (videoState, { type, payload }) => {
     case "DISPLAY_LOADER":
       return { ...videoState, videoLoader: payload.videoLoader };
     case "SET_VIDEOS":
-      return { ...videoState, videos: payload.videos, videoLoader: false };
+      return { ...videoState, videos: [...payload], videoLoader: false };
     default:
       throw new Error("Invalid case");
   }

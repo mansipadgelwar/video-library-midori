@@ -1,14 +1,15 @@
 import "../css/VideoPage.css";
 import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
-import {
-  addVideoToWatchLaterService,
-  addVideoToLikedVideo
-} from "../../../services";
+import { addVideoToLikedVideo } from "../../../services";
+import { useServices } from "../../../context/servicesContext/servicesContext";
 
 const VideoPanel = ({ video }) => {
+  const { _id: id, title } = video;
+
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
+  const { addVideoToWatchLater } = useServices();
 
   const handleLikedVideos = async (e) => {
     e.preventDefault();
@@ -27,22 +28,6 @@ const VideoPanel = ({ video }) => {
     }
   };
 
-  const handleAddToWatchLaterVideos = async (e) => {
-    e.preventDefault();
-    if (!isAuthorized) {
-      showToast("Please login to add video to favorites.", "info");
-    } else {
-      try {
-        const {
-          data: { watchlater }
-        } = await addVideoToWatchLaterService(authToken, video);
-        showToast("Saved to watch later.", "success");
-      } catch (error) {
-        showToast("Error in adding video to watch later.", "error");
-        console.error("Error in adding video to watch later", error);
-      }
-    }
-  };
   return (
     <div className="video-panel">
       <div className="video-sub-menus">
@@ -56,7 +41,7 @@ const VideoPanel = ({ video }) => {
         </button>
         <button
           className="btn btn-icon"
-          onClick={(e) => handleAddToWatchLaterVideos(e)}
+          onClick={() => addVideoToWatchLater({ id, title })}
         >
           <span className="material-icons-outlined">favorite_border</span>
           Add to Watch Later

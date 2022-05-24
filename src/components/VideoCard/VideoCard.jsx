@@ -56,6 +56,7 @@ const VideoCard = ({ id, title }) => {
               showSubMenus={showSubMenus}
               onClosingSubMenus={() => setShowSubMenus(false)}
               id={id}
+              title={title}
             />
           </div>
         </div>
