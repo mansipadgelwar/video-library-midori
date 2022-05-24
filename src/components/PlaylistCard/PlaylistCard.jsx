@@ -3,6 +3,7 @@ import { useToast } from "../../custom-hooks/useToast";
 import "../PlaylistCard/PlaylistCard.css";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { useServices } from "../../context/servicesContext/servicesContext";
+import { Link } from "react-router-dom";
 
 const PlaylistCard = ({ playlist }) => {
   const { showToast } = useToast();
@@ -26,18 +27,20 @@ const PlaylistCard = ({ playlist }) => {
 
   return (
     <div className="playlist-container">
-      <div className="playlist-description">
-        <div className="text-bold">{playlist.title}</div>
-        <div>{playlist.videos.length} videos</div>
-      </div>
-      <div>
-        <button
-          className="btn-icon"
-          onClick={(e) => deletePlaylistFromDb(e, playlist._id)}
-        >
-          <span className="material-icons">delete_outline</span>
-        </button>
-      </div>
+      <Link to={`/myplaylist/${playlist._id}`}>
+        <div className="playlist-description">
+          <div className="text-bold">{playlist.title}</div>
+          <div>{playlist.videos.length} videos</div>
+        </div>
+        <div>
+          <button
+            className="btn-icon"
+            onClick={(e) => deletePlaylistFromDb(e, playlist._id)}
+          >
+            <span className="material-icons">delete_outline</span>
+          </button>
+        </div>
+      </Link>
     </div>
   );
 };

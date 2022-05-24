@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/createplaylist" element={<CreateNewPlaylistPage />} />
-        <Route path="/myplaylist" element={<MyPlaylistPage />} />
+        <Route path="/myplaylist/:playlistId" element={<MyPlaylistPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/allplaylists" element={<PlaylistListingPage />} />
         <Route path="/videolist" element={<VideoListingPage />} />
