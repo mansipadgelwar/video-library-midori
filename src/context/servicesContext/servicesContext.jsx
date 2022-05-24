@@ -12,7 +12,7 @@ import { useToast } from "../../custom-hooks/useToast";
 const initialDataState = {
   playlists: [],
   history: [],
-  watchLater: []
+  watchlater: []
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -52,14 +52,15 @@ const ServiceProvider = ({ children }) => {
   };
 
   const addVideoToWatchLater = async ({ id, title }) => {
+    const video = { id, title };
     if (isAuthorized) {
       try {
-        const {
-          data: { watchLater }
-        } = await addVideoToWatchLaterService(authToken, { id, title });
-        dispatch({ type: "MANAGE_WATCH_LATER", payload: watchLater });
+        const response = await addVideoToWatchLaterService(authToken, video);
+        dispatch({
+          type: "MANAGE_WATCH_LATER",
+          payload: response.data.watchlater
+        });
         showToast(" Video added to watch later", "success");
-        console.log("add to watch later");
       } catch (error) {
         console.log("Error in adding video to watch later", error);
       }
@@ -70,9 +71,9 @@ const ServiceProvider = ({ children }) => {
     if (isAuthorized) {
       try {
         const {
-          data: { watchLater }
+          data: { watchlater }
         } = await getWatchLaterVideoOfUserService(authToken);
-        dispatch({ type: "MANAGE_WATCH_LATER", payload: [...watchLater] });
+        dispatch({ type: "MANAGE_WATCH_LATER", payload: [...watchlater] });
       } catch (error) {
         console.log("Error in getting video from watch later", error);
       }

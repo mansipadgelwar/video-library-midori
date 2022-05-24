@@ -25,15 +25,21 @@ const Sidebar = () => {
             <div>Explore</div>
           </li>
           <li className="video-side-links">
-            <Link to="/watchlater">
+            <Link to="/">
               <span className="material-icons">favorite</span>
             </Link>
             <div>Favorite</div>
           </li>
+          <li className="video-side-links">
+            <Link to="/watchlater">
+              <span className="material-icons">watch_later</span>
+            </Link>
+            <div>Watch Later</div>
+          </li>
 
           <li className="video-side-links">
             <Link to="/history">
-              <span className="material-icons">watch_later</span>
+              <span className="material-icons">history</span>
             </Link>
             <div>History</div>
           </li>

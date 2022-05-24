@@ -1,5 +1,8 @@
 import "./Submenu-modal.css";
-import { deleteVideoFromHistoryOfUserService } from "../../../services";
+import {
+  deleteVideoFromHistoryOfUserService,
+  deleteVideoFromWatchLaterService
+} from "../../../services";
 import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 import { useServices } from "../../../context/servicesContext/servicesContext";
@@ -26,6 +29,21 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
     }
     onClosingSubMenus(false);
   };
+
+  const deleteVideoFromWatchLater = async (e, videoId) => {
+    e.preventDefault();
+    try {
+      const {
+        data: { watchlater }
+      } = await deleteVideoFromWatchLaterService(authToken, videoId);
+      dispatch({ type: "MANAGE_WATCH_LATER", payload: watchlater });
+      showToast(" Video removed from watch later", "success");
+    } catch (error) {
+      showToast("Unable to remove video from watch later", "error");
+      console.error("Error in deleting video from watch later", error);
+    }
+    onClosingSubMenus(false);
+  };
   return (
     <div className="submenu-modal-wrapper">
       <div className="submenu-modal">
@@ -42,6 +60,13 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
             >
               <span className="material-icons">delete</span>
               Remove from history
+            </li>
+            <li
+              className="unordered-list text-bold"
+              onClick={(e) => deleteVideoFromWatchLater(e, id)}
+            >
+              <span className="material-icons">delete</span>
+              Remove from watch later
             </li>
             <li className="unordered-list text-bold">
               <span className="material-icons">playlist_play</span>Save to
