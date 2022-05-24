@@ -33,6 +33,7 @@ const VideoListingPage = () => {
       ) : (
         <div>
           <CategoryChips />
+
           <div className="menu-bar">
             <div className="page-title h3 text-bold">Trending Videos</div>
           </div>

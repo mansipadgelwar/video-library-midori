@@ -1,4 +1,4 @@
-import "../../modals/playlist-modal/playlist-modal.css";
+import styles from "./playlist-modal.module.css";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 import {
   addNewVideoToPlaylistOfUserService,
@@ -49,18 +49,18 @@ const PlaylistModal = ({ selectedVideo }) => {
     }
   };
   return (
-    <div className="modal-wrapper">
-      <div className="modal">
-        <button className="modal-close-icon">
+    <div className={styles.modal_wrapper}>
+      <div className={styles.modal}>
+        <button className={styles.modal_close_icon}>
           <span className="material-icons">close</span>
         </button>
 
-        <div className="modal-heading">Save to...</div>
-        <div className="modal-contents">
-          <ul className="modal-content-list">
+        <div className={styles.modal_heading}>Save to...</div>
+        <div className={styles.modal_contents}>
+          <ul className={styles.modal_content_list}>
             {state.playlists.map(({ title, _id }) => {
               return (
-                <li className="unordered-list" key={_id}>
+                <li className={styles.unordered_list} key={_id}>
                   <input
                     type="checkbox"
                     id={_id}

@@ -81,14 +81,6 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
               <span className="material-icons">watch_later</span>
               Add to watch later
             </li>
-            <li className="unordered-list text-bold">
-              <span className="material-icons">thumb_up</span>
-              Like the video
-            </li>
-            <li className="unordered-list text-bold">
-              <span className="material-icons">thumb_down</span>
-              Dislike the Video
-            </li>
           </ul>
         </div>
       </div>
