@@ -20,6 +20,11 @@
   padding-left: 0.5rem;
 }
 
+.playlist-title {
+  color: black;
+  text-decoration: none;
+}
+
 .playlist-container .btn-icon {
   cursor: pointer;
   color: var(--raisin-black);
