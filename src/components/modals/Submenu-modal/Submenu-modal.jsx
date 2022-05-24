@@ -7,7 +7,7 @@ import { useServices } from "../../../context/servicesContext/servicesContext";
 const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id }) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
-  const { dispatch } = useServices();
+  const { dispatch, addVideoToWatchLater } = useServices();
   if (!showSubMenus) {
     return null;
   }
@@ -46,6 +46,13 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id }) => {
             <li className="unordered-list text-bold">
               <span className="material-icons">playlist_play</span>Save to
               playlist
+            </li>
+            <li
+              className="unordered-list text-bold"
+              onClick={() => addVideoToWatchLater(id)}
+            >
+              <span className="material-icons">watch_later</span>
+              Add to watch later
             </li>
             <li className="unordered-list text-bold">
               <span className="material-icons">thumb_up</span>
