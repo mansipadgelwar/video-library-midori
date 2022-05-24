@@ -6,6 +6,7 @@ import {
 import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 import { useServices } from "../../../context/servicesContext/servicesContext";
+import { PlaylistModal } from "../playlist-modal/playlist-modal";
 
 const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
   const { showToast } = useToast();
@@ -71,6 +72,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
             <li className="unordered-list text-bold">
               <span className="material-icons">playlist_play</span>Save to
               playlist
+              <PlaylistModal video={{ id, title }} />
             </li>
             <li
               className="unordered-list text-bold"
