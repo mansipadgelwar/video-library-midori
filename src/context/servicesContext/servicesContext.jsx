@@ -20,7 +20,7 @@ const ServiceContext = createContext(initialDataState);
 
 const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
-  const { videos } = useData();
+  const { videoState } = useData();
   const { showToast } = useToast();
 
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
@@ -54,14 +54,14 @@ const ServiceProvider = ({ children }) => {
   };
 
   const addVideoToWatchLater = async (id) => {
-    console.log("add video", videos);
+    console.log("add video", videoState);
     // const video = videos.find((item) => item._id === id);
 
     if (isAuthorized) {
       try {
         const {
           data: { watchLater }
-        } = await addVideoToWatchLaterService(authToken, videos);
+        } = await addVideoToWatchLaterService(authToken, id);
         dispatch({ type: "MANAGE_WATCH_LATER", payload: watchLater });
         showToast(" Video added to watch later", "success");
         console.log("add to watch later");
