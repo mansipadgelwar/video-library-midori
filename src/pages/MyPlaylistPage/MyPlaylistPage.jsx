@@ -10,7 +10,6 @@ const MyPlaylistPage = () => {
     (item) => item._id === playlistId
   );
 
-  console.log(currentPlaylist);
   return (
     <div className="main-content-page">
       <div className="menu-bar">
