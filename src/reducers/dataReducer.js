@@ -6,6 +6,9 @@ const dataReducer = (state, { type, payload }) => {
       return { ...state, history: [...payload] };
     case "MANAGE_WATCH_LATER":
       return { ...state, watchlater: [...payload] };
+    case "MANAGE_SINGLE_PLAYLIST":
+      return { ...state, singlePlaylists: [...payload] };
+
     default:
       throw new Error("Invalid case");
   }

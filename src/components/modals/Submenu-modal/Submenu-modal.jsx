@@ -72,7 +72,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
             <li className="unordered-list text-bold">
               <span className="material-icons">playlist_play</span>Save to
               playlist
-              <PlaylistModal video={{ id, title }} />
+              <PlaylistModal selectedVideo={{ id, title }} />
             </li>
             <li
               className="unordered-list text-bold"

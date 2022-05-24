@@ -12,7 +12,8 @@ import { useToast } from "../../custom-hooks/useToast";
 const initialDataState = {
   playlists: [],
   history: [],
-  watchlater: []
+  watchlater: [],
+  singlePlaylists: []
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -37,6 +38,21 @@ const ServiceProvider = ({ children }) => {
       }
     }
   };
+
+  // const getSinglePlaylistOfUser = async () => {
+  //   const playlistId =
+  //   if (isAuthorized) {
+  //     try {
+  //       // const {
+  //       //   data: {
+  //       //     playlists: { videos }
+  //       //   }
+  //       // } = await getPlaylistOfUserService(authToken, playlistId);
+  //       // dispatch({ type: "MANAGE_SINGLE_PLAYLIST", payload: videos });
+  //     } catch (error) {
+  //       console.log("error in getting single playlist", error);
+  //     }
+  //   }
 
   const getUserHistory = async () => {
     if (isAuthorized) {

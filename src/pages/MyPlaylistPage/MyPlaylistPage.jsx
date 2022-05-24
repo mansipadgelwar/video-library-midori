@@ -1,7 +1,10 @@
 import "../MyPlaylistPage/MyPlaylistPage.css";
 import { VideoCard } from "../../components";
+import { useServices } from "../../services";
 
 const MyPlaylistPage = () => {
+  const { state } = useServices();
+  console.log(state.playlists);
   return (
     <div className="main-content-page">
       <div className="menu-bar">

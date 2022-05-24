@@ -28,7 +28,7 @@ const PlaylistCard = ({ playlist }) => {
     <div className="playlist-container">
       <div className="playlist-description">
         <div className="text-bold">{playlist.title}</div>
-        <div>10 videos</div>
+        <div>{playlist.videos.length} videos</div>
       </div>
       <div>
         <button
