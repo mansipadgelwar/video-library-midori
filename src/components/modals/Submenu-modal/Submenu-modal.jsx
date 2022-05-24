@@ -30,7 +30,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
       showToast("Unable to remove video from history", "error");
       console.error("Error in deleting video from history", error);
     }
-    onClosingSubMenus(false);
+    onClosingSubMenus();
   };
 
   const deleteVideoFromWatchLater = async (e, videoId) => {
@@ -45,7 +45,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
       showToast("Unable to remove video from watch later", "error");
       console.error("Error in deleting video from watch later", error);
     }
-    onClosingSubMenus(false);
+    onClosingSubMenus();
   };
   return (
     <div className="submenu-modal-wrapper">
