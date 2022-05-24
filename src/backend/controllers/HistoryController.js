@@ -19,7 +19,7 @@ export const getHistoryVideosHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          errors: ["The email you entered is not Registered. Not Found error"]
         }
       );
     }
@@ -29,7 +29,7 @@ export const getHistoryVideosHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error
       }
     );
   }
@@ -49,7 +49,7 @@ export const addVideoToHistoryHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          errors: ["The email you entered is not Registered. Not Found error"]
         }
       );
     }
@@ -59,7 +59,7 @@ export const addVideoToHistoryHandler = function (schema, request) {
         409,
         {},
         {
-          errors: ["The video is already in your history"],
+          errors: ["The video is already in your history"]
         }
       );
     }
@@ -70,7 +70,7 @@ export const addVideoToHistoryHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error
       }
     );
   }
@@ -89,12 +89,12 @@ export const removeVideoFromHistoryHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          errors: ["The email you entered is not Registered. Not Found error"]
         }
       );
     }
     const videoId = request.params.videoId;
-    const filteredHistory = user.history.filter((item) => item._id !== videoId);
+    const filteredHistory = user.history.filter((item) => item.id !== videoId);
     this.db.users.update({ history: filteredHistory });
     return new Response(200, {}, { history: filteredHistory });
   } catch (error) {
@@ -102,7 +102,7 @@ export const removeVideoFromHistoryHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error
       }
     );
   }
@@ -121,7 +121,7 @@ export const clearHistoryHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          errors: ["The email you entered is not Registered. Not Found error"]
         }
       );
     }
@@ -132,7 +132,7 @@ export const clearHistoryHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error
       }
     );
   }

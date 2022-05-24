@@ -1,23 +1,21 @@
-/* .modal-wrapper {
+.submenu-modal-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   inset: 0;
-  background: var(--grey);
-  z-index: 1;
+  background: grey;
 }
 
-.modal {
+.submenu-modal {
   position: relative;
-  max-width: 18.75rem;
-  min-height: 12.5rem;
-  background: var(--white);
+  max-width: 300px;
+  min-height: 200px;
   border-radius: 5px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 20px;
   justify-content: center;
   align-items: center;
 }
@@ -37,14 +35,26 @@
 
 .unordered-list {
   display: flex;
-  gap: 0.63rem;
+  gap: 10px;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.unordered-list:hover {
+  background-color: grey;
 }
 
 .modal-close-icon {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0;
+  right: 0;
   border: none;
   cursor: pointer;
   background-color: transparent;
-} */
+  color: white;
+  padding: 0.5rem;
+}
+
+.video-list-modal-container {
+  position: relative;
+}

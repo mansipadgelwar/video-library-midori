@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "../PlaylistForm/PlaylistForm.css";
-import axios from "axios";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { useServices } from "../../context/servicesContext/servicesContext";
 import { useToast } from "../../custom-hooks/useToast";
+// import { createNewPlaylistService } from "../../services";
+import axios from "axios";
 
 const PlaylistForm = ({ show, onClose }) => {
   const { isAuthorized, authToken } = useAuth();
@@ -53,7 +54,7 @@ const PlaylistForm = ({ show, onClose }) => {
   return (
     <div className="modal-wrapper">
       <article className="playlist-form-container modal">
-        <button className="modal-close-icon" onClick={onClose}>
+        <button className="playlist-modal-close-icon" onClick={onClose}>
           <span className="material-icons">close</span>
         </button>
         <form className="playlist-form" action="">

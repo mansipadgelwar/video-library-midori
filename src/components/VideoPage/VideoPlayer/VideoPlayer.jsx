@@ -2,8 +2,6 @@ import "../css/VideoPage.css";
 import ReactPlayer from "react-player/youtube";
 
 const VideoPlayer = ({ id, title }) => {
-  console.log(id);
-
   return (
     <div>
       <div className="h3">{title}</div>
@@ -12,7 +10,7 @@ const VideoPlayer = ({ id, title }) => {
           url={`https://youtu.be/${id}`}
           width="53.12rem"
           height="30rem"
-          controls="true"
+          // controls="true"
         />
       </div>
     </div>

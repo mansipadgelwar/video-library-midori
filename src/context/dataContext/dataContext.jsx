@@ -1,25 +1,43 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import axios from "axios";
+import { videoReducer } from "../../reducers";
 
-const DataContext = createContext();
+const initialVideoState = {
+  videos: [],
+  videoLoader: true
+};
+
+const DataContext = createContext(initialVideoState);
 
 const DataProvider = ({ children }) => {
   const [clickedCategory, setClickedCategory] = useState("All");
-  const [video, setVideo] = useState([]);
+  const [videoState, videoDispatch] = useReducer(
+    videoReducer,
+    initialVideoState
+  );
 
   const getAllVideosFromDatabase = async () => {
     try {
       const response = await axios.get("/api/videos");
       if (response.status === 200) {
         const data = response.data.videos;
+        const {
+          data: { videos }
+        } = response;
         if (clickedCategory !== "All") {
-          const filterData = [...data].filter(
+          const filterData = videos.filter(
             (item) => item.category === clickedCategory
           );
-          setVideo(filterData);
+          videoDispatch({
+            type: "SET_VIDEOS",
+            payload: { filterData }
+          });
           return filterData;
         }
-        setVideo(data);
+        videoDispatch({
+          type: "SET_VIDEOS",
+          payload: { videos }
+        });
         return data;
       }
     } catch (error) {
@@ -30,10 +48,11 @@ const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
+        ...videoState,
         clickedCategory,
         setClickedCategory,
         getAllVideosFromDatabase,
-        video
+        videoDispatch
       }}
     >
       {children}

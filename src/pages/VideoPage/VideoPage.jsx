@@ -9,10 +9,11 @@ import { useData } from "../../context/dataContext/dataContext";
 import { useParams } from "react-router-dom";
 
 const VideoPage = () => {
-  const { video } = useData();
+  const { videos } = useData();
   const { videoId } = useParams();
-  const currentVideo = video.find((item) => item._id === videoId);
-  const currentVideoCategory = video.filter(
+
+  const currentVideo = videos.find((item) => item._id === videoId);
+  const currentVideoCategory = videos.filter(
     (video) => video.category === currentVideo.category
   );
 
