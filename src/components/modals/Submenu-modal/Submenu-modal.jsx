@@ -4,7 +4,7 @@ import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 
-const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id }) => {
+const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
   const { dispatch, addVideoToWatchLater } = useServices();
@@ -49,7 +49,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id }) => {
             </li>
             <li
               className="unordered-list text-bold"
-              onClick={() => addVideoToWatchLater(id)}
+              onClick={() => addVideoToWatchLater({ id, title })}
             >
               <span className="material-icons">watch_later</span>
               Add to watch later

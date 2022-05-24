@@ -52,7 +52,8 @@ const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
-        ...videoState,
+        videos: videoState.videos,
+        videoLoader: videoState.videoLoader,
         clickedCategory,
         setClickedCategory,
         videoDispatch
