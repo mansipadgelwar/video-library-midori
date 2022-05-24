@@ -14,8 +14,8 @@
   position: relative;
   max-width: 18.75rem;
   min-height: 12.5rem;
-  background: black;
-  color: white;
+  background: var(--raisin-black);
+  color: var(--white);
   border-radius: 5px;
   padding: 1rem;
   display: flex;
@@ -43,7 +43,7 @@
 .unordered_list {
   display: flex;
   gap: 0.63rem;
-  color: white;
+  color: var(--white);
 }
 
 .modal_close_icon {
@@ -52,7 +52,7 @@
   right: 0.5rem;
   border: none;
   cursor: pointer;
-  color: white;
+  color: var(--white);
   background-color: transparent;
 }
 
