@@ -12,7 +12,8 @@ import { useToast } from "../../custom-hooks/useToast";
 const initialDataState = {
   playlists: [],
   history: [],
-  watchlater: []
+  watchlater: [],
+  singlePlaylists: []
 };
 
 const ServiceContext = createContext(initialDataState);

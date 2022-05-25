@@ -3,6 +3,7 @@ import { useToast } from "../../custom-hooks/useToast";
 import "../PlaylistCard/PlaylistCard.css";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { useServices } from "../../context/servicesContext/servicesContext";
+import { NavLink } from "react-router-dom";
 
 const PlaylistCard = ({ playlist }) => {
   const { showToast } = useToast();
@@ -25,10 +26,14 @@ const PlaylistCard = ({ playlist }) => {
   };
 
   return (
-    <div className="playlist-container">
+    <NavLink
+      to={`/myplaylist/${playlist._id}`}
+      className="playlist-title playlist-container"
+    >
       <div className="playlist-description">
-        <div className="text-bold">{playlist.title}</div>
-        <div>10 videos</div>
+        <div className="text-bold ">{playlist.title}</div>
+
+        <div>{playlist.videos.length} videos</div>
       </div>
       <div>
         <button
@@ -38,7 +43,7 @@ const PlaylistCard = ({ playlist }) => {
           <span className="material-icons">delete_outline</span>
         </button>
       </div>
-    </div>
+    </NavLink>
   );
 };
 
