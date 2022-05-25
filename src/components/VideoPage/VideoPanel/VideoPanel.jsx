@@ -8,7 +8,7 @@ const VideoPanel = ({ video }) => {
   return (
     <div className="video-panel">
       <div className="video-sub-menus">
-        <button className="btn btn-icon" onClick={() => handleLikedVideos(video)}>
+        <button className="btn btn-icon" onClick={() => handleLikedVideos({id,title})}>
           <span className="material-icons-outlined">thumb_up</span>
           Like
         </button>
