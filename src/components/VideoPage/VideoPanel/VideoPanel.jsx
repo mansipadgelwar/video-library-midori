@@ -2,13 +2,8 @@ import "../css/VideoPage.css";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 
 const VideoPanel = ({ video }) => {
-  const { _id: id, title } = video;
-  
+  const { _id: id, title } = video;  
   const { addVideoToWatchLater, state,handleLikedVideos } = useServices();
-
- 
-
-
 
   return (
     <div className="video-panel">

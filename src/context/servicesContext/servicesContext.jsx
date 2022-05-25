@@ -85,6 +85,7 @@ const ServiceProvider = ({ children }) => {
   };
 
   const handleLikedVideos = async (video) => {
+    console.log(video);
     const isVideoExistsInLiked = state.likes.find((item) => item._id === video._id) === undefined ? false : true;
     if (!isAuthorized) {
       showToast("Please login to like video.", "info");
