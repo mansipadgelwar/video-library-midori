@@ -1,37 +1,19 @@
 import "../css/VideoPage.css";
-import { useToast } from "../../../custom-hooks/useToast";
-import { useAuth } from "../../../context/authContext/authenticationContext";
-import { addVideoToLikedVideo } from "../../../services";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 
 const VideoPanel = ({ video }) => {
   const { _id: id, title } = video;
+  
+  const { addVideoToWatchLater, state,handleLikedVideos } = useServices();
 
-  const { showToast } = useToast();
-  const { isAuthorized, authToken } = useAuth();
-  const { addVideoToWatchLater } = useServices();
+ 
 
-  const handleLikedVideos = async (e) => {
-    e.preventDefault();
-    if (!isAuthorized) {
-      showToast("Please login to like video.", "info");
-    } else {
-      try {
-        const {
-          data: { likes }
-        } = await addVideoToLikedVideo(authToken, video);
-        showToast("Video added as liked video.", "success");
-      } catch (error) {
-        showToast("Error in adding video to liked videos.", "error");
-        console.error("Error in adding video to liked videos", error);
-      }
-    }
-  };
+
 
   return (
     <div className="video-panel">
       <div className="video-sub-menus">
-        <button className="btn btn-icon" onClick={(e) => handleLikedVideos(e)}>
+        <button className="btn btn-icon" onClick={() => handleLikedVideos(video)}>
           <span className="material-icons-outlined">thumb_up</span>
           Like
         </button>

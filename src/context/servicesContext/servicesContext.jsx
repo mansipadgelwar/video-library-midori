@@ -5,7 +5,10 @@ import { dataReducer } from "../../reducers";
 import {
   getHistoryOfUserService,
   addVideoToWatchLaterService,
-  getWatchLaterVideoOfUserService
+  getWatchLaterVideoOfUserService,
+  addVideoToLikedVideo,
+  getAllLikedVideos,
+  removeVideoFromLikedVideos
 } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
@@ -13,7 +16,8 @@ const initialDataState = {
   playlists: [],
   history: [],
   watchlater: [],
-  singlePlaylists: []
+  singlePlaylists: [],
+  likes: []
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -21,7 +25,6 @@ const ServiceContext = createContext(initialDataState);
 const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
-
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
 
   const getUserCreatedPlaylist = async () => {
@@ -81,15 +84,51 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const handleLikedVideos = async (video) => {
+    const { _id: id, title } = video;
+    const isVideoExistsInLiked = state.likes.find((item) => item._id === id) === undefined ? false : true;
+    console
+    if (!isAuthorized) {
+      showToast("Please login to like video.", "info");
+    } else {
+      try {
+        const {
+          data: { likes }
+        } = isVideoExistsInLiked ? await removeVideoFromLikedVideos(authToken,id) : 
+        await addVideoToLikedVideo(authToken, video);
+        dispatch({type: "MANAGE_LIKES", payload: likes})
+        // showToast(isVideoExistsInLiked ? "Video removed from likes" : "Video added as liked video.", "success");
+      } catch (error) {
+        showToast("Error in adding video to liked videos.", "error");
+        console.error("Error in adding video to liked videos", error);
+      }
+    }
+  };
+
+  const getUsersLikedVideos = async () => {
+    if(isAuthorized){
+      try{
+        const {
+          data:{ likes }
+        } = await getAllLikedVideos(authToken);
+      dispatch({type: "MANAGE_LIKES",payload: [...likes]});
+    }
+      catch(error){
+        console.error("Error getting all liked videos",error)
+      }
+    }
+  }
+
   useEffect(() => {
     getUserCreatedPlaylist();
     getUserHistory();
     getVideoFromWatchLater();
+    getUsersLikedVideos();
   }, []);
 
   return (
     <ServiceContext.Provider
-      value={{ state, dispatch, initialDataState, addVideoToWatchLater }}
+      value={{ state, dispatch, initialDataState, addVideoToWatchLater, handleLikedVideos }}
     >
       {children}
     </ServiceContext.Provider>

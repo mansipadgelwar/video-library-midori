@@ -10,7 +10,7 @@ import { useState } from "react";
 const VideoCard = ({ id, title }) => {
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
-  const { dispatch } = useServices();
+  const { dispatch,handleLikedVideos } = useServices();
   const [showSubMenus, setShowSubMenus] = useState(false);
 
   const addViewedVideoToHistory = async () => {
@@ -31,7 +31,7 @@ const VideoCard = ({ id, title }) => {
     <div className="video-card-container">
       <div>
         <Link to="/">
-          <span className="material-icons icon">favorite_border</span>
+          <span className="material-icons icon" onClick={() =>  handleLikedVideos({id,title})}>favorite_border</span>
         </Link>
         <Link to={`/videopage/${id}`}>
           <img

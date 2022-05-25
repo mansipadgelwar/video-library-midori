@@ -8,6 +8,8 @@ const dataReducer = (state, { type, payload }) => {
       return { ...state, watchlater: [...payload] };
     case "MANAGE_SINGLE_PLAYLIST":
       return { ...state, singlePlaylists: [...payload] };
+    case "MANAGE_LIKES":
+      return { ...state, likes: [...payload] };
 
     default:
       throw new Error("Invalid case");
