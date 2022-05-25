@@ -25,9 +25,6 @@ const CategoryChips = () => {
         console.error("error in getting categories", error);
       }
     })();
-    // return () => {
-    //   setCategory();
-    // };
   }, [showToast]);
 
   return (

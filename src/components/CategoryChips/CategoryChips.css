@@ -13,14 +13,14 @@
 
 .chips {
   display: inline-block;
-  border: 1px solid grey;
+  border: 1px solid var(--hover-grey);
   padding: 0.3rem 1rem;
   border-radius: 3rem;
   cursor: pointer;
 }
 
 .active {
-  background-color: red;
-  color: white;
-  border: 1px solid red;
+  background-color: var(--red);
+  color: var(--white);
+  border: 1px solid var(--red);
 }
