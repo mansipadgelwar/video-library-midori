@@ -25,7 +25,7 @@ const Sidebar = () => {
             <div>Explore</div>
           </li>
           <li className="video-side-links">
-            <Link to="/">
+            <Link to="/favourites">
               <span className="material-icons">favorite</span>
             </Link>
             <div>Favorite</div>
