@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 const VideoListingPage = () => {
   const { videoLoader, videos, videoDispatch } = useData();
+  console.log(videos);
 
   useEffect(() => {
     videoDispatch({
@@ -38,13 +39,11 @@ const VideoListingPage = () => {
             <div className="page-title h3 text-bold">Trending Videos</div>
           </div>
           <div className="history-video-container">
-            {videos.map(({ _id, title, category }) => {
+            {videos.map((video) => {
               return (
                 <VideoCard
-                  key={_id}
-                  id={_id}
-                  title={title}
-                  category={category}
+                  key={video._id}
+                  video={video}
                 />
               );
             })}

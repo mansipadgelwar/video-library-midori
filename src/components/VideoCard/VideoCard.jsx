@@ -7,7 +7,8 @@ import { useServices } from "../../context/servicesContext/servicesContext";
 import { SubmenuModal } from "../modals/Submenu-modal/Submenu-modal";
 import { useState } from "react";
 
-const VideoCard = ({ id, title }) => {
+const VideoCard = ({video}) => {
+  console.log(video);
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
   const { dispatch,handleLikedVideos } = useServices();
@@ -18,7 +19,7 @@ const VideoCard = ({ id, title }) => {
       try {
         const {
           data: { history }
-        } = await addVideoToHistoryOfUserService(authToken, { id, title });
+        } = await addVideoToHistoryOfUserService(authToken, video);
         dispatch({ type: "MANAGE_HISTORY", payload: history });
         showToast(" Video added to history", "success");
       } catch (error) {
@@ -30,13 +31,11 @@ const VideoCard = ({ id, title }) => {
   return (
     <div className="video-card-container">
       <div>
-        <Link to="/">
-          <span className="material-icons icon" onClick={() =>  handleLikedVideos({id,title})}>favorite_border</span>
-        </Link>
-        <Link to={`/videopage/${id}`}>
+          <span className="material-icons icon" onClick={() =>  handleLikedVideos(video)}>favorite_border</span>
+        <Link to={`/videopage/${video.id}`}>
           <img
-            src={`https://i.ytimg.com/vi/${id}/0.jpg`}
-            alt={`${title} thumbnail`}
+            src={`https://i.ytimg.com/vi/${video.id}/0.jpg`}
+            alt={`${video.title} thumbnail`}
             className="video-thumbnail img-responsive"
             onClick={() => addViewedVideoToHistory()}
           />
@@ -55,8 +54,8 @@ const VideoCard = ({ id, title }) => {
             <SubmenuModal
               showSubMenus={showSubMenus}
               onClosingSubMenus={() => setShowSubMenus(false)}
-              id={id}
-              title={title}
+              id={video._id}
+              title={video.title}
             />
           </div>
         </div>
