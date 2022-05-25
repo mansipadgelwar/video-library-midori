@@ -85,19 +85,17 @@ const ServiceProvider = ({ children }) => {
   };
 
   const handleLikedVideos = async (video) => {
-    const { _id: id, title } = video;
-    const isVideoExistsInLiked = state.likes.find((item) => item._id === id) === undefined ? false : true;
-    console
+    const isVideoExistsInLiked = state.likes.find((item) => item._id === video._id) === undefined ? false : true;
     if (!isAuthorized) {
       showToast("Please login to like video.", "info");
     } else {
       try {
         const {
           data: { likes }
-        } = isVideoExistsInLiked ? await removeVideoFromLikedVideos(authToken,id) : 
+        } = isVideoExistsInLiked ? await removeVideoFromLikedVideos(authToken,video._id) : 
         await addVideoToLikedVideo(authToken, video);
         dispatch({type: "MANAGE_LIKES", payload: likes})
-        // showToast(isVideoExistsInLiked ? "Video removed from likes" : "Video added as liked video.", "success");
+        showToast(isVideoExistsInLiked ? "Video removed from likes" : "Video added as liked video.", "success");
       } catch (error) {
         showToast("Error in adding video to liked videos.", "error");
         console.error("Error in adding video to liked videos", error);

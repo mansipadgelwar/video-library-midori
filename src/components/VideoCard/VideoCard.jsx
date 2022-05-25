@@ -30,9 +30,7 @@ const VideoCard = ({ id, title }) => {
   return (
     <div className="video-card-container">
       <div>
-        <Link to="/">
           <span className="material-icons icon" onClick={() =>  handleLikedVideos({id,title})}>favorite_border</span>
-        </Link>
         <Link to={`/videopage/${id}`}>
           <img
             src={`https://i.ytimg.com/vi/${id}/0.jpg`}
