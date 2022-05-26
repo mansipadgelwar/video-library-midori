@@ -12,10 +12,9 @@ const Home = () => {
         <div className="hero-img">
           <img src="https://picsum.photos/300/1000" alt="hero-img" />
           <div className="hero-img-overlay">
-            <h2>Indoor Plants</h2>
-            <h4>Live with Nature</h4>
+            <h3 className="text-bold">Dance to the beat of your dreams</h3>
             <button id="btn-shop-now" className="btn btn-secondary">
-              Watch Now
+              Explore Now
             </button>
           </div>
         </div>
