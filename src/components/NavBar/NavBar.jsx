@@ -24,12 +24,14 @@ const NavBar = () => {
           </Link>
           <div className="input-icon icons-left">
             <span className="material-icons">search</span>
+            <Link to="/videolist">
             <input
               className="input"
               type="text"
               id="search-bar"
               name="search-bar"
             />
+            </Link>
           </div>
           {isAuthorized ? (
             <div className="sub-menu">
