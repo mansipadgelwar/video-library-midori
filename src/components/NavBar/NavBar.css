@@ -40,3 +40,7 @@
   border: none;
   background-color: transparent;
 }
+
+.simple-header .input-icon span{
+  left: 0.5rem;
+}
