@@ -8,6 +8,7 @@ const NavBar = () => {
   const { isAuthorized, authDispatch } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const { setSearchTerm, searchTerm } = useData();
 
   const logoutUser = () => {
     showToast("Logout Successful", "success");
@@ -31,6 +32,8 @@ const NavBar = () => {
               type="text"
               id="search-bar"
               name="search-bar"
+              onChange={(event) => setSearchTerm(event.target.value)}
+              value={searchTerm}
             />
             </Link>
           </div>

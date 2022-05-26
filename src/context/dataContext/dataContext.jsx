@@ -21,6 +21,7 @@ const DataProvider = ({ children }) => {
     videoReducer,
     initialVideoState
   );
+  const [searchTerm, setSearchTerm] = useState(" ");
 
   useEffect(() => {
     (async () => {
@@ -56,7 +57,9 @@ const DataProvider = ({ children }) => {
         videoLoader: videoState.videoLoader,
         clickedCategory,
         setClickedCategory,
-        videoDispatch
+        videoDispatch,
+        setSearchTerm,
+        searchTerm
       }}
     >
       {children}
