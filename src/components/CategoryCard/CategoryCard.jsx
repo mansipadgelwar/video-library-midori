@@ -1,6 +1,9 @@
 import "../CategoryCard/CategoryCard.css";
+import { useData } from "../../context/dataContext/dataContext";
+import {Link} from "react-router-dom";
 
 const CategoryCard = ({categoryName,srcImg}) => {
+  const {setClickedCategory} = useData();
   
   return (
     <div className="category-card-container">
@@ -11,9 +14,11 @@ const CategoryCard = ({categoryName,srcImg}) => {
             className="video-thumbnail img-responsive"
           />
       </div>
-      <div className="video-heading">
+      <Link to="/videolist">
+      <div className="video-heading" onClick={() => setClickedCategory(categoryName)}>
          {categoryName}
         </div>
+      </Link>
     </div>
   );
 };

@@ -26,8 +26,8 @@ const Home = () => {
         <p className="home-page-subheading text-bold h3">Must Watch Videos</p>
         <div className="two-box-section">
           <CategoryCard categoryName={"Ballroom"} srcImg={Ballroom}/>
-          <CategoryCard categoryName={"Contemprary"} srcImg={Contemprary}/>
-          <CategoryCard categoryName={"Hip-Hop"} srcImg={HipHop}/>
+          <CategoryCard categoryName={"Contemporary"} srcImg={Contemprary}/>
+          <CategoryCard categoryName={"Hip-hop"} srcImg={HipHop}/>
         </div>
       </div>
     </div>
