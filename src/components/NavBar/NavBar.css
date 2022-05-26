@@ -13,10 +13,6 @@
   align-content: center;
 }
 
-.simple-header .input-icon span{
-  left: 0.5rem;
-}
-
 .sub-menu {
   display: flex;
   flex-direction: row;
@@ -25,6 +21,9 @@
   align-content: center;
 }
 
+.header-icon {
+  padding-left: 0.5rem;
+}
 
 .nav-brand {
   font-family: "Comforter", cursive;
@@ -34,4 +33,10 @@
   color: var(--light-raisin-black);
 }
 
-
+.header-menu-icon .material-icons {
+  font-size: 2.5rem;
+  color: var(--grey);
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
