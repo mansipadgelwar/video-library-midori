@@ -1,0 +1,35 @@
+.category-card-container {
+    max-width: 18.75rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .video-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .category-image{
+      opacity: 0.6;
+  }
+
+  .video-heading:hover{
+      font-size: 1.3rem;
+  }
+    
+  .video-thumbnail {
+    max-height: 200px;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  

@@ -1,5 +1,5 @@
 import "../Home/Home.css";
-import { Sidebar, VideoCard } from "../../components";
+import { Sidebar, CategoryCard } from "../../components";
 
 const Home = () => {
   return (
@@ -22,9 +22,9 @@ const Home = () => {
 
         <p className="home-page-subheading text-bold h3">Must Watch Videos</p>
         <div className="two-box-section">
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
+          <CategoryCard categoryName={"Ballroom"} />
+          <CategoryCard categoryName={"Contemprary"}/>
+          <CategoryCard categoryName={"Hip-Hop"}/>
         </div>
       </div>
     </div>

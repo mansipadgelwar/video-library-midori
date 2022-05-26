@@ -9,3 +9,4 @@ export { VideoPlayer } from "./VideoPage/VideoPlayer/VideoPlayer";
 export { CategoryChips } from "./CategoryChips/CategoryChips";
 export { PlaylistModal } from "./modals/playlist-modal/playlist-modal";
 export { Loader } from "./Loader/Loader";
+export { CategoryCard } from "./CategoryCard/CategoryCard.jsx"; 
