@@ -4,7 +4,7 @@ import { useData } from "../../context/dataContext/dataContext";
 import { useEffect } from "react";
 
 const VideoListingPage = () => {
-  const { videoLoader, videos, videoDispatch, searchTerm } = useData();
+  const { videoLoader, videos, videoDispatch } = useData();
 
   useEffect(() => {
     videoDispatch({
@@ -33,20 +33,12 @@ const VideoListingPage = () => {
       ) : (
         <div>
           <CategoryChips />
+
           <div className="menu-bar">
             <div className="page-title h3 text-bold">Trending Videos</div>
           </div>
           <div className="history-video-container">
-            {videos.filter((item) => {
-                if (searchTerm === "") {
-                  return item;
-                } else if (
-                  item.title.toLowerCase().includes(searchTerm.toLowerCase())
-                ) {
-                  return item;
-                }
-              }).
-            map(({ _id, title, category }) => {
+            {videos.map(({ _id, title, category }) => {
               return (
                 <VideoCard
                   key={_id}
