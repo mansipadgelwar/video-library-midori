@@ -1,49 +1,26 @@
 import "../css/VideoPage.css";
-import { useToast } from "../../../custom-hooks/useToast";
-import { useAuth } from "../../../context/authContext/authenticationContext";
-import { addVideoToLikedVideo } from "../../../services";
 import { useServices } from "../../../context/servicesContext/servicesContext";
+import { useState } from "react/cjs/react.production.min";
 
 const VideoPanel = ({ video }) => {
-  const { _id: id, title } = video;
+  const { _id: id, title } = video;  
+  const { addVideoToWatchLater, handleLikedVideos, state } = useServices();
 
-  const { showToast } = useToast();
-  const { isAuthorized, authToken } = useAuth();
-  const { addVideoToWatchLater } = useServices();
-
-  const handleLikedVideos = async (e) => {
-    e.preventDefault();
-    if (!isAuthorized) {
-      showToast("Please login to like video.", "info");
-    } else {
-      try {
-        const {
-          data: { likes }
-        } = await addVideoToLikedVideo(authToken, video);
-        showToast("Video added as liked video.", "success");
-      } catch (error) {
-        showToast("Error in adding video to liked videos.", "error");
-        console.error("Error in adding video to liked videos", error);
-      }
-    }
-  };
+  const findCurrentVideo = state.likes.find((item) => item.id === id);
+  const isVideoExistsInLiked = findCurrentVideo === undefined ? false : true;
 
   return (
     <div className="video-panel">
       <div className="video-sub-menus">
-        <button className="btn btn-icon" onClick={(e) => handleLikedVideos(e)}>
-          <span className="material-icons-outlined">thumb_up</span>
-          Like
-        </button>
-        <button className="btn btn-icon">
-          <span className="material-icons-outlined">thumb_down</span>
-          Dislike
+        <button className="btn btn-icon" onClick={() => handleLikedVideos({id,title})}>
+          <span className={`${isVideoExistsInLiked ? "material-icons" : "material-icons-outlined"}`}>thumb_up</span>
+           {isVideoExistsInLiked ? "Liked" : "Like"}         
         </button>
         <button
           className="btn btn-icon"
           onClick={() => addVideoToWatchLater({ id, title })}
         >
-          <span className="material-icons-outlined">favorite_border</span>
+          <span className="material-icons-outlined">watch_later</span>
           Add to Watch Later
         </button>
         <button className="btn btn-icon">

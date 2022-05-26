@@ -10,8 +10,11 @@ import { useState } from "react";
 const VideoCard = ({ id, title }) => {
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
-  const { dispatch } = useServices();
+  const { dispatch,handleLikedVideos,state } = useServices();
   const [showSubMenus, setShowSubMenus] = useState(false);
+
+  const findCurrentVideo = state.likes.find((item) => item.id === id);
+  const isVideoExistsInLiked = findCurrentVideo === undefined ? false : true;
 
   const addViewedVideoToHistory = async () => {
     if (isAuthorized) {
@@ -30,9 +33,9 @@ const VideoCard = ({ id, title }) => {
   return (
     <div className="video-card-container">
       <div>
-        <Link to="/">
-          <span className="material-icons icon">favorite_border</span>
-        </Link>
+        <div>
+          <span className="material-icons icon" onClick={() =>  handleLikedVideos({id,title})}>{isVideoExistsInLiked ? "favorite" : "favorite_border"}</span>
+        </div>
         <Link to={`/videopage/${id}`}>
           <img
             src={`https://i.ytimg.com/vi/${id}/0.jpg`}
