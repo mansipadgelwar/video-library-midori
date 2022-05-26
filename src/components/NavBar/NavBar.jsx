@@ -2,11 +2,13 @@ import "../NavBar/NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext/authenticationContext";
 import { useToast } from "../../custom-hooks/useToast";
+import { useData } from "../../context/dataContext/dataContext";
 
 const NavBar = () => {
   const { isAuthorized, authDispatch } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const { setSearchTerm, searchTerm } = useData();
 
   const logoutUser = () => {
     showToast("Logout Successful", "success");
@@ -30,6 +32,8 @@ const NavBar = () => {
               type="text"
               id="search-bar"
               name="search-bar"
+              onChange={(event) => setSearchTerm(event.target.value)}
+              value={searchTerm}
             />
             </Link>
           </div>
