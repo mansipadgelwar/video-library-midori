@@ -3,6 +3,7 @@ import { Sidebar, CategoryCard } from "../../components";
 import Ballroom from "../../assets/ballroom.jpg";
 import Contemprary from "../../assets/contemprary.jpg";
 import HipHop from "../../assets/hip-hop.jpg";
+import Banner from "../../assets/banner.jpg";
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
 
       <div className="main-content-page">
         <div className="hero-img">
-          <img src="https://picsum.photos/300/1000" alt="hero-img" />
+          <img src={Banner} alt="hero-img" className="img-responsive"/>
           <div className="hero-img-overlay">
             <h3 className="text-bold">Dance to the beat of your dreams</h3>
             <button id="btn-shop-now" className="btn btn-secondary">
