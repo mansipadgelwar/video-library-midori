@@ -1,12 +1,12 @@
 import "../CategoryCard/CategoryCard.css";
 
-const CategoryCard = ({categoryName}) => {
+const CategoryCard = ({categoryName,srcImg}) => {
   
   return (
     <div className="category-card-container">
       <div className="category-image">
           <img
-            src="https://picsum.photos/300/200"
+            src={srcImg}
             alt="thumbnail"
             className="video-thumbnail img-responsive"
           />

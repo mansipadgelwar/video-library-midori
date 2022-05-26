@@ -1,5 +1,8 @@
 import "../Home/Home.css";
 import { Sidebar, CategoryCard } from "../../components";
+import Ballroom from "../../assets/ballroom.jpg";
+import Contemprary from "../../assets/contemprary.jpg";
+import HipHop from "../../assets/hip-hop.jpg";
 
 const Home = () => {
   return (
@@ -21,9 +24,9 @@ const Home = () => {
 
         <p className="home-page-subheading text-bold h3">Must Watch Videos</p>
         <div className="two-box-section">
-          <CategoryCard categoryName={"Ballroom"} />
-          <CategoryCard categoryName={"Contemprary"}/>
-          <CategoryCard categoryName={"Hip-Hop"}/>
+          <CategoryCard categoryName={"Ballroom"} srcImg={Ballroom}/>
+          <CategoryCard categoryName={"Contemprary"} srcImg={Contemprary}/>
+          <CategoryCard categoryName={"Hip-Hop"} srcImg={HipHop}/>
         </div>
       </div>
     </div>
