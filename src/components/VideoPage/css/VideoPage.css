@@ -32,6 +32,9 @@
 .video-sub-menus .btn-icon {
   gap: 0rem;
 }
+.video-sub-menus .material-icons{
+  padding-right: 1rem;
+}
 
 .video-stats {
   padding: 1rem;
