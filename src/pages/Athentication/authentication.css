@@ -3,10 +3,16 @@
   position: relative;
 }
 
+.authentication-page .input-icon span{
+  color: var(--black);
+  left: 0.6rem;
+}
+
 .form-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .form-container .h3 {
@@ -32,24 +38,26 @@
 
 .icons-right {
   position: absolute;
-  right: 1.56rem;
-  bottom: 1.43rem;
+  right: 0.5rem;
+  bottom: 0.5rem; 
   z-index: 1;
   cursor: pointer;
   border: none;
-  background-color: var(--white);
+  background-color: transparent;
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   align-content: center;
   flex-wrap: wrap;
   min-width: 25rem;
   padding: 1rem;
   box-shadow: var(--btn-box-shadow);
-  color: var(--light-raisin-black);
+  color: var(--white);
   font-weight: bolder;
+  background-color: var(--white);
 }
 
 .h3,
@@ -58,18 +66,20 @@
   text-align: center;
 }
 
-.input-label {
-  color: var(--raisin-black);
+.authentication-page .input-label {
+  color: var(--black);
   text-align: left;
+  margin: 0;
 }
 
 .form .btn-link {
   margin: 0;
+  color: var(--black);
 }
 
 .checkbox-detail {
   margin-left: 0.5rem;
-  color: var(--raisin-black);
+  color: var(--black);
 }
 
 .form-container .input-icon .input {
@@ -103,10 +113,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--white)
 }
 
 .authentication-page .btn-cta {
-  color: white;
+  color: var(--white);
 }
 
 .btn-cta:hover {

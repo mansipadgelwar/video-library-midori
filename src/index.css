@@ -2,11 +2,11 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Lato, 'Helvetica Neue', Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #373637;
+  letter-spacing: 0.06rem;
 }
 
 code {
@@ -17,5 +17,7 @@ code {
 :root {
   --primary-color: rgb(216, 22, 22);
   --primary-light-shade: rgb(245, 130, 130);
-  --image-overlay: rgba(0,0,0,0.4);
+  --image-overlay: rgba(0,0,0,0.1);
+  --black: black;
+
 }

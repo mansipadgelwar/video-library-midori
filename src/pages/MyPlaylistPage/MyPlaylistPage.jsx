@@ -1,4 +1,3 @@
-import "../MyPlaylistPage/MyPlaylistPage.css";
 import { VideoCard } from "../../components";
 import { useServices } from "../../context/servicesContext/servicesContext";
 import { useParams } from "react-router-dom";
