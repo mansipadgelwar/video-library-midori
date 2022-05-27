@@ -1,0 +1,40 @@
+.category-card-container {
+    max-width: 18.75rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .category-card-container .video-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    font-weight: bolder ;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff;
+    background: var(--image-overlay);
+    z-index: 1;
+    letter-spacing: 0.2rem;
+    cursor: pointer;
+  }
+
+  .category-card-container .video-heading:hover{
+      font-size: 1.5rem;
+  }
+    
+  .video-thumbnail {
+    max-height: 12.5rem;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  
