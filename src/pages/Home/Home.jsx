@@ -4,6 +4,7 @@ import Ballroom from "../../assets/ballroom.jpg";
 import Contemprary from "../../assets/contemprary.jpg";
 import HipHop from "../../assets/hip-hop.jpg";
 import Banner from "../../assets/banner.jpg";
+import {Link} from "react-router-dom";
 
 const Home = () => {
   return (
@@ -17,9 +18,11 @@ const Home = () => {
           <img src={Banner} alt="hero-img" className="img-responsive"/>
           <div className="hero-img-overlay">
             <h3 className="text-bold">Dance to the beat of your dreams</h3>
+            <Link to="/videolist">
             <button id="btn-shop-now" className="btn btn-secondary">
               Explore Now
             </button>
+            </Link>
           </div>
         </div>
 

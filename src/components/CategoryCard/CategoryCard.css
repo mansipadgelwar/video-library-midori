@@ -27,7 +27,7 @@
     cursor: pointer;
   }
 
-  .video-heading:hover{
+  .category-card-container .video-heading:hover{
       font-size: 1.5rem;
   }
     
