@@ -17,4 +17,5 @@ code {
 :root {
   --primary-color: rgb(216, 22, 22);
   --primary-light-shade: rgb(245, 130, 130);
+  --image-overlay: rgba(0,0,0,0.4);
 }

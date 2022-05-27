@@ -1,9 +1,6 @@
 import "../Home/Home.css";
 import { Sidebar, CategoryCard } from "../../components";
-import Ballroom from "../../assets/ballroom.jpg";
-import Contemprary from "../../assets/contemprary.jpg";
-import HipHop from "../../assets/hip-hop.jpg";
-import Banner from "../../assets/banner.jpg";
+import {Ballroom, Contemprary, HipHop, Banner} from "../../assets";
 import {Link} from "react-router-dom";
 
 const Home = () => {
