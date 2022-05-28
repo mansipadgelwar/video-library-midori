@@ -102,9 +102,9 @@ const ServiceProvider = ({ children }) => {
         } = isVideoExistsInLiked ? await removeVideoFromLikedVideos(authToken,video.id) : 
         await addVideoToLikedVideo(authToken, video);
         dispatch({type: "MANAGE_LIKES", payload: likes})
-        showToast(isVideoExistsInLiked ? "Video removed from likes" : "Video added as liked video.", "success");
+        showToast(isVideoExistsInLiked ? "Unlike" : "Liked", "success");
       } catch (error) {
-        showToast(isVideoExistsInLiked ? "Error in removing video from likes" :"Error in adding video to liked videos.", "error");
+        showToast(isVideoExistsInLiked ? "Error in unliking video" :"Error in liking video.", "error");
         console.error("Error in adding video to liked videos", error);
       }
     }
