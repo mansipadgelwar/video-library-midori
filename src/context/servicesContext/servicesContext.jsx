@@ -56,7 +56,7 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  const addVideoToWatchLater = async ({ id, title }) => {
+  const handleWatchLaterVideos = async ({ id, title }) => {
     const video = { id, title };
     const isVideoExistsInWatchLater = (state.watchlater.find((item) => item.id === id)) === undefined ? false : true;
     if (!isAuthorized) {
@@ -133,7 +133,7 @@ const ServiceProvider = ({ children }) => {
 
   return (
     <ServiceContext.Provider
-      value={{ state, dispatch, initialDataState, addVideoToWatchLater, handleLikedVideos }}
+      value={{ state, dispatch, initialDataState, handleWatchLaterVideos , handleLikedVideos }}
     >
       {children}
     </ServiceContext.Provider>

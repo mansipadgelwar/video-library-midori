@@ -12,7 +12,7 @@ import { useState } from "react";
 const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
-  const { dispatch, addVideoToWatchLater } = useServices();
+  const { dispatch, handleWatchLaterVideos } = useServices();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   if (!showSubMenus) {
     return null;
@@ -85,7 +85,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
             </li>
             <li
               className="unordered-list text-bold"
-              onClick={() => addVideoToWatchLater({ id, title })}
+              onClick={() => handleWatchLaterVideos ({ id, title })}
             >
               <span className="material-icons">watch_later</span>
               Add to watch later

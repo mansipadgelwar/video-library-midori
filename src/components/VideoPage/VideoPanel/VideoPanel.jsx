@@ -3,7 +3,7 @@ import { useServices } from "../../../context/servicesContext/servicesContext";
 
 const VideoPanel = ({ video }) => {
   const { _id: id, title } = video;  
-  const { addVideoToWatchLater, handleLikedVideos, state } = useServices();
+  const { handleWatchLaterVideos , handleLikedVideos, state } = useServices();
 
   const isVideoExistsInLiked = (state.likes.find((item) => item.id === id)) === undefined ? false : true;
   const isVideoExistsInWatchLater = (state.watchlater.find((item) => item.id === id)) === undefined ? false : true;
@@ -18,7 +18,7 @@ const VideoPanel = ({ video }) => {
         </button>
         <button
           className="btn btn-icon"
-          onClick={() => addVideoToWatchLater({ id, title })}
+          onClick={() => handleWatchLaterVideos ({ id, title })}
         >
           <span className={`${isVideoExistsInWatchLater ? "material-icons" : "material-icons-outlined"}`}>watch_later</span>
           {isVideoExistsInWatchLater? "Added" : "Add to Watch Later"}     
