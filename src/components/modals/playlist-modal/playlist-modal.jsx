@@ -22,19 +22,19 @@ const PlaylistModal = ({
     return null;
   }
 
-  const videoExistsInThatPlaylist = false;
-
+  const videoExistsInThatPlaylist = (state.playlists.filter((item) => item._id === selectedVideo.id)) === undefined ? false : true;
   const addOrRemoveVideoFromPlaylist = async ({ _id }) => {
+    // const videoExistsInThatPlaylist = (state.playlists.find((item) => item._id === _id)) === undefined ? false : true;
     const video = videos.find((item) => item._id === selectedVideo.id);
 
     try {
       const response = videoExistsInThatPlaylist
-        ? await deleteVideoFromPlaylistOfUserService(
+        ? ( videoExistsInThatPlaylist = false, await deleteVideoFromPlaylistOfUserService(
             authToken,
             state.playlists._id,
             selectedVideo.id
-          )
-        : await addNewVideoToPlaylistOfUserService(authToken, _id, video);
+          ))
+        : ( videoExistsInThatPlaylist = true, await addNewVideoToPlaylistOfUserService(authToken, _id, video));
       let singlePlaylist = state.playlists.map((playlist) => {
         if (playlist._id === response.data.playlist._id) {
           return response.data.playlist;
