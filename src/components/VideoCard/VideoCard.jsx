@@ -23,9 +23,7 @@ const VideoCard = ({ id, title }) => {
           data: { history }
         } = await addVideoToHistoryOfUserService(authToken, { id, title });
         dispatch({ type: "MANAGE_HISTORY", payload: history });
-        showToast(" Video added to history", "success");
       } catch (error) {
-        showToast("Unable to add video to your history", "error");
         console.error("history error", error);
       }
     }
