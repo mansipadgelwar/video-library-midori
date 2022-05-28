@@ -91,7 +91,7 @@ const PlaylistModal = ({
           </button>
         </div>
       </div>
-    </div>
+     </div>
   );
 };
 

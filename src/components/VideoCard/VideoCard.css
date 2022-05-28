@@ -74,7 +74,6 @@
   top: 0;
   right: 5px;
   z-index: 1;
-  box-shadow: var(--btn-box-shadow);
   background-color: var(--light-raisin-black);
   color: var(--white);
 }
