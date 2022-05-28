@@ -9,7 +9,8 @@ import {
   addVideoToLikedVideo,
   getAllLikedVideos,
   removeVideoFromLikedVideos,
-  deleteVideoFromWatchLaterService
+  deleteVideoFromWatchLaterService,
+  getAllPlaylistOfUserService
 } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
@@ -26,16 +27,14 @@ const ServiceContext = createContext(initialDataState);
 const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
-  const [state, dispatch] = useReducer(dataReducer, initialDataState);
+  const [ state, dispatch ] = useReducer(dataReducer, initialDataState);
 
   const getUserCreatedPlaylist = async () => {
     if (isAuthorized) {
       try {
         const {
           data: { playlists }
-        } = await axios.get("/api/user/playlists", {
-          headers: { authorization: authToken }
-        });
+        } = await getAllPlaylistOfUserService(authToken);
         dispatch({ type: "MANAGE_PLAYLIST", payload: [...playlists] });
       } catch (error) {
         console.error("error in getting playlists", error);
