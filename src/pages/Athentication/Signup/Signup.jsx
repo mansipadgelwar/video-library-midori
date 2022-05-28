@@ -166,7 +166,7 @@ const Signup = () => {
             <button className="btn btn-cta" onClick={formDetailsHandler}>
               Create New Account
             </button>
-            <Link className="btn-link" to="./login">
+            <Link className="btn-link" to="/login">
               Already have an account &gt;
             </Link>
           </form>

@@ -39,13 +39,13 @@ const NavBar = () => {
           </div>
           {isAuthorized ? (
             <div className="sub-menu">
-              <button className="btn btn-secondary" onClick={logoutUser}>
+              <button className="btn" onClick={logoutUser}>
                 Logout
               </button>
             </div>
           ) : (
             <Link to="/login" className="sub-menu">
-              <span className="btn btn-secondary">Login</span>
+              <button className="btn">Login</button>
             </Link>
           )}
         </div>

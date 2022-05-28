@@ -1,4 +1,3 @@
-import "../CreateNewPlaylistPage/CreateNewPlaylistPage.css";
 import { PlaylistForm } from "../../components";
 const CreateNewPlaylistPage = () => {
   return (

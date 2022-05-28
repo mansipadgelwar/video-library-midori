@@ -65,9 +65,11 @@ const VideoCard = ({ id, title }) => {
         </div>
         <div className="video-sub-heading">6K Views | 4 hours ago</div>
       </div>
+      <Link to={`/videopage/${id}`}>
       <div className="video-cta">
-        <button className="btn-text">Watch Now</button>
+        <button className="btn-text text-bold">Watch Now</button>
       </div>
+      </Link>
     </div>
   );
 };

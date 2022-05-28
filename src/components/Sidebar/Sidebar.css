@@ -1,7 +1,7 @@
 .video-side-bar {
   overflow-y: auto;
   position: sticky;
-  top: 0rem;
+  top: 0;
   left: 0;
   height: 100vh;
   flex: 0.2;
@@ -12,6 +12,7 @@
   padding-top: 4rem;
   align-items: center;
   box-shadow: var(--btn-box-shadow);
+  background-color: var(--black);
 }
 
 .video-sidebar-menu {
@@ -29,12 +30,13 @@
 
 .video-side-links > a {
   list-style: none;
-  color: var(--grey);
   text-decoration: none;
+  color: var(--grey);
 }
 
 .video-side-links {
   list-style-type: none;
+  color: var(--grey);
 }
 
 .video-side-links:hover {
@@ -42,7 +44,7 @@
 }
 
 .video-side-links > a:hover {
-  color: var(--raisin-black);
+  color: var(--white);
   transition: 200ms color ease-in;
 }
 
