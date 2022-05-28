@@ -8,7 +8,8 @@ import {
   getWatchLaterVideoOfUserService,
   addVideoToLikedVideo,
   getAllLikedVideos,
-  removeVideoFromLikedVideos
+  removeVideoFromLikedVideos,
+  deleteVideoFromWatchLaterService
 } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
@@ -57,16 +58,21 @@ const ServiceProvider = ({ children }) => {
 
   const addVideoToWatchLater = async ({ id, title }) => {
     const video = { id, title };
-    if (isAuthorized) {
+    const isVideoExistsInWatchLater = (state.watchlater.find((item) => item.id === id)) === undefined ? false : true;
+    if (!isAuthorized) {
+      showToast("Please login to add video to watch later.", "info");
+    }
+    else {
       try {
-        const response = await addVideoToWatchLaterService(authToken, video);
-        dispatch({
-          type: "MANAGE_WATCH_LATER",
-          payload: response.data.watchlater
-        });
-        showToast(" Video added to watch later", "success");
+        const {
+          data: { watchlater }
+        } = isVideoExistsInWatchLater ? await deleteVideoFromWatchLaterService(authToken,video.id) : 
+        await addVideoToWatchLaterService(authToken, video);
+        dispatch({type: "MANAGE_WATCH_LATER", payload: watchlater})
+        showToast(isVideoExistsInWatchLater ? "Removed from watch later" : "Saved to watch video.", "success");
       } catch (error) {
-        console.log("Error in adding video to watch later", error);
+        showToast(isVideoExistsInWatchLater ? "Error in removing video from watch later" :"Error in saving video to watch later", "error");
+        console.error("Error in adding video to liked videos", error);
       }
     }
   };
@@ -86,8 +92,7 @@ const ServiceProvider = ({ children }) => {
 
   const handleLikedVideos = async ({id,title}) => {
    const video = {id,title};
-   const findCurrentVideo = state.likes.find((item) => item.id === video.id);
-   const isVideoExistsInLiked = findCurrentVideo === undefined ? false : true;
+   const isVideoExistsInLiked = (state.likes.find((item) => item.id === video.id)) === undefined ? false : true;
     if (!isAuthorized) {
       showToast("Please login to like video.", "info");
     } else {
