@@ -37,7 +37,7 @@ const PlaylistModal = ({
           <span className="material-icons">close</span>
         </button>
 
-        <div className={styles.modal_heading}>Save to...</div>
+        <div className={styles.modal_heading}>Save to</div>
         <div className={styles.modal_contents}>
           <ul className={styles.modal_content_list}>
             {state.playlists.map(({ title, _id }) => {

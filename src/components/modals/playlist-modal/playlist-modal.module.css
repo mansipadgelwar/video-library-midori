@@ -26,7 +26,6 @@
 
 .modal_content_list > li {
   list-style-type: none;
-  
 }
 
 .modal_content_list {
@@ -38,10 +37,15 @@
   gap: 5px;
 }
 
+.modal_heading {
+  font-weight: bolder;
+}
+
 .unordered_list {
   display: flex;
   gap: 0.63rem;
-  color: black;
+  color: var(--black);
+  align-items: center;
 }
 
 .modal_close_icon {
