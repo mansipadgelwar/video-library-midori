@@ -166,7 +166,7 @@ const ServiceProvider = ({ children }) => {
 
   return (
     <ServiceContext.Provider
-      value={{ state, dispatch, initialDataState, handleWatchLaterVideos , handleLikedVideos,addOrRemoveVideoFromPlaylist, currentPlaylistId }}
+      value={{ state, dispatch, initialDataState, handleWatchLaterVideos , handleLikedVideos,addOrRemoveVideoFromPlaylist }}
     >
       {children}
     </ServiceContext.Provider>
