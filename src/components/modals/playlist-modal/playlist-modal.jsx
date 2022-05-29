@@ -6,7 +6,7 @@ const PlaylistModal = ({
   showPlaylistModal,
   closePlaylistModal
 }) => {
-  const { state, addOrRemoveVideoFromPlaylist, videoExistsInThatPlaylist} = useServices();
+  const { state, addOrRemoveVideoFromPlaylist} = useServices();
 
   if (!showPlaylistModal) {
     return null;
@@ -44,7 +44,7 @@ const PlaylistModal = ({
           </ul>
         </div>
         <div>
-          <button className="btn btn-secondary-outline">
+          <button className="btn btn-secondary-outline"> 
             + Create new playlist
           </button>
         </div>

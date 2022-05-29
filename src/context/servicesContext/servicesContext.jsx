@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer,useState} from "react";
+import { createContext, useContext, useEffect, useReducer} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
 import {
@@ -28,7 +28,6 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [ state, dispatch ] = useReducer(dataReducer, initialDataState);
-  const [ currentPlaylistId , setCurrentPlaylistId] = useState();
 
   const getUserCreatedPlaylist = async () => {
     if (isAuthorized) {
@@ -44,7 +43,6 @@ const ServiceProvider = ({ children }) => {
   };
 
   const addOrRemoveVideoFromPlaylist = async ({ _id , selectedVideo }) => {
-    setCurrentPlaylistId(_id);
     const currentPlaylist = state.playlists.find((item) => item._id === _id);
     const videoExistsInThatPlaylist = (currentPlaylist.videos.find((item) => item.id === selectedVideo.id)) === undefined ? false : true;
     try {
