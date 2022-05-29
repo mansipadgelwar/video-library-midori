@@ -1,9 +1,12 @@
 import "../css/VideoPage.css";
+import { useState } from "react";
 import { useServices } from "../../../context/servicesContext/servicesContext";
+import { PlaylistModal } from "../../modals/playlist-modal/playlist-modal";
 
 const VideoPanel = ({ video }) => {
   const { _id: id, title } = video;
   const { handleWatchLaterVideos, handleLikedVideos, state } = useServices();
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
   const isVideoExistsInLiked =
     state.likes.find((item) => item.id === id) === undefined ? false : true;
@@ -14,6 +17,11 @@ const VideoPanel = ({ video }) => {
 
   return (
     <div className="video-panel">
+      <PlaylistModal
+        selectedVideo={{ id, title }}
+        showPlaylistModal={showPlaylistModal}
+        closePlaylistModal={() => setShowPlaylistModal(false)}
+      />
       <div className="video-sub-menus">
         <button
           className="btn btn-icon"
@@ -45,7 +53,10 @@ const VideoPanel = ({ video }) => {
           </span>
           {isVideoExistsInWatchLater ? "Added" : "Add to Watch Later"}
         </button>
-        <button className="btn btn-icon">
+        <button
+          className="btn btn-icon"
+          onClick={() => setShowPlaylistModal(true)}
+        >
           <span className="material-icons-outlined">playlist_add</span>
           Add to Playlist
         </button>
