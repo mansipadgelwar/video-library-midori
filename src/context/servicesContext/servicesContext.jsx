@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer,useState} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
 import {
@@ -9,7 +9,9 @@ import {
   getAllLikedVideos,
   removeVideoFromLikedVideos,
   deleteVideoFromWatchLaterService,
-  getAllPlaylistOfUserService
+  getAllPlaylistOfUserService,
+  deleteVideoFromPlaylistOfUserService,
+  addNewVideoToPlaylistOfUserService
 } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
@@ -17,7 +19,6 @@ const initialDataState = {
   playlists: [],
   history: [],
   watchlater: [],
-  singlePlaylists: [],
   likes: []
 };
 
@@ -27,6 +28,7 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [ state, dispatch ] = useReducer(dataReducer, initialDataState);
+  const [ currentPlaylistId , setCurrentPlaylistId] = useState();
 
   const getUserCreatedPlaylist = async () => {
     if (isAuthorized) {
@@ -38,6 +40,41 @@ const ServiceProvider = ({ children }) => {
       } catch (error) {
         console.error("error in getting playlists", error);
       }
+    }
+  };
+
+  const addOrRemoveVideoFromPlaylist = async ({ _id , selectedVideo }) => {
+    setCurrentPlaylistId(_id);
+    const currentPlaylist = state.playlists.find((item) => item._id === _id);
+    const videoExistsInThatPlaylist = (currentPlaylist.videos.find((item) => item.id === selectedVideo.id)) === undefined ? false : true;
+    try {
+      const response = videoExistsInThatPlaylist
+        ? ( await deleteVideoFromPlaylistOfUserService(
+            authToken,
+            currentPlaylist._id,
+            selectedVideo.id
+          ))
+        : ( await addNewVideoToPlaylistOfUserService(authToken, _id, selectedVideo));
+      let singlePlaylist = state.playlists.map((playlist) => {
+        if (playlist._id === response.data.playlist._id) {
+          return response.data.playlist;
+        }
+        return playlist;
+      });
+      showToast(videoExistsInThatPlaylist
+        ? "Removed from playlist" : "Saved to playlist", "success");
+      dispatch({
+        type: "MANAGE_PLAYLIST",
+        payload: singlePlaylist
+      });
+    } catch (error) {
+      console.error(error);
+      showToast(
+        videoExistsInThatPlaylist
+          ? "Unable to delete video from playlist"
+          : "Unable to add video to playlist",
+        "error"
+      );
     }
   };
 
@@ -131,7 +168,7 @@ const ServiceProvider = ({ children }) => {
 
   return (
     <ServiceContext.Provider
-      value={{ state, dispatch, initialDataState, handleWatchLaterVideos , handleLikedVideos }}
+      value={{ state, dispatch, initialDataState, handleWatchLaterVideos , handleLikedVideos,addOrRemoveVideoFromPlaylist, currentPlaylistId }}
     >
       {children}
     </ServiceContext.Provider>

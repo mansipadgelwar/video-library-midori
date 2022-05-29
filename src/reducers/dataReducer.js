@@ -8,8 +8,6 @@ const dataReducer = (state, { type, payload }) => {
       return { ...state, history: [...payload] };
     case ACTION_TYPE.MANAGE_WATCH_LATER:
       return { ...state, watchlater: [...payload] };
-    case ACTION_TYPE.MANAGE_SINGLE_PLAYLIST:
-      return { ...state, singlePlaylists: [...payload] };
     case ACTION_TYPE.MANAGE_LIKES:
       return { ...state, likes: [...payload] };
 
