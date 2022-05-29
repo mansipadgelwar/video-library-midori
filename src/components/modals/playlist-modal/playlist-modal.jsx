@@ -1,5 +1,6 @@
 import styles from "./playlist-modal.module.css";
 import { useServices } from "../../../context/servicesContext/servicesContext";
+import { useState } from "react";
 
 const PlaylistModal = ({
   selectedVideo,
@@ -14,9 +15,17 @@ const PlaylistModal = ({
     handleCreateNewPlaylist,
   } = useServices();
 
+  const [showInputForm, setShowInputForm] = useState(false);
+
   if (!showPlaylistModal) {
     return null;
   }
+
+  const handlePlaylistModal = (e) => {
+    e.preventDefault();
+    handleCreateNewPlaylist(e);
+    setShowInputForm(true);
+  };
 
   return (
     <div className={styles.modal_wrapper}>
@@ -55,20 +64,23 @@ const PlaylistModal = ({
             })}
           </ul>
         </div>
-        <div className="input">
-          <input
-            className="input"
-            type="text"
-            id="playlist"
-            name="playlist"
-            placeholder="My Playlist"
-            onChange={(e) => setNewPlaylistName(e.target.value)}
-            value={newPlaylistName}
-          />
-        </div>
+        {showInputForm && (
+          <div className="input">
+            <input
+              className="input"
+              type="text"
+              id="playlist"
+              name="playlist"
+              placeholder="My Playlist"
+              onChange={(e) => setNewPlaylistName(e.target.value)}
+              value={newPlaylistName}
+            />
+          </div>
+        )}
+
         <button
           className="btn btn-secondary-outline"
-          onClick={handleCreateNewPlaylist}
+          onClick={(e) => handlePlaylistModal(e)}
         >
           + Create new playlist
         </button>

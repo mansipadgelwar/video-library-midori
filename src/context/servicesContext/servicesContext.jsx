@@ -204,18 +204,20 @@ const ServiceProvider = ({ children }) => {
       showToast("Please login to create new playlist.", "info");
     } else {
       try {
-        const titleExists = state.playlists.some(
-          (element) => element.title === newPlaylistName
-        );
-        if (titleExists) {
-          return showToast("Playlist name already exists", "error");
+        if (newPlaylistName !== "") {
+          const titleExists = state.playlists.some(
+            (element) => element.title === newPlaylistName
+          );
+          if (titleExists) {
+            return showToast("Playlist name already exists", "error");
+          }
+          const {
+            data: { playlists },
+          } = await createNewPlaylistService(authToken, newPlaylistName);
+          setNewPlaylistName("");
+          dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
+          showToast("Playlist created.", "success");
         }
-        const {
-          data: { playlists },
-        } = await createNewPlaylistService(authToken, newPlaylistName);
-        setNewPlaylistName("");
-        dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
-        showToast("Playlist created.", "success");
       } catch (error) {
         console.error("error creating new playlist", error);
       }
