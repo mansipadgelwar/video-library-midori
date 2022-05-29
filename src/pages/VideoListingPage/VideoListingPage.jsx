@@ -4,23 +4,23 @@ import { useData } from "../../context/dataContext/dataContext";
 import { useEffect } from "react";
 
 const VideoListingPage = () => {
-  const { videoLoader, videos, videoDispatch,searchTerm } = useData();
+  const { videoLoader, videos, videoDispatch, searchTerm } = useData();
 
   useEffect(() => {
     videoDispatch({
       type: "DISPLAY_LOADER",
-      payload: { videoLoader: true }
+      payload: { videoLoader: true },
     });
     const timeoutInterval = setTimeout(() => {
       videoDispatch({
         type: "DISPLAY_LOADER",
-        payload: { videoLoader: false }
+        payload: { videoLoader: false },
       });
     }, 1000);
     return () => {
       videoDispatch({
         type: "DISPLAY_LOADER",
-        payload: { videoLoader: false }
+        payload: { videoLoader: false },
       });
       clearInterval(timeoutInterval);
     };
@@ -38,7 +38,8 @@ const VideoListingPage = () => {
             <div className="page-title h3 text-bold">Trending Videos</div>
           </div>
           <div className="history-video-container">
-            {videos.filter((item) => {
+            {videos
+              .filter((item) => {
                 if (searchTerm === "") {
                   return item;
                 } else if (
@@ -46,16 +47,17 @@ const VideoListingPage = () => {
                 ) {
                   return item;
                 }
-              }).map(({ _id, title, category }) => {
-              return (
-                <VideoCard
-                  key={_id}
-                  id={_id}
-                  title={title}
-                  category={category}
-                />
-              );
-            })}
+              })
+              .map(({ _id, title, category }) => {
+                return (
+                  <VideoCard
+                    key={_id}
+                    id={_id}
+                    title={title}
+                    category={category}
+                  />
+                );
+              })}
           </div>
         </div>
       )}

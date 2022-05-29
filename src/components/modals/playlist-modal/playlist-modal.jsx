@@ -4,9 +4,9 @@ import { useServices } from "../../../context/servicesContext/servicesContext";
 const PlaylistModal = ({
   selectedVideo,
   showPlaylistModal,
-  closePlaylistModal
+  closePlaylistModal,
 }) => {
-  const { state, addOrRemoveVideoFromPlaylist} = useServices();
+  const { state, addOrRemoveVideoFromPlaylist } = useServices();
 
   if (!showPlaylistModal) {
     return null;
@@ -26,8 +26,12 @@ const PlaylistModal = ({
         <div className={styles.modal_contents}>
           <ul className={styles.modal_content_list}>
             {state.playlists.map(({ title, _id }) => {
-              const currentPlaylist = state.playlists.find((item) => item._id === _id);
-              const videoExistsInThatPlaylist = currentPlaylist.videos.some((item) => item.id === selectedVideo.id);
+              const currentPlaylist = state.playlists.find(
+                (item) => item._id === _id
+              );
+              const videoExistsInThatPlaylist = currentPlaylist.videos.some(
+                (item) => item.id === selectedVideo.id
+              );
               return (
                 <li className={styles.unordered_list} key={_id}>
                   <input
@@ -35,7 +39,9 @@ const PlaylistModal = ({
                     id={_id}
                     name={title}
                     checked={videoExistsInThatPlaylist}
-                    onChange={() => addOrRemoveVideoFromPlaylist({ _id , selectedVideo })}
+                    onChange={() =>
+                      addOrRemoveVideoFromPlaylist({ _id, selectedVideo })
+                    }
                   />
                   <label> {title} </label>
                 </li>
@@ -44,12 +50,12 @@ const PlaylistModal = ({
           </ul>
         </div>
         <div>
-          <button className="btn btn-secondary-outline"> 
+          <button className="btn btn-secondary-outline">
             + Create new playlist
           </button>
         </div>
       </div>
-     </div>
+    </div>
   );
 };
 

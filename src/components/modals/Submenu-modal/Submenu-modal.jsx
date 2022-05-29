@@ -1,7 +1,7 @@
 import "./Submenu-modal.css";
 import {
   deleteVideoFromHistoryOfUserService,
-  deleteVideoFromWatchLaterService
+  deleteVideoFromWatchLaterService,
 } from "../../../services";
 import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
@@ -22,7 +22,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
     e.preventDefault();
     try {
       const {
-        data: { history }
+        data: { history },
       } = await deleteVideoFromHistoryOfUserService(authToken, videoId);
       dispatch({ type: "MANAGE_HISTORY", payload: history });
       showToast(" Video removed from history", "success");
@@ -37,7 +37,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
     e.preventDefault();
     try {
       const {
-        data: { watchlater }
+        data: { watchlater },
       } = await deleteVideoFromWatchLaterService(authToken, videoId);
       dispatch({ type: "MANAGE_WATCH_LATER", payload: watchlater });
       showToast(" Video removed from watch later", "success");
@@ -85,7 +85,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
             </li>
             <li
               className="unordered-list text-bold"
-              onClick={() => handleWatchLaterVideos ({ id, title })}
+              onClick={() => handleWatchLaterVideos({ id, title })}
             >
               <span className="material-icons">watch_later</span>
               Add to watch later

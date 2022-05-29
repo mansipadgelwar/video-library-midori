@@ -30,14 +30,14 @@ const PlaylistForm = ({ show, onClose }) => {
           return showToast("Playlist name already exists", "error");
         }
         const {
-          data: { playlists }
+          data: { playlists },
         } = await axios.post(
           "/api/user/playlists",
           {
             playlist: {
               title: newPlaylistName,
-              description: ""
-            }
+              description: "",
+            },
           },
           { headers: { authorization: authToken } }
         );

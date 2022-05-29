@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getWatchLaterVideoOfUserService = (authToken) => {
   return axios.get("/api/user/watchlater", {
-    headers: { authorization: authToken }
+    headers: { authorization: authToken },
   });
 };
 

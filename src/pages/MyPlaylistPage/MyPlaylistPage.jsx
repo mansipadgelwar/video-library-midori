@@ -20,11 +20,7 @@ const MyPlaylistPage = () => {
       <div className="history-video-container">
         {currentPlaylist.videos.map((element) => {
           return (
-            <VideoCard
-              key={element.id}
-              id={element.id}
-              title={element.title}
-            />
+            <VideoCard key={element.id} id={element.id} title={element.title} />
           );
         })}
       </div>

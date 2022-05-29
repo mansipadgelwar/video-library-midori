@@ -10,7 +10,7 @@ import { useState } from "react";
 const VideoCard = ({ id, title }) => {
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
-  const { dispatch,handleLikedVideos,state } = useServices();
+  const { dispatch, handleLikedVideos, state } = useServices();
   const [showSubMenus, setShowSubMenus] = useState(false);
 
   const findCurrentVideo = state.likes.find((item) => item.id === id);
@@ -20,7 +20,7 @@ const VideoCard = ({ id, title }) => {
     if (isAuthorized) {
       try {
         const {
-          data: { history }
+          data: { history },
         } = await addVideoToHistoryOfUserService(authToken, { id, title });
         dispatch({ type: "MANAGE_HISTORY", payload: history });
       } catch (error) {
@@ -32,7 +32,12 @@ const VideoCard = ({ id, title }) => {
     <div className="video-card-container">
       <div>
         <div>
-          <span className="material-icons icon" onClick={() =>  handleLikedVideos({id,title})}>{isVideoExistsInLiked ? "favorite" : "favorite_border"}</span>
+          <span
+            className="material-icons icon"
+            onClick={() => handleLikedVideos({ id, title })}
+          >
+            {isVideoExistsInLiked ? "favorite" : "favorite_border"}
+          </span>
         </div>
         <Link to={`/videopage/${id}`}>
           <img
@@ -64,9 +69,9 @@ const VideoCard = ({ id, title }) => {
         <div className="video-sub-heading">6K Views | 4 hours ago</div>
       </div>
       <Link to={`/videopage/${id}`}>
-      <div className="video-cta">
-        <button className="btn-text text-bold">Watch Now</button>
-      </div>
+        <div className="video-cta">
+          <button className="btn-text text-bold">Watch Now</button>
+        </div>
       </Link>
     </div>
   );
