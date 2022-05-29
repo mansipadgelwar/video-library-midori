@@ -1,55 +1,14 @@
 import { useState } from "react";
 import "../PlaylistForm/PlaylistForm.css";
-import { useAuth } from "../../context/authContext/authenticationContext";
 import { useServices } from "../../context/servicesContext/servicesContext";
-import { useToast } from "../../custom-hooks/useToast";
-// import { createNewPlaylistService } from "../../services";
-import axios from "axios";
 
 const PlaylistForm = ({ show, onClose }) => {
-  const { isAuthorized, authToken } = useAuth();
-  const { showToast } = useToast();
-  const { state, dispatch } = useServices();
-
-  const [newPlaylistName, setNewPlaylistName] = useState("");
+  const { handleCreateNewPlaylist, newPlaylistName, setNewPlaylistName } =
+    useServices();
 
   if (!show) {
     return null;
   }
-
-  const handleCreateNewPlaylist = async (e) => {
-    e.preventDefault();
-    if (!isAuthorized) {
-      showToast("Please login to create new playlist.", "info");
-    } else {
-      try {
-        const titleExists = state.playlists.some(
-          (element) => element.title === newPlaylistName
-        );
-        if (titleExists) {
-          return showToast("Playlist name already exists", "error");
-        }
-        const {
-          data: { playlists },
-        } = await axios.post(
-          "/api/user/playlists",
-          {
-            playlist: {
-              title: newPlaylistName,
-              description: "",
-            },
-          },
-          { headers: { authorization: authToken } }
-        );
-        setNewPlaylistName("");
-        onClose();
-        dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
-        showToast("Playlist created.", "success");
-      } catch (error) {
-        console.error("error creating new playlist", error);
-      }
-    }
-  };
 
   return (
     <div className="modal-wrapper">

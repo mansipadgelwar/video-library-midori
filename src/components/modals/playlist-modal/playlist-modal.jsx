@@ -6,7 +6,13 @@ const PlaylistModal = ({
   showPlaylistModal,
   closePlaylistModal,
 }) => {
-  const { state, addOrRemoveVideoFromPlaylist } = useServices();
+  const {
+    state,
+    addOrRemoveVideoFromPlaylist,
+    newPlaylistName,
+    setNewPlaylistName,
+    handleCreateNewPlaylist,
+  } = useServices();
 
   if (!showPlaylistModal) {
     return null;
@@ -49,11 +55,23 @@ const PlaylistModal = ({
             })}
           </ul>
         </div>
-        <div>
-          <button className="btn btn-secondary-outline">
-            + Create new playlist
-          </button>
+        <div className="input">
+          <input
+            className="input"
+            type="text"
+            id="playlist"
+            name="playlist"
+            placeholder="My Playlist"
+            onChange={(e) => setNewPlaylistName(e.target.value)}
+            value={newPlaylistName}
+          />
         </div>
+        <button
+          className="btn btn-secondary-outline"
+          onClick={handleCreateNewPlaylist}
+        >
+          + Create new playlist
+        </button>
       </div>
     </div>
   );

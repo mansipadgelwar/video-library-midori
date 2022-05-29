@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
 import {
@@ -12,6 +18,7 @@ import {
   getAllPlaylistOfUserService,
   deleteVideoFromPlaylistOfUserService,
   addNewVideoToPlaylistOfUserService,
+  createNewPlaylistService,
 } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
@@ -28,6 +35,7 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
+  const [newPlaylistName, setNewPlaylistName] = useState("");
 
   const getUserCreatedPlaylist = async () => {
     if (isAuthorized) {
@@ -190,6 +198,30 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const handleCreateNewPlaylist = async (e) => {
+    e.preventDefault();
+    if (!isAuthorized) {
+      showToast("Please login to create new playlist.", "info");
+    } else {
+      try {
+        const titleExists = state.playlists.some(
+          (element) => element.title === newPlaylistName
+        );
+        if (titleExists) {
+          return showToast("Playlist name already exists", "error");
+        }
+        const {
+          data: { playlists },
+        } = await createNewPlaylistService(authToken, newPlaylistName);
+        setNewPlaylistName("");
+        dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
+        showToast("Playlist created.", "success");
+      } catch (error) {
+        console.error("error creating new playlist", error);
+      }
+    }
+  };
+
   useEffect(() => {
     getUserCreatedPlaylist();
     getUserHistory();
@@ -206,6 +238,9 @@ const ServiceProvider = ({ children }) => {
         handleWatchLaterVideos,
         handleLikedVideos,
         addOrRemoveVideoFromPlaylist,
+        handleCreateNewPlaylist,
+        newPlaylistName,
+        setNewPlaylistName,
       }}
     >
       {children}
