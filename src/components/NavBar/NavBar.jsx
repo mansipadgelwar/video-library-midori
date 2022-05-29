@@ -22,7 +22,7 @@ const NavBar = () => {
       <header className="header">
         <div className="header-items">
           <Link to="/" className="nav-brand">
-            Midori
+            Grace
           </Link>
           <div className="input-icon icons-left">
             <span className="material-icons">search</span>
