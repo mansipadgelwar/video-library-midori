@@ -14,7 +14,7 @@ const HistoryPage = () => {
     e.preventDefault();
     try {
       const {
-        data: { history }
+        data: { history },
       } = await clearCompleteHistoryOfUserService(authToken);
       showToast("History cleared successfully", "success");
       dispatch({ type: "MANAGE_HISTORY", payload: history });
@@ -36,7 +36,9 @@ const HistoryPage = () => {
       </div>
       <div className="history-video-container">
         {state.history.map(({ id, title }) => {
-          return <VideoCard key={id} id={id} title={title} />;
+          return (
+            <VideoCard key={id} id={id} title={title} location={"history"} />
+          );
         })}
       </div>
     </div>

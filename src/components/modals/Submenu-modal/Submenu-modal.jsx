@@ -9,7 +9,13 @@ import { useServices } from "../../../context/servicesContext/servicesContext";
 import { PlaylistModal } from "../playlist-modal/playlist-modal";
 import { useState } from "react";
 
-const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
+const SubmenuModal = ({
+  showSubMenus,
+  onClosingSubMenus,
+  id,
+  title,
+  location,
+}) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
   const { dispatch, handleWatchLaterVideos } = useServices();
@@ -62,34 +68,89 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
         </button>
         <div className="modal-contents">
           <ul className="modal-content-list">
-            <li
-              className="unordered-list text-bold"
-              onClick={(e) => deleteVideoFromHistory(e, id)}
-            >
-              <span className="material-icons">delete</span>
-              Remove from history
-            </li>
-            <li
-              className="unordered-list text-bold"
-              onClick={(e) => deleteVideoFromWatchLater(e, id)}
-            >
-              <span className="material-icons">delete</span>
-              Remove from watch later
-            </li>
-            <li
-              className="unordered-list text-bold"
-              onClick={() => setShowPlaylistModal(true)}
-            >
-              <span className="material-icons">playlist_play</span>
-              Save to playlist
-            </li>
-            <li
-              className="unordered-list text-bold"
-              onClick={() => handleWatchLaterVideos({ id, title })}
-            >
-              <span className="material-icons">watch_later</span>
-              Add to watch later
-            </li>
+            {location === "history" ? (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromHistory(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from history
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => setShowPlaylistModal(true)}
+                >
+                  <span className="material-icons">playlist_play</span>
+                  Save to playlist
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => handleWatchLaterVideos({ id, title })}
+                >
+                  <span className="material-icons">watch_later</span>
+                  Add to watch later
+                </li>
+              </>
+            ) : location === "watchLater" ? (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromWatchLater(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from watch later
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => setShowPlaylistModal(true)}
+                >
+                  <span className="material-icons">playlist_play</span>
+                  Save to playlist
+                </li>
+              </>
+            ) : location === "playlist" ? (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromHistory(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from playlist
+                </li>
+              </>
+            ) : (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromHistory(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from history
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromWatchLater(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from watch later
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => setShowPlaylistModal(true)}
+                >
+                  <span className="material-icons">playlist_play</span>
+                  Save to playlist
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => handleWatchLaterVideos({ id, title })}
+                >
+                  <span className="material-icons">watch_later</span>
+                  Add to watch later
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

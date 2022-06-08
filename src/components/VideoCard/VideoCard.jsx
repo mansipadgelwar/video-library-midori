@@ -7,7 +7,7 @@ import { useServices } from "../../context/servicesContext/servicesContext";
 import { SubmenuModal } from "../modals/Submenu-modal/Submenu-modal";
 import { useState } from "react";
 
-const VideoCard = ({ id, title }) => {
+const VideoCard = ({ id, title, location }) => {
   const { showToast } = useToast();
   const { isAuthorized, authToken } = useAuth();
   const { dispatch, handleLikedVideos, state } = useServices();
@@ -63,6 +63,7 @@ const VideoCard = ({ id, title }) => {
               onClosingSubMenus={() => setShowSubMenus(false)}
               id={id}
               title={title}
+              location={location}
             />
           </div>
         </div>

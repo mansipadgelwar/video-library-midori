@@ -11,7 +11,12 @@ const WatchLaterPage = () => {
       <div className="history-video-container">
         {state.watchlater.map((element) => {
           return (
-            <VideoCard key={element.id} id={element.id} title={element.title} />
+            <VideoCard
+              key={element.id}
+              id={element.id}
+              title={element.title}
+              location={"watchLater"}
+            />
           );
         })}
       </div>
