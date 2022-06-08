@@ -123,20 +123,6 @@ const SubmenuModal = ({
               <>
                 <li
                   className="unordered-list text-bold"
-                  onClick={(e) => deleteVideoFromHistory(e, id)}
-                >
-                  <span className="material-icons">delete</span>
-                  Remove from history
-                </li>
-                <li
-                  className="unordered-list text-bold"
-                  onClick={(e) => deleteVideoFromWatchLater(e, id)}
-                >
-                  <span className="material-icons">delete</span>
-                  Remove from watch later
-                </li>
-                <li
-                  className="unordered-list text-bold"
                   onClick={() => setShowPlaylistModal(true)}
                 >
                   <span className="material-icons">playlist_play</span>
