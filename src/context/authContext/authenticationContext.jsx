@@ -12,15 +12,15 @@ const AuthProvider = ({ children }) => {
     if (getTokenFromLocalStorage) {
       return {
         ...initialAuthState,
-        authToken: getTokenFromLocalStorage,
+        authToken: JSON.parse(getTokenFromLocalStorage),
         isAuthorized: true,
-        authUser: JSON.parse(getUserFromLocalStorage)
+        authUser: JSON.parse(getUserFromLocalStorage),
       };
     }
     return initialAuthState;
   };
   const { showToast } = useToast();
-  const [authState, authDispatch] = useReducer(authReducer, setAuthState);
+  const [authState, authDispatch] = useReducer(authReducer, setAuthState());
   const loginUser = async (email, password) => {
     try {
       const { data, status } = await userLoginService(email, password);
@@ -30,10 +30,10 @@ const AuthProvider = ({ children }) => {
           type: "INIT_AUTH",
           payload: {
             authToken: data.encodedToken,
-            authUser: data.foundUser
-          }
+            authUser: data.foundUser,
+          },
         });
-        localStorage.setItem("token", data.encodedToken);
+        localStorage.setItem("token", JSON.stringify(data.encodedToken));
         localStorage.setItem("user", JSON.stringify(data.foundUser));
       }
     } catch (error) {
@@ -66,8 +66,8 @@ const AuthProvider = ({ children }) => {
           type: "INIT_AUTH",
           payload: {
             authToken: data.encodedToken,
-            authUser: data.createdUser
-          }
+            authUser: data.createdUser,
+          },
         });
         localStorage.setItem("token", data.encodedToken);
         localStorage.setItem("user", JSON.stringify(data.createdUser));

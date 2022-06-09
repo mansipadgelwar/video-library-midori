@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react/cjs/react.production.min";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 
 const Login = () => {
   const initialFormDetails = {
     email: "",
-    password: ""
+    password: "",
   };
 
   const currentLocation = useNavigate();
@@ -17,10 +18,11 @@ const Login = () => {
   };
 
   function loginWithTestCredentials() {
-    setFormDetails({
+    setFormDetails((form) => ({
+      ...form,
       email: "adarshbalika@gmail.com",
-      password: "adarshBalika123"
-    });
+      password: "adarshBalika123",
+    }));
   }
 
   if (isAuthorized) {
@@ -49,7 +51,7 @@ const Login = () => {
                 onChange={(e) =>
                   setFormDetails((details) => ({
                     ...details,
-                    email: e.target.value
+                    email: e.target.value,
                   }))
                 }
                 required
@@ -71,7 +73,7 @@ const Login = () => {
                 onChange={(e) =>
                   setFormDetails((details) => ({
                     ...details,
-                    password: e.target.value
+                    password: e.target.value,
                   }))
                 }
                 required
