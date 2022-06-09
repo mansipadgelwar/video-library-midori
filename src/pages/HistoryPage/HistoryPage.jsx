@@ -27,7 +27,7 @@ const HistoryPage = () => {
   return (
     <div className="main-content-page">
       <div className="menu-bar">
-        <div className="page-title h3 text-bold">My Playlists</div>
+        <div className="page-title h3 text-bold">My History</div>
         <div>
           <button className="btn btn-cta" onClick={(e) => clearAllHistory(e)}>
             Clear Full History

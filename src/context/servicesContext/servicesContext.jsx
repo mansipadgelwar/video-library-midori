@@ -50,7 +50,7 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  const addOrRemoveVideoFromPlaylist = async ({ _id, selectedVideo }) => {
+  const addOrRemoveVideoFromPlaylist = async (_id, selectedVideo) => {
     const currentPlaylist = state.playlists.find((item) => item._id === _id);
     const videoExistsInThatPlaylist =
       currentPlaylist.videos.find((item) => item.id === selectedVideo.id) ===

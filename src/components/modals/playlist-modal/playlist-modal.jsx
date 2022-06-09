@@ -55,7 +55,7 @@ const PlaylistModal = ({
                     name={title}
                     checked={videoExistsInThatPlaylist}
                     onChange={() =>
-                      addOrRemoveVideoFromPlaylist({ _id, selectedVideo })
+                      addOrRemoveVideoFromPlaylist(_id, selectedVideo)
                     }
                   />
                   <label> {title} </label>

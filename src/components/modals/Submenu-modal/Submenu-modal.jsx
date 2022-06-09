@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/authContext/authenticationContext";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 import { PlaylistModal } from "../playlist-modal/playlist-modal";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const SubmenuModal = ({
   showSubMenus,
@@ -18,11 +19,16 @@ const SubmenuModal = ({
 }) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
-  const { dispatch, handleWatchLaterVideos } = useServices();
+  const { dispatch, handleWatchLaterVideos, addOrRemoveVideoFromPlaylist } =
+    useServices();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   if (!showSubMenus) {
     return null;
   }
+
+  const video = { id, title };
+
+  const { playlistId } = useParams();
 
   const deleteVideoFromHistory = async (e, videoId) => {
     e.preventDefault();
@@ -113,7 +119,9 @@ const SubmenuModal = ({
               <>
                 <li
                   className="unordered-list text-bold"
-                  onClick={(e) => deleteVideoFromHistory(e, id)}
+                  onClick={() =>
+                    addOrRemoveVideoFromPlaylist(playlistId, video)
+                  }
                 >
                   <span className="material-icons">delete</span>
                   Remove from playlist
