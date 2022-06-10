@@ -1,4 +1,12 @@
-## Midori Video Library
+## Grace Video Library
+
+### How to run the app locally?
+```
+$ git clone https://github.com/mansipadgelwar/video-library-midori.git
+$ cd video-library-midori
+$ npm install
+$ npm start
+```
 
 ## Features
   - Home Page
@@ -39,3 +47,16 @@
   6. Remove video from the Custom Playlist List
   7. Create a new playlist
   8. Delete the whole playlist
+
+### Live Link
+
+[Link to Grace](https://midori-video-library.netlify.app/)
+
+
+
+### Preview
+
+
+https://user-images.githubusercontent.com/74247233/173043612-6963b346-9b2e-4a57-af46-4512bd73c459.mp4
+
+
