@@ -26,13 +26,10 @@
   position: absolute;
   background-color: transparent;
   text-align: center;
-  font-weight: bolder ;
+  font-weight: bolder;
   font-size: 1.5rem;
   color: var(--raisin-black);
-  text-shadow:
-  0 0 7px #fff,
-  0 0 10px #fff,
-  0 0 21px #fff; 
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff;
   z-index: 1;
   letter-spacing: 0.2rem;
 }
@@ -56,7 +53,6 @@
   justify-content: center;
 }
 
-.home-page-subheading{
+.home-page-subheading {
   color: var(--white);
 }
-

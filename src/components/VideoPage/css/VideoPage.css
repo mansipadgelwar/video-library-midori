@@ -34,7 +34,7 @@
   background-color: transparent;
   color: var(--white);
 }
-.video-sub-menus .material-icons{
+.video-sub-menus .material-icons {
   padding-right: 1rem;
 }
 
@@ -55,7 +55,7 @@
   flex-wrap: nowrap;
 }
 
-.video-player-container .h3{
+.video-player-container .h3 {
   color: var(--white);
   text-align: left;
   font-weight: 900;

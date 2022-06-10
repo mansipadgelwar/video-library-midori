@@ -3,7 +3,7 @@ import {
   VideoDescription,
   VideoPanel,
   VideoPlayer,
-  VideoCard
+  VideoCard,
 } from "../../components";
 import { useData } from "../../context/dataContext/dataContext";
 import { useParams } from "react-router-dom";

@@ -15,7 +15,7 @@ const CategoryChips = () => {
         const response = await axios.get("/api/categories");
         if (response.status === 200) {
           const {
-            data: { categories }
+            data: { categories },
           } = response;
           setCategory(categories);
           return categories;

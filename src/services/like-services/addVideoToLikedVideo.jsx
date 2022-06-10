@@ -5,7 +5,7 @@ const addVideoToLikedVideo = (authToken, video) => {
     "/api/user/likes",
     { video },
     {
-      headers: { authorization: authToken }
+      headers: { authorization: authToken },
     }
   );
 };

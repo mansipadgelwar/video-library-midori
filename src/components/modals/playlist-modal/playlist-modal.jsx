@@ -1,61 +1,32 @@
 import styles from "./playlist-modal.module.css";
 import { useServices } from "../../../context/servicesContext/servicesContext";
-import {
-  addNewVideoToPlaylistOfUserService,
-  deleteVideoFromPlaylistOfUserService
-} from "../../../services";
-import { useData } from "../../../context/dataContext/dataContext";
-import { useToast } from "../../../custom-hooks/useToast";
-import { useAuth } from "../../../context/authContext/authenticationContext";
+import { useState } from "react";
 
 const PlaylistModal = ({
   selectedVideo,
   showPlaylistModal,
-  closePlaylistModal
+  closePlaylistModal,
 }) => {
-  const { state, dispatch } = useServices();
-  const { authToken } = useAuth();
-  const { videos } = useData();
-  const { showToast } = useToast();
+  const {
+    state,
+    addOrRemoveVideoFromPlaylist,
+    newPlaylistName,
+    setNewPlaylistName,
+    handleCreateNewPlaylist,
+  } = useServices();
+
+  const [showInputForm, setShowInputForm] = useState(false);
 
   if (!showPlaylistModal) {
     return null;
   }
 
-  const videoExistsInThatPlaylist = false;
-
-  const addOrRemoveVideoFromPlaylist = async ({ _id }) => {
-    const video = videos.find((item) => item._id === selectedVideo.id);
-
-    try {
-      const response = videoExistsInThatPlaylist
-        ? await deleteVideoFromPlaylistOfUserService(
-            authToken,
-            state.playlists._id,
-            selectedVideo.id
-          )
-        : await addNewVideoToPlaylistOfUserService(authToken, _id, video);
-      let singlePlaylist = state.playlists.map((playlist) => {
-        if (playlist._id === response.data.playlist._id) {
-          return response.data.playlist;
-        }
-        return playlist;
-      });
-      showToast("Video added to the playlist", "success");
-      dispatch({
-        type: "MANAGE_PLAYLIST",
-        payload: singlePlaylist
-      });
-    } catch (error) {
-      console.error(error);
-      showToast(
-        videoExistsInThatPlaylist
-          ? "Unable to delete video from playlist"
-          : "Unable to add video to playlist",
-        "error"
-      );
-    }
+  const handlePlaylistModal = (e) => {
+    e.preventDefault();
+    handleCreateNewPlaylist(e);
+    setShowInputForm(true);
   };
+
   return (
     <div className={styles.modal_wrapper}>
       <div className={styles.modal}>
@@ -66,10 +37,16 @@ const PlaylistModal = ({
           <span className="material-icons">close</span>
         </button>
 
-        <div className={styles.modal_heading}>Save to...</div>
+        <div className={styles.modal_heading}>Save to</div>
         <div className={styles.modal_contents}>
           <ul className={styles.modal_content_list}>
             {state.playlists.map(({ title, _id }) => {
+              const currentPlaylist = state.playlists.find(
+                (item) => item._id === _id
+              );
+              const videoExistsInThatPlaylist = currentPlaylist.videos.some(
+                (item) => item.id === selectedVideo.id
+              );
               return (
                 <li className={styles.unordered_list} key={_id}>
                   <input
@@ -77,7 +54,9 @@ const PlaylistModal = ({
                     id={_id}
                     name={title}
                     checked={videoExistsInThatPlaylist}
-                    onChange={() => addOrRemoveVideoFromPlaylist({ _id })}
+                    onChange={() =>
+                      addOrRemoveVideoFromPlaylist(_id, selectedVideo)
+                    }
                   />
                   <label> {title} </label>
                 </li>
@@ -85,13 +64,28 @@ const PlaylistModal = ({
             })}
           </ul>
         </div>
-        <div>
-          <button className="btn btn-secondary-outline">
-            + Create new playlist
-          </button>
-        </div>
+        {showInputForm && (
+          <div className="input">
+            <input
+              className="input"
+              type="text"
+              id="playlist"
+              name="playlist"
+              placeholder="My Playlist"
+              onChange={(e) => setNewPlaylistName(e.target.value)}
+              value={newPlaylistName}
+            />
+          </div>
+        )}
+
+        <button
+          className="btn btn-secondary-outline"
+          onClick={(e) => handlePlaylistModal(e)}
+        >
+          + Create new playlist
+        </button>
       </div>
-     </div>
+    </div>
   );
 };
 

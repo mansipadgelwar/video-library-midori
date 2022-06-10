@@ -1,10 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
-const removeVideoFromLikedVideos = (authToken,videoId) => {
-    return axios.delete(`/api/user/likes/${videoId}`,{
-        headers: {authorization: authToken}
-    });
+const removeVideoFromLikedVideos = (authToken, videoId) => {
+  return axios.delete(`/api/user/likes/${videoId}`, {
+    headers: { authorization: authToken },
+  });
 };
 
-export {removeVideoFromLikedVideos};
-
+export { removeVideoFromLikedVideos };

@@ -10,7 +10,6 @@
 .submenu-modal {
   position: relative;
   max-width: 18.75rem;
-  min-height: 12.5rem;
   border-radius: 5px;
   padding: 1rem;
   display: flex;
@@ -55,4 +54,3 @@
   color: var(--white);
   padding: 0.5rem;
 }
-

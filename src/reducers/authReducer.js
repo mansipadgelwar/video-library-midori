@@ -9,7 +9,7 @@ const authReducer = (authState, action) => {
         ...authState,
         authToken: action.payload.authToken,
         authUser: action.payload.authUser,
-        isAuthorized: true
+        isAuthorized: true,
       };
     case ACTION_TYPE.RESET_AUTH:
       return initialAuthState;

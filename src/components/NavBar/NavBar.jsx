@@ -22,19 +22,19 @@ const NavBar = () => {
       <header className="header">
         <div className="header-items">
           <Link to="/" className="nav-brand">
-            Midori
+            Grace
           </Link>
           <div className="input-icon icons-left">
             <span className="material-icons">search</span>
             <Link to="/videolist">
-            <input
-              className="input"
-              type="text"
-              id="search-bar"
-              name="search-bar"
-              onChange={(event) => setSearchTerm(event.target.value)}
-              value={searchTerm}
-            />
+              <input
+                className="input"
+                type="text"
+                id="search-bar"
+                name="search-bar"
+                onChange={(event) => setSearchTerm(event.target.value)}
+                value={searchTerm}
+              />
             </Link>
           </div>
           {isAuthorized ? (

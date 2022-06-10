@@ -1,5 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-import axios from "axios";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { useAuth } from "../authContext/authenticationContext";
 import { dataReducer } from "../../reducers";
 import {
@@ -8,7 +13,12 @@ import {
   getWatchLaterVideoOfUserService,
   addVideoToLikedVideo,
   getAllLikedVideos,
-  removeVideoFromLikedVideos
+  removeVideoFromLikedVideos,
+  deleteVideoFromWatchLaterService,
+  getAllPlaylistOfUserService,
+  deleteVideoFromPlaylistOfUserService,
+  addNewVideoToPlaylistOfUserService,
+  createNewPlaylistService,
 } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
@@ -16,8 +26,7 @@ const initialDataState = {
   playlists: [],
   history: [],
   watchlater: [],
-  singlePlaylists: [],
-  likes: []
+  likes: [],
 };
 
 const ServiceContext = createContext(initialDataState);
@@ -26,15 +35,14 @@ const ServiceProvider = ({ children }) => {
   const { isAuthorized, authToken } = useAuth();
   const { showToast } = useToast();
   const [state, dispatch] = useReducer(dataReducer, initialDataState);
+  const [newPlaylistName, setNewPlaylistName] = useState("");
 
   const getUserCreatedPlaylist = async () => {
     if (isAuthorized) {
       try {
         const {
-          data: { playlists }
-        } = await axios.get("/api/user/playlists", {
-          headers: { authorization: authToken }
-        });
+          data: { playlists },
+        } = await getAllPlaylistOfUserService(authToken);
         dispatch({ type: "MANAGE_PLAYLIST", payload: [...playlists] });
       } catch (error) {
         console.error("error in getting playlists", error);
@@ -42,11 +50,57 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const addOrRemoveVideoFromPlaylist = async (_id, selectedVideo) => {
+    const currentPlaylist = state.playlists.find((item) => item._id === _id);
+    const videoExistsInThatPlaylist =
+      currentPlaylist.videos.find((item) => item.id === selectedVideo.id) ===
+      undefined
+        ? false
+        : true;
+    try {
+      const response = videoExistsInThatPlaylist
+        ? await deleteVideoFromPlaylistOfUserService(
+            authToken,
+            currentPlaylist._id,
+            selectedVideo.id
+          )
+        : await addNewVideoToPlaylistOfUserService(
+            authToken,
+            _id,
+            selectedVideo
+          );
+      let singlePlaylist = state.playlists.map((playlist) => {
+        if (playlist._id === response.data.playlist._id) {
+          return response.data.playlist;
+        }
+        return playlist;
+      });
+      showToast(
+        videoExistsInThatPlaylist
+          ? "Removed from playlist"
+          : "Saved to playlist",
+        "success"
+      );
+      dispatch({
+        type: "MANAGE_PLAYLIST",
+        payload: singlePlaylist,
+      });
+    } catch (error) {
+      console.error(error);
+      showToast(
+        videoExistsInThatPlaylist
+          ? "Unable to delete video from playlist"
+          : "Unable to add video to playlist",
+        "error"
+      );
+    }
+  };
+
   const getUserHistory = async () => {
     if (isAuthorized) {
       try {
         const {
-          data: { history }
+          data: { history },
         } = await getHistoryOfUserService(authToken);
         dispatch({ type: "MANAGE_HISTORY", payload: [...history] });
       } catch (error) {
@@ -55,18 +109,36 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  const addVideoToWatchLater = async ({ id, title }) => {
+  const handleWatchLaterVideos = async ({ id, title }) => {
     const video = { id, title };
-    if (isAuthorized) {
+    const isVideoExistsInWatchLater =
+      state.watchlater.find((item) => item.id === id) === undefined
+        ? false
+        : true;
+    if (!isAuthorized) {
+      showToast("Please login to add video to watch later.", "info");
+    } else {
       try {
-        const response = await addVideoToWatchLaterService(authToken, video);
-        dispatch({
-          type: "MANAGE_WATCH_LATER",
-          payload: response.data.watchlater
-        });
-        showToast(" Video added to watch later", "success");
+        const {
+          data: { watchlater },
+        } = isVideoExistsInWatchLater
+          ? await deleteVideoFromWatchLaterService(authToken, video.id)
+          : await addVideoToWatchLaterService(authToken, video);
+        dispatch({ type: "MANAGE_WATCH_LATER", payload: watchlater });
+        showToast(
+          isVideoExistsInWatchLater
+            ? "Removed from watch later"
+            : "Saved to watch video.",
+          "success"
+        );
       } catch (error) {
-        console.log("Error in adding video to watch later", error);
+        showToast(
+          isVideoExistsInWatchLater
+            ? "Error in removing video from watch later"
+            : "Error in saving video to watch later",
+          "error"
+        );
+        console.error("Error in adding video to liked videos", error);
       }
     }
   };
@@ -75,7 +147,7 @@ const ServiceProvider = ({ children }) => {
     if (isAuthorized) {
       try {
         const {
-          data: { watchlater }
+          data: { watchlater },
         } = await getWatchLaterVideoOfUserService(authToken);
         dispatch({ type: "MANAGE_WATCH_LATER", payload: [...watchlater] });
       } catch (error) {
@@ -84,40 +156,73 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  const handleLikedVideos = async ({id,title}) => {
-   const video = {id,title};
-   const findCurrentVideo = state.likes.find((item) => item.id === video.id);
-   const isVideoExistsInLiked = findCurrentVideo === undefined ? false : true;
+  const handleLikedVideos = async ({ id, title }) => {
+    const video = { id, title };
+    const isVideoExistsInLiked =
+      state.likes.find((item) => item.id === video.id) === undefined
+        ? false
+        : true;
     if (!isAuthorized) {
       showToast("Please login to like video.", "info");
     } else {
       try {
         const {
-          data: { likes }
-        } = isVideoExistsInLiked ? await removeVideoFromLikedVideos(authToken,video.id) : 
-        await addVideoToLikedVideo(authToken, video);
-        dispatch({type: "MANAGE_LIKES", payload: likes})
-        showToast(isVideoExistsInLiked ? "Video removed from likes" : "Video added as liked video.", "success");
+          data: { likes },
+        } = isVideoExistsInLiked
+          ? await removeVideoFromLikedVideos(authToken, video.id)
+          : await addVideoToLikedVideo(authToken, video);
+        dispatch({ type: "MANAGE_LIKES", payload: likes });
+        showToast(isVideoExistsInLiked ? "Unlike" : "Liked", "success");
       } catch (error) {
-        showToast(isVideoExistsInLiked ? "Error in removing video from likes" :"Error in adding video to liked videos.", "error");
+        showToast(
+          isVideoExistsInLiked
+            ? "Error in unliking video"
+            : "Error in liking video.",
+          "error"
+        );
         console.error("Error in adding video to liked videos", error);
       }
     }
   };
 
   const getUsersLikedVideos = async () => {
-    if(isAuthorized){
-      try{
+    if (isAuthorized) {
+      try {
         const {
-          data:{ likes }
+          data: { likes },
         } = await getAllLikedVideos(authToken);
-      dispatch({type: "MANAGE_LIKES",payload: [...likes]});
-    }
-      catch(error){
-        console.error("Error getting all liked videos",error)
+        dispatch({ type: "MANAGE_LIKES", payload: [...likes] });
+      } catch (error) {
+        console.error("Error getting all liked videos", error);
       }
     }
-  }
+  };
+
+  const handleCreateNewPlaylist = async (e) => {
+    e.preventDefault();
+    if (!isAuthorized) {
+      showToast("Please login to create new playlist.", "info");
+    } else {
+      try {
+        if (newPlaylistName !== "") {
+          const titleExists = state.playlists.some(
+            (element) => element.title === newPlaylistName
+          );
+          if (titleExists) {
+            return showToast("Playlist name already exists", "error");
+          }
+          const {
+            data: { playlists },
+          } = await createNewPlaylistService(authToken, newPlaylistName);
+          setNewPlaylistName("");
+          dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });
+          showToast("Playlist created.", "success");
+        }
+      } catch (error) {
+        console.error("error creating new playlist", error);
+      }
+    }
+  };
 
   useEffect(() => {
     getUserCreatedPlaylist();
@@ -128,7 +233,17 @@ const ServiceProvider = ({ children }) => {
 
   return (
     <ServiceContext.Provider
-      value={{ state, dispatch, initialDataState, addVideoToWatchLater, handleLikedVideos }}
+      value={{
+        state,
+        dispatch,
+        initialDataState,
+        handleWatchLaterVideos,
+        handleLikedVideos,
+        addOrRemoveVideoFromPlaylist,
+        handleCreateNewPlaylist,
+        newPlaylistName,
+        setNewPlaylistName,
+      }}
     >
       {children}
     </ServiceContext.Provider>

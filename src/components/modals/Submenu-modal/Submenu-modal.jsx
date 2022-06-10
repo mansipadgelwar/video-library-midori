@@ -1,28 +1,40 @@
 import "./Submenu-modal.css";
 import {
   deleteVideoFromHistoryOfUserService,
-  deleteVideoFromWatchLaterService
+  deleteVideoFromWatchLaterService,
 } from "../../../services";
 import { useToast } from "../../../custom-hooks/useToast";
 import { useAuth } from "../../../context/authContext/authenticationContext";
 import { useServices } from "../../../context/servicesContext/servicesContext";
 import { PlaylistModal } from "../playlist-modal/playlist-modal";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
+const SubmenuModal = ({
+  showSubMenus,
+  onClosingSubMenus,
+  id,
+  title,
+  location,
+}) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
-  const { dispatch, addVideoToWatchLater } = useServices();
+  const { dispatch, handleWatchLaterVideos, addOrRemoveVideoFromPlaylist } =
+    useServices();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   if (!showSubMenus) {
     return null;
   }
 
+  const video = { id, title };
+
+  const { playlistId } = useParams();
+
   const deleteVideoFromHistory = async (e, videoId) => {
     e.preventDefault();
     try {
       const {
-        data: { history }
+        data: { history },
       } = await deleteVideoFromHistoryOfUserService(authToken, videoId);
       dispatch({ type: "MANAGE_HISTORY", payload: history });
       showToast(" Video removed from history", "success");
@@ -37,7 +49,7 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
     e.preventDefault();
     try {
       const {
-        data: { watchlater }
+        data: { watchlater },
       } = await deleteVideoFromWatchLaterService(authToken, videoId);
       dispatch({ type: "MANAGE_WATCH_LATER", payload: watchlater });
       showToast(" Video removed from watch later", "success");
@@ -62,34 +74,77 @@ const SubmenuModal = ({ showSubMenus, onClosingSubMenus, id, title }) => {
         </button>
         <div className="modal-contents">
           <ul className="modal-content-list">
-            <li
-              className="unordered-list text-bold"
-              onClick={(e) => deleteVideoFromHistory(e, id)}
-            >
-              <span className="material-icons">delete</span>
-              Remove from history
-            </li>
-            <li
-              className="unordered-list text-bold"
-              onClick={(e) => deleteVideoFromWatchLater(e, id)}
-            >
-              <span className="material-icons">delete</span>
-              Remove from watch later
-            </li>
-            <li
-              className="unordered-list text-bold"
-              onClick={() => setShowPlaylistModal(true)}
-            >
-              <span className="material-icons">playlist_play</span>
-              Save to playlist
-            </li>
-            <li
-              className="unordered-list text-bold"
-              onClick={() => addVideoToWatchLater({ id, title })}
-            >
-              <span className="material-icons">watch_later</span>
-              Add to watch later
-            </li>
+            {location === "history" ? (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromHistory(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from history
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => setShowPlaylistModal(true)}
+                >
+                  <span className="material-icons">playlist_play</span>
+                  Save to playlist
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => handleWatchLaterVideos({ id, title })}
+                >
+                  <span className="material-icons">watch_later</span>
+                  Add to watch later
+                </li>
+              </>
+            ) : location === "watchLater" ? (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={(e) => deleteVideoFromWatchLater(e, id)}
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from watch later
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => setShowPlaylistModal(true)}
+                >
+                  <span className="material-icons">playlist_play</span>
+                  Save to playlist
+                </li>
+              </>
+            ) : location === "playlist" ? (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() =>
+                    addOrRemoveVideoFromPlaylist(playlistId, video)
+                  }
+                >
+                  <span className="material-icons">delete</span>
+                  Remove from playlist
+                </li>
+              </>
+            ) : (
+              <>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => setShowPlaylistModal(true)}
+                >
+                  <span className="material-icons">playlist_play</span>
+                  Save to playlist
+                </li>
+                <li
+                  className="unordered-list text-bold"
+                  onClick={() => handleWatchLaterVideos({ id, title })}
+                >
+                  <span className="material-icons">watch_later</span>
+                  Add to watch later
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

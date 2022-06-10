@@ -21,9 +21,10 @@ const MyPlaylistPage = () => {
         {currentPlaylist.videos.map((element) => {
           return (
             <VideoCard
-              key={element._id}
-              id={element._id}
+              key={element.id}
+              id={element.id}
               title={element.title}
+              location={"playlist"}
             />
           );
         })}

@@ -1,29 +1,62 @@
 import "../css/VideoPage.css";
+import { useState } from "react";
 import { useServices } from "../../../context/servicesContext/servicesContext";
-import { useState } from "react/cjs/react.production.min";
+import { PlaylistModal } from "../../modals/playlist-modal/playlist-modal";
 
 const VideoPanel = ({ video }) => {
-  const { _id: id, title } = video;  
-  const { addVideoToWatchLater, handleLikedVideos, state } = useServices();
+  const { _id: id, title } = video;
+  const { handleWatchLaterVideos, handleLikedVideos, state } = useServices();
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
-  const findCurrentVideo = state.likes.find((item) => item.id === id);
-  const isVideoExistsInLiked = findCurrentVideo === undefined ? false : true;
+  const isVideoExistsInLiked =
+    state.likes.find((item) => item.id === id) === undefined ? false : true;
+  const isVideoExistsInWatchLater =
+    state.watchlater.find((item) => item.id === id) === undefined
+      ? false
+      : true;
 
   return (
     <div className="video-panel">
+      <PlaylistModal
+        selectedVideo={{ id, title }}
+        showPlaylistModal={showPlaylistModal}
+        closePlaylistModal={() => setShowPlaylistModal(false)}
+      />
       <div className="video-sub-menus">
-        <button className="btn btn-icon" onClick={() => handleLikedVideos({id,title})}>
-          <span className={`${isVideoExistsInLiked ? "material-icons" : "material-icons-outlined"}`}>thumb_up</span>
-           {isVideoExistsInLiked ? "Liked" : "Like"}         
+        <button
+          className="btn btn-icon"
+          onClick={() => handleLikedVideos({ id, title })}
+        >
+          <span
+            className={`${
+              isVideoExistsInLiked
+                ? "material-icons"
+                : "material-icons-outlined"
+            }`}
+          >
+            thumb_up
+          </span>
+          {isVideoExistsInLiked ? "Liked" : "Like"}
         </button>
         <button
           className="btn btn-icon"
-          onClick={() => addVideoToWatchLater({ id, title })}
+          onClick={() => handleWatchLaterVideos({ id, title })}
         >
-          <span className="material-icons-outlined">watch_later</span>
-          Add to Watch Later
+          <span
+            className={`${
+              isVideoExistsInWatchLater
+                ? "material-icons"
+                : "material-icons-outlined"
+            }`}
+          >
+            watch_later
+          </span>
+          {isVideoExistsInWatchLater ? "Added" : "Add to Watch Later"}
         </button>
-        <button className="btn btn-icon">
+        <button
+          className="btn btn-icon"
+          onClick={() => setShowPlaylistModal(true)}
+        >
           <span className="material-icons-outlined">playlist_add</span>
           Add to Playlist
         </button>

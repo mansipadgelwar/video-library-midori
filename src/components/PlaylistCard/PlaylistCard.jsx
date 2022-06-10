@@ -14,9 +14,9 @@ const PlaylistCard = ({ playlist }) => {
     e.preventDefault();
     try {
       const {
-        data: { playlists }
+        data: { playlists },
       } = await axios.delete(`/api/user/playlists/${playlistId}`, {
-        headers: { authorization: authToken }
+        headers: { authorization: authToken },
       });
       showToast("Playlist deleted successfully", "success");
       dispatch({ type: "MANAGE_PLAYLIST", payload: playlists });

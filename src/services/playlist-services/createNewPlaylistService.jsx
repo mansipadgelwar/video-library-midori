@@ -6,8 +6,8 @@ const createNewPlaylistService = (authToken, newPlaylistName) => {
     {
       playlist: {
         title: newPlaylistName,
-        description: ""
-      }
+        description: "",
+      },
     },
     { headers: { authorization: authToken } }
   );

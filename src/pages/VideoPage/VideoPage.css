@@ -21,7 +21,7 @@
   flex-direction: column;
 }
 
-.video-page-sidebar .h3{
+.video-page-sidebar .h3 {
   color: var(--white);
 }
 
@@ -29,6 +29,6 @@
   margin-bottom: 1.25rem;
 }
 
-.page-title{
+.page-title {
   color: var(--white);
 }
