@@ -13,9 +13,6 @@ const MyPlaylistPage = () => {
     <div className="main-content-page">
       <div className="menu-bar">
         <div className="page-title h3 text-bold">{currentPlaylist.title}</div>
-        <div>
-          <button className="btn btn-cta">Delete this playlist</button>
-        </div>
       </div>
       <div className="history-video-container">
         {currentPlaylist.videos.map((element) => {
