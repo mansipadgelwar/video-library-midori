@@ -1,9 +1,8 @@
 .video-side-bar {
-  overflow-y: auto;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 10vh;
   left: 0;
-  height: 100vh;
+  height: calc(100% - 10vh);
   flex: 0.2;
   max-width: 6.25rem;
   width: 100%;
