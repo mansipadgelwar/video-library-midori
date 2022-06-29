@@ -25,7 +25,7 @@ const VideoPage = () => {
         <VideoDescription description={currentVideo.description} />
       </div>
 
-      <div className="video-page-sidebar">
+      <div className="video-page-sidebar mobile-hide">
         <div className="h3">Must Watch</div>
         {currentVideoCategory.map(({ _id, title }) => {
           return <VideoCard key={_id} id={_id} title={title} />;

@@ -6,8 +6,9 @@
 
 .video-page {
   position: sticky;
-  width: 53.13rem;
-  height: 34.38rem;
+  max-width: 53rem;
+  width: 100%;
+  max-height: 32rem;
   left: 0;
   top: 0;
   flex: 0.7;
@@ -69,4 +70,10 @@
 
 .video-page-sidebar > .video-card-container {
   margin-bottom: 1.25rem;
+}
+
+@media screen and (max-width: 567px) {
+  .mobile-hide {
+    display: none !important;
+  }
 }
