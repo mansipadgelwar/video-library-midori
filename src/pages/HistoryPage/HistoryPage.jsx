@@ -1,5 +1,5 @@
 import "../HistoryPage/HistoryPage.css";
-import { VideoCard } from "../../components";
+import { VideoCard, Sidebar } from "../../components";
 import { useServices, useAuth } from "../../context";
 import { clearCompleteHistoryOfUserService } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
@@ -24,21 +24,26 @@ const HistoryPage = () => {
   };
 
   return (
-    <div className="main-content-page">
-      <div className="menu-bar">
-        <div className="page-title h3 text-bold">My History</div>
-        <div>
-          <button className="btn btn-cta" onClick={(e) => clearAllHistory(e)}>
-            Clear Full History
-          </button>
-        </div>
+    <div className="library-home-page">
+      <div className="library-home-sidebar">
+        <Sidebar />
       </div>
-      <div className="history-video-container">
-        {state.history.map(({ id, title }) => {
-          return (
-            <VideoCard key={id} id={id} title={title} location={"history"} />
-          );
-        })}
+      <div className="main-content-page">
+        <div className="menu-bar">
+          <div className="page-title h3 text-bold">My History</div>
+          <div>
+            <button className="btn btn-cta" onClick={(e) => clearAllHistory(e)}>
+              Clear Full History
+            </button>
+          </div>
+        </div>
+        <div className="history-video-container">
+          {state.history.map(({ id, title }) => {
+            return (
+              <VideoCard key={id} id={id} title={title} location={"history"} />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

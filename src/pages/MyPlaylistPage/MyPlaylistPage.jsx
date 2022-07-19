@@ -1,4 +1,4 @@
-import { VideoCard } from "../../components";
+import { VideoCard, Sidebar } from "../../components";
 import { useServices } from "../../context";
 import { useParams } from "react-router-dom";
 
@@ -10,21 +10,26 @@ const MyPlaylistPage = () => {
   );
 
   return (
-    <div className="main-content-page">
-      <div className="menu-bar">
-        <div className="page-title h3 text-bold">{currentPlaylist.title}</div>
+    <div className="library-home-page">
+      <div className="library-home-sidebar">
+        <Sidebar />
       </div>
-      <div className="history-video-container">
-        {currentPlaylist.videos.map((element) => {
-          return (
-            <VideoCard
-              key={element.id}
-              id={element.id}
-              title={element.title}
-              location={"playlist"}
-            />
-          );
-        })}
+      <div className="main-content-page">
+        <div className="menu-bar">
+          <div className="page-title h3 text-bold">{currentPlaylist.title}</div>
+        </div>
+        <div className="history-video-container">
+          {currentPlaylist.videos.map((element) => {
+            return (
+              <VideoCard
+                key={element.id}
+                id={element.id}
+                title={element.title}
+                location={"playlist"}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

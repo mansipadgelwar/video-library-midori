@@ -1,5 +1,5 @@
 import "../VideoListingPage/VideoListingPage.css";
-import { CategoryChips, VideoCard, Loader } from "../../components";
+import { CategoryChips, VideoCard, Loader, Sidebar } from "../../components";
 import { useData } from "../../context";
 import { useEffect } from "react";
 
@@ -27,40 +27,45 @@ const VideoListingPage = () => {
   }, [videoDispatch]);
 
   return (
-    <div className="main-content-page video-listing-page">
-      {videoLoader ? (
-        <Loader />
-      ) : (
-        <div>
-          <CategoryChips />
+    <div className="library-home-page">
+      <div className="library-home-sidebar">
+        <Sidebar />
+      </div>
+      <div className="main-content-page video-listing-page">
+        {videoLoader ? (
+          <Loader />
+        ) : (
+          <div>
+            <CategoryChips />
 
-          <div className="menu-bar">
-            <div className="page-title h3 text-bold">Trending Videos</div>
+            <div className="menu-bar">
+              <div className="page-title h3 text-bold">Trending Videos</div>
+            </div>
+            <div className="history-video-container">
+              {videos
+                .filter((item) => {
+                  if (searchTerm === "") {
+                    return item;
+                  } else if (
+                    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return item;
+                  }
+                })
+                .map(({ _id, title, category }) => {
+                  return (
+                    <VideoCard
+                      key={_id}
+                      id={_id}
+                      title={title}
+                      category={category}
+                    />
+                  );
+                })}
+            </div>
           </div>
-          <div className="history-video-container">
-            {videos
-              .filter((item) => {
-                if (searchTerm === "") {
-                  return item;
-                } else if (
-                  item.title.toLowerCase().includes(searchTerm.toLowerCase())
-                ) {
-                  return item;
-                }
-              })
-              .map(({ _id, title, category }) => {
-                return (
-                  <VideoCard
-                    key={_id}
-                    id={_id}
-                    title={title}
-                    category={category}
-                  />
-                );
-              })}
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
