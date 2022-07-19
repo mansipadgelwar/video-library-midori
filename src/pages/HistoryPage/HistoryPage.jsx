@@ -1,9 +1,8 @@
 import "../HistoryPage/HistoryPage.css";
 import { VideoCard } from "../../components";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useServices, useAuth } from "../../context";
 import { clearCompleteHistoryOfUserService } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
-import { useAuth } from "../../context/authContext/authenticationContext";
 
 const HistoryPage = () => {
   const { state, dispatch } = useServices();

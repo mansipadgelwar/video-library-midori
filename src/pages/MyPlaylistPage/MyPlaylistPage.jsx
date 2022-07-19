@@ -1,5 +1,5 @@
 import { VideoCard } from "../../components";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useServices } from "../../context";
 import { useParams } from "react-router-dom";
 
 const MyPlaylistPage = () => {

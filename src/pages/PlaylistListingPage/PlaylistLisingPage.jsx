@@ -1,7 +1,7 @@
 import "../PlaylistListingPage/PlaylistListingPage.css";
 import { PlaylistCard, PlaylistForm } from "../../components";
 import { useState } from "react";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useServices } from "../../context";
 
 const PlaylistListingPage = () => {
   const [show, setShow] = useState(false);

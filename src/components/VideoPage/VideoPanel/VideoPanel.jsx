@@ -1,6 +1,6 @@
 import "../css/VideoPage.css";
 import { useState } from "react";
-import { useServices } from "../../../context/servicesContext/servicesContext";
+import { useServices } from "../../../context";
 import { PlaylistModal } from "../../modals/playlist-modal/playlist-modal";
 
 const VideoPanel = ({ video }) => {

@@ -4,8 +4,7 @@ import {
   deleteVideoFromWatchLaterService,
 } from "../../../services";
 import { useToast } from "../../../custom-hooks/useToast";
-import { useAuth } from "../../../context/authContext/authenticationContext";
-import { useServices } from "../../../context/servicesContext/servicesContext";
+import { useAuth, useServices } from "../../../context";
 import { PlaylistModal } from "../playlist-modal/playlist-modal";
 import { useState } from "react";
 import { useParams } from "react-router-dom";

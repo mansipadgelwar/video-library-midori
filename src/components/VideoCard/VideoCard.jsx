@@ -1,9 +1,8 @@
 import "../VideoCard/VideoCard.css";
 import { Link } from "react-router-dom";
 import { useToast } from "../../custom-hooks/useToast";
-import { useAuth } from "../../context/authContext/authenticationContext";
+import { useAuth, useServices } from "../../context";
 import { addVideoToHistoryOfUserService } from "../../services";
-import { useServices } from "../../context/servicesContext/servicesContext";
 import { SubmenuModal } from "../modals/Submenu-modal/Submenu-modal";
 import { useState } from "react";
 

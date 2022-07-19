@@ -1,6 +1,6 @@
 import "../VideoListingPage/VideoListingPage.css";
 import { CategoryChips, VideoCard, Loader } from "../../components";
-import { useData } from "../../context/dataContext/dataContext";
+import { useData } from "../../context";
 import { useEffect } from "react";
 
 const VideoListingPage = () => {

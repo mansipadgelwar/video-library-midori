@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useToast } from "../../custom-hooks/useToast";
 import "../PlaylistCard/PlaylistCard.css";
-import { useAuth } from "../../context/authContext/authenticationContext";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useAuth, useServices } from "../../context";
 import { NavLink } from "react-router-dom";
 
 const PlaylistCard = ({ playlist }) => {

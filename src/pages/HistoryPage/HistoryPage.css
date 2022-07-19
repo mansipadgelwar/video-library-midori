@@ -6,7 +6,7 @@
 }
 
 .menu-bar .btn-cta {
-  background-color: red;
+  background-color: var(--primary-color);
   border: none;
   margin-right: 0;
 }
@@ -25,11 +25,15 @@
   flex-direction: row;
   gap: 3.125rem;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 @media screen and (max-width: 567px) {
   .menu-bar {
     justify-content: space-around;
+  }
+
+  .history-video-container {
+    justify-content: center;
   }
 }

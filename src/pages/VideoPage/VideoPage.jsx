@@ -5,7 +5,7 @@ import {
   VideoPlayer,
   VideoCard,
 } from "../../components";
-import { useData } from "../../context/dataContext/dataContext";
+import { useData } from "../../context";
 import { useParams } from "react-router-dom";
 
 const VideoPage = () => {

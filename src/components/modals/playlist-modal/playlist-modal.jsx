@@ -1,5 +1,5 @@
 import styles from "./playlist-modal.module.css";
-import { useServices } from "../../../context/servicesContext/servicesContext";
+import { useServices } from "../../../context";
 import { useState } from "react";
 
 const PlaylistModal = ({

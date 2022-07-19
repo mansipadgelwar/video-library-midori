@@ -1,8 +1,7 @@
 import "../NavBar/NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext/authenticationContext";
+import { useAuth, useData } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
-import { useData } from "../../context/dataContext/dataContext";
 
 const NavBar = () => {
   const { isAuthorized, authDispatch } = useAuth();

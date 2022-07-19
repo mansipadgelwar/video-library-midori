@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../PlaylistForm/PlaylistForm.css";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useServices } from "../../context";
 
 const PlaylistForm = ({ show, onClose }) => {
   const { handleCreateNewPlaylist, newPlaylistName, setNewPlaylistName } =

@@ -14,7 +14,7 @@ import {
   Login,
   Signup,
   NotFound,
-  LikedVideoPage
+  LikedVideoPage,
 } from "./pages";
 
 import { NavBar } from "./components";
@@ -30,7 +30,7 @@ function App() {
         <Route path="/allplaylists" element={<PlaylistListingPage />} />
         <Route path="/videolist" element={<VideoListingPage />} />
         <Route path="/videopage/:videoId" element={<VideoPage />} />
-        <Route path="/watchlater" element={<WatchLaterPage />} />        
+        <Route path="/watchlater" element={<WatchLaterPage />} />
         <Route path="/favourites" element={<LikedVideoPage />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/login" element={<Login />} />

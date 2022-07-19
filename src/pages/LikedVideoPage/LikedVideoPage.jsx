@@ -1,5 +1,5 @@
 import { VideoCard } from "../../components";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useServices } from "../../context";
 
 const LikedVideoPage = () => {
   const { state } = useServices();
