@@ -21,12 +21,8 @@ const SubmenuModal = ({
   const { dispatch, handleWatchLaterVideos, addOrRemoveVideoFromPlaylist } =
     useServices();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-  if (!showSubMenus) {
-    return null;
-  }
 
   const video = { id, title };
-
   const { playlistId } = useParams();
 
   const deleteVideoFromHistory = async (e, videoId) => {
@@ -58,6 +54,11 @@ const SubmenuModal = ({
     }
     onClosingSubMenus();
   };
+
+  if (!showSubMenus) {
+    return null;
+  }
+
   return (
     <>
       <PlaylistModal

@@ -1,9 +1,18 @@
 import "../Home/Home.css";
 import { Sidebar, CategoryCard } from "../../components";
 import { Ballroom, Contemprary, HipHop, Banner } from "../../assets";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../context";
 
 const Home = () => {
+  const currentLocation = useNavigate();
+  const { setClickedCategory } = useData();
+
+  const handleExploreButton = () => {
+    currentLocation("/videolist");
+    setClickedCategory("All");
+  };
+
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">
@@ -15,11 +24,13 @@ const Home = () => {
           <img src={Banner} alt="hero-img" className="img-responsive" />
           <div className="hero-img-overlay">
             <h3 className="text-bold">Dance to the beat of your dreams</h3>
-            <Link to="/videolist">
-              <button id="btn-shop-now" className="btn btn-secondary">
-                Explore Now
-              </button>
-            </Link>
+            <button
+              id="btn-shop-now"
+              className="btn btn-secondary"
+              onClick={handleExploreButton}
+            >
+              Explore Now
+            </button>
           </div>
         </div>
 

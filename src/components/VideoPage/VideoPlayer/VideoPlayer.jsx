@@ -10,7 +10,7 @@ const VideoPlayer = ({ id, title }) => {
           url={`https://youtu.be/${id}`}
           width="100%"
           height="28rem"
-          controls="true"
+          controls={true}
         />
       </div>
     </div>

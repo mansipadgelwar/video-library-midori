@@ -25,7 +25,7 @@ const CategoryChips = () => {
         console.error("error in getting categories", error);
       }
     })();
-  }, [showToast]);
+  }, [setCategory]);
 
   return (
     <div className="chips-container">

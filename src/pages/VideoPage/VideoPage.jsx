@@ -15,14 +15,11 @@ const VideoPage = () => {
 
   const currentVideo = videos.find((item) => item._id === videoId);
   const currentVideoCategory = videos.filter(
-    (video) => video.category === currentVideo.category
+    (video) => video.category === currentVideo.category && video._id !== videoId
   );
 
   return (
     <div className="library-home-page">
-      <div className="library-home-sidebar">
-        <Sidebar />
-      </div>
       <div className="video-page-container">
         <div className="video-page">
           <VideoPlayer id={currentVideo._id} title={currentVideo.title} />
