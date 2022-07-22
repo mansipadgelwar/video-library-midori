@@ -1,6 +1,6 @@
 import "../css/VideoPage.css";
 import { useState } from "react";
-import { useServices } from "../../../context/servicesContext/servicesContext";
+import { useServices } from "../../../context";
 import { PlaylistModal } from "../../modals/playlist-modal/playlist-modal";
 
 const VideoPanel = ({ video }) => {
@@ -36,7 +36,9 @@ const VideoPanel = ({ video }) => {
           >
             thumb_up
           </span>
-          {isVideoExistsInLiked ? "Liked" : "Like"}
+          <span className="mobile-hide">
+            {isVideoExistsInLiked ? "Liked" : "Like"}
+          </span>
         </button>
         <button
           className="btn btn-icon"
@@ -51,14 +53,16 @@ const VideoPanel = ({ video }) => {
           >
             watch_later
           </span>
-          {isVideoExistsInWatchLater ? "Added" : "Add to Watch Later"}
+          <span className="mobile-hide">
+            {isVideoExistsInWatchLater ? "Added" : "Add to Watch Later"}
+          </span>
         </button>
         <button
           className="btn btn-icon"
           onClick={() => setShowPlaylistModal(true)}
         >
           <span className="material-icons-outlined">playlist_add</span>
-          Add to Playlist
+          <span className="mobile-hide">Add to Playlist</span>
         </button>
       </div>
       <div className="video-stats">10K views | 13 hours ago</div>

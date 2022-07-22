@@ -14,24 +14,59 @@ import {
   Login,
   Signup,
   NotFound,
-  LikedVideoPage
+  LikedVideoPage,
 } from "./pages";
 
-import { NavBar } from "./components";
+import { NavBar, RequiresAuth } from "./components";
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/createplaylist" element={<CreateNewPlaylistPage />} />
+        <Route
+          path="/createplaylist"
+          element={
+            <RequiresAuth>
+              <CreateNewPlaylistPage />
+            </RequiresAuth>
+          }
+        />
         <Route path="/myplaylist/:playlistId" element={<MyPlaylistPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/allplaylists" element={<PlaylistListingPage />} />
+        <Route
+          path="/history"
+          element={
+            <RequiresAuth>
+              <HistoryPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/allplaylists"
+          element={
+            <RequiresAuth>
+              <PlaylistListingPage />
+            </RequiresAuth>
+          }
+        />
         <Route path="/videolist" element={<VideoListingPage />} />
         <Route path="/videopage/:videoId" element={<VideoPage />} />
-        <Route path="/watchlater" element={<WatchLaterPage />} />        
-        <Route path="/favourites" element={<LikedVideoPage />} />
+        <Route
+          path="/watchlater"
+          element={
+            <RequiresAuth>
+              <WatchLaterPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/favourites"
+          element={
+            <RequiresAuth>
+              <LikedVideoPage />
+            </RequiresAuth>
+          }
+        />
         <Route path="/logout" element={<Logout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

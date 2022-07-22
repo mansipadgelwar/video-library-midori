@@ -1,7 +1,7 @@
 import "../PlaylistListingPage/PlaylistListingPage.css";
-import { PlaylistCard, PlaylistForm } from "../../components";
+import { PlaylistCard, PlaylistForm, Sidebar } from "../../components";
 import { useState } from "react";
-import { useServices } from "../../context/servicesContext/servicesContext";
+import { useServices } from "../../context";
 
 const PlaylistListingPage = () => {
   const [show, setShow] = useState(false);
@@ -9,6 +9,9 @@ const PlaylistListingPage = () => {
 
   return (
     <div>
+      <div className="library-home-sidebar">
+        <Sidebar />
+      </div>
       <PlaylistForm show={show} onClose={() => setShow(false)} />
       <div className={show ? "modal-background-page" : ""}>
         <div className="main-content-page">

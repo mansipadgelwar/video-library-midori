@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/authContext/authenticationContext";
+import { useAuth } from "../../../context";
 
 const Signup = () => {
   const initialFormDetails = {
@@ -8,7 +8,7 @@ const Signup = () => {
     firstName: "",
     lastName: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   };
 
   const currentLocation = useNavigate();
@@ -51,7 +51,7 @@ const Signup = () => {
               onChange={(e) =>
                 setFormDetails((details) => ({
                   ...details,
-                  email: e.target.value
+                  email: e.target.value,
                 }))
               }
               required
@@ -70,7 +70,7 @@ const Signup = () => {
               onChange={(e) =>
                 setFormDetails((details) => ({
                   ...details,
-                  firstName: e.target.value
+                  firstName: e.target.value,
                 }))
               }
               required
@@ -90,7 +90,7 @@ const Signup = () => {
               onChange={(e) =>
                 setFormDetails((details) => ({
                   ...details,
-                  lastName: e.target.value
+                  lastName: e.target.value,
                 }))
               }
               required
@@ -110,7 +110,7 @@ const Signup = () => {
                 onChange={(e) =>
                   setFormDetails((details) => ({
                     ...details,
-                    password: e.target.value
+                    password: e.target.value,
                   }))
                 }
                 required
@@ -139,7 +139,7 @@ const Signup = () => {
                 onChange={(e) =>
                   setFormDetails((details) => ({
                     ...details,
-                    confirmPassword: e.target.value
+                    confirmPassword: e.target.value,
                   }))
                 }
                 required

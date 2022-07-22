@@ -1,18 +1,10 @@
-.video-page {
-  position: sticky;
-  width: 53.12rem;
-  height: 34.37rem;
-  left: 0;
-  top: 0;
-  flex: 0.7;
-}
-
 .video-page-container {
   display: flex;
   gap: 2.5rem;
   justify-content: space-around;
   flex-wrap: nowrap;
   padding: 2rem;
+  margin-top: 4.5rem;
 }
 
 .video-page-sidebar {

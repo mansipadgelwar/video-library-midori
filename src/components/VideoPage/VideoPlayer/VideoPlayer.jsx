@@ -8,8 +8,8 @@ const VideoPlayer = ({ id, title }) => {
       <div className="video-player">
         <ReactPlayer
           url={`https://youtu.be/${id}`}
-          width="53.12rem"
-          height="30rem"
+          width="100%"
+          height="28rem"
           controls="true"
         />
       </div>

@@ -1,5 +1,5 @@
 import "../CategoryCard/CategoryCard.css";
-import { useData } from "../../context/dataContext/dataContext";
+import { useData } from "../../context";
 import { Link } from "react-router-dom";
 
 const CategoryCard = ({ categoryName, srcImg }) => {
