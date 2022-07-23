@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
         });
         localStorage.setItem("token", JSON.stringify(data.encodedToken));
         localStorage.setItem("user", JSON.stringify(data.foundUser));
-        navigate(location.state?.from?.pathname, { replace: true });
+        navigate(location.state?.from?.pathname || "/", { replace: true });
       }
     } catch (error) {
       showToast(`Error while login`, "error");
