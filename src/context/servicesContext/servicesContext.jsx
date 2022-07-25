@@ -172,11 +172,11 @@ const ServiceProvider = ({ children }) => {
           ? await removeVideoFromLikedVideos(authToken, video.id)
           : await addVideoToLikedVideo(authToken, video);
         dispatch({ type: "MANAGE_LIKES", payload: likes });
-        showToast(isVideoExistsInLiked ? "Unlike" : "Liked", "success");
+        showToast(isVideoExistsInLiked ? "Disliked" : "Liked", "success");
       } catch (error) {
         showToast(
           isVideoExistsInLiked
-            ? "Error in unliking video"
+            ? "Error in disliking video"
             : "Error in liking video.",
           "error"
         );
