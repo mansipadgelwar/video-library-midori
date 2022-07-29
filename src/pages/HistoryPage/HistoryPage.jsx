@@ -23,8 +23,6 @@ const HistoryPage = () => {
     }
   };
 
-  console.log(state.history);
-
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">

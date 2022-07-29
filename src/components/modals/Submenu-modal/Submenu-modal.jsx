@@ -18,12 +18,21 @@ const SubmenuModal = ({
 }) => {
   const { showToast } = useToast();
   const { authToken } = useAuth();
-  const { dispatch, handleWatchLaterVideos, addOrRemoveVideoFromPlaylist } =
-    useServices();
+  const {
+    dispatch,
+    handleWatchLaterVideos,
+    addOrRemoveVideoFromPlaylist,
+    state,
+  } = useServices();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
   const video = { id, title };
   const { playlistId } = useParams();
+
+  const isVideoExistsInWatchLater =
+    state.watchlater.find((item) => item.id === id) === undefined
+      ? false
+      : true;
 
   const deleteVideoFromHistory = async (e, videoId) => {
     e.preventDefault();
@@ -139,10 +148,15 @@ const SubmenuModal = ({
                   </li>
                   <li
                     className="unordered-list text-bold"
-                    onClick={() => handleWatchLaterVideos({ id, title })}
+                    onClick={() => {
+                      handleWatchLaterVideos({ id, title });
+                      onClosingSubMenus();
+                    }}
                   >
                     <span className="material-icons">watch_later</span>
-                    Add to watch later
+                    {isVideoExistsInWatchLater
+                      ? "Remove from watch later"
+                      : "Add to watch later"}
                   </li>
                 </>
               )}
