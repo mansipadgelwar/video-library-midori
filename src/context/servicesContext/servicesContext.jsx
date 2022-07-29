@@ -204,12 +204,13 @@ const ServiceProvider = ({ children }) => {
       showToast("Please login to create new playlist.", "info");
     } else {
       try {
-        if (newPlaylistName !== "") {
+        if (newPlaylistName.trim() !== "") {
           const titleExists = state.playlists.some(
             (element) => element.title === newPlaylistName
           );
           if (titleExists) {
-            return showToast("Playlist name already exists", "error");
+            showToast("Playlist name already exists", "error");
+            return;
           }
           const {
             data: { playlists },

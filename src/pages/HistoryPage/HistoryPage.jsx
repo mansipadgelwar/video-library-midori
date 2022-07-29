@@ -23,6 +23,8 @@ const HistoryPage = () => {
     }
   };
 
+  console.log(state.history);
+
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">
@@ -32,7 +34,11 @@ const HistoryPage = () => {
         <div className="menu-bar">
           <div className="page-title h3 text-bold">My History</div>
           <div>
-            <button className="btn btn-cta" onClick={(e) => clearAllHistory(e)}>
+            <button
+              className="btn btn-cta"
+              onClick={(e) => clearAllHistory(e)}
+              disabled={state.history.length === 0}
+            >
               Clear Full History
             </button>
           </div>
