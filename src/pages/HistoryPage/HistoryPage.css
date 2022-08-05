@@ -11,6 +11,11 @@
   margin-right: 0;
 }
 
+.menu-bar .btn-cta:disabled {
+  background-color: var(--primary-light-shade);
+  cursor: not-allowed;
+}
+
 .main-content-page {
   max-width: 62.5rem;
   width: 100%;

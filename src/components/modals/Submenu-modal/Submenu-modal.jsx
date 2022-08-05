@@ -88,13 +88,6 @@ const SubmenuModal = ({
                 <>
                   <li
                     className="unordered-list text-bold"
-                    onClick={(e) => deleteVideoFromHistory(e, id)}
-                  >
-                    <span className="material-icons">delete</span>
-                    Remove from history
-                  </li>
-                  <li
-                    className="unordered-list text-bold"
                     onClick={() => setShowPlaylistModal(true)}
                   >
                     <span className="material-icons">playlist_play</span>
@@ -107,22 +100,29 @@ const SubmenuModal = ({
                     <span className="material-icons">watch_later</span>
                     Add to watch later
                   </li>
+                  <li
+                    className="unordered-list text-bold"
+                    onClick={(e) => deleteVideoFromHistory(e, id)}
+                  >
+                    <span className="material-icons">delete</span>
+                    Remove from history
+                  </li>
                 </>
               ) : location === "watchLater" ? (
                 <>
-                  <li
-                    className="unordered-list text-bold"
-                    onClick={(e) => deleteVideoFromWatchLater(e, id)}
-                  >
-                    <span className="material-icons">delete</span>
-                    Remove from watch later
-                  </li>
                   <li
                     className="unordered-list text-bold"
                     onClick={() => setShowPlaylistModal(true)}
                   >
                     <span className="material-icons">playlist_play</span>
                     Save to playlist
+                  </li>
+                  <li
+                    className="unordered-list text-bold"
+                    onClick={(e) => deleteVideoFromWatchLater(e, id)}
+                  >
+                    <span className="material-icons">delete</span>
+                    Remove from watch later
                   </li>
                 </>
               ) : location === "playlist" ? (
