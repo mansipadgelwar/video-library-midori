@@ -56,3 +56,10 @@
 .home-page-subheading {
   color: var(--white);
 }
+
+@media screen and (max-width: 567px) {
+  .hero-img {
+    max-width: 25rem;
+    width: 100%;
+  }
+}

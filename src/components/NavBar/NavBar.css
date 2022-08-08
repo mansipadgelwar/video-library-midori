@@ -65,4 +65,18 @@
   .nav-brand {
     font-size: 1.5rem;
   }
+
+  .simple-header .input-icon {
+    max-width: 100px;
+    width: 100%;
+  }
+
+  .simple-header .btn {
+    padding: 0.4rem;
+    margin: 0;
+  }
+
+  .simple-header > .header {
+    height: 8vh;
+  }
 }
