@@ -24,9 +24,15 @@ const PlaylistListingPage = () => {
             </div>
           </div>
           <div className="history-video-container">
-            {state.playlists.map((element) => {
-              return <PlaylistCard key={element._id} playlist={element} />;
-            })}
+            {state.playlists.length > 0 ? (
+              state.playlists.map((element) => {
+                return <PlaylistCard key={element._id} playlist={element} />;
+              })
+            ) : (
+              <div className="logout-content">
+                <h2 className="h2">No playlists added</h2>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -26,24 +26,25 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
 
   const loginUser = async (email, password) => {
-    try {
-      const { data, status } = await userLoginService(email, password);
-      if (status === 200) {
-        showToast("Login Successful", "success");
-        authDispatch({
-          type: "INIT_AUTH",
-          payload: {
-            authToken: data.encodedToken,
-            authUser: data.foundUser,
-          },
-        });
-        localStorage.setItem("token", JSON.stringify(data.encodedToken));
-        localStorage.setItem("user", JSON.stringify(data.foundUser));
-        navigate(location.state?.from?.pathname || "/", { replace: true });
+    if (email && password) {
+      try {
+        const { data, status } = await userLoginService(email, password);
+        if (status === 200) {
+          showToast("Login Successful", "success");
+          authDispatch({
+            type: "INIT_AUTH",
+            payload: {
+              authToken: data.encodedToken,
+              authUser: data.foundUser,
+            },
+          });
+          localStorage.setItem("token", JSON.stringify(data.encodedToken));
+          localStorage.setItem("user", JSON.stringify(data.foundUser));
+          navigate(location.state?.from?.pathname || "/", { replace: true });
+        }
+      } catch (error) {
+        showToast(`Error while login`, "error");
       }
-    } catch (error) {
-      showToast(`Error while login`, "error");
-      console.error("Error in login functionality", error);
     }
   };
 
@@ -56,30 +57,31 @@ const AuthProvider = ({ children }) => {
   ) => {
     if (confirmPassword !== password) {
       showToast(`Passwords do not match`, "error");
-      console.error("Password do not match");
+      return;
     }
-    try {
-      const { data, status } = await userSignupService(
-        email,
-        password,
-        firstName,
-        lastName
-      );
-      if (status === 201) {
-        showToast("Signup Successful", "success");
-        authDispatch({
-          type: "INIT_AUTH",
-          payload: {
-            authToken: data.encodedToken,
-            authUser: data.createdUser,
-          },
-        });
-        localStorage.setItem("token", data.encodedToken);
-        localStorage.setItem("user", JSON.stringify(data.createdUser));
+    if (email && password && firstName && lastName) {
+      try {
+        const { data, status } = await userSignupService(
+          email,
+          password,
+          firstName,
+          lastName
+        );
+        if (status === 201) {
+          showToast("Signup Successful", "success");
+          authDispatch({
+            type: "INIT_AUTH",
+            payload: {
+              authToken: data.encodedToken,
+              authUser: data.createdUser,
+            },
+          });
+          localStorage.setItem("token", JSON.stringify(data.encodedToken));
+          localStorage.setItem("user", JSON.stringify(data.createdUser));
+        }
+      } catch (error) {
+        showToast(`Error while signing up user`, "error");
       }
-    } catch (error) {
-      showToast(`Error while signing up user`, "error");
-      console.error("Error in signup functionality", error);
     }
   };
 

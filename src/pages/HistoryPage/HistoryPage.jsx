@@ -42,11 +42,22 @@ const HistoryPage = () => {
           </div>
         </div>
         <div className="history-video-container">
-          {state.history.map(({ id, title }) => {
-            return (
-              <VideoCard key={id} id={id} title={title} location={"history"} />
-            );
-          })}
+          {state.history.length > 0 ? (
+            state.history.map(({ id, title }) => {
+              return (
+                <VideoCard
+                  key={id}
+                  id={id}
+                  title={title}
+                  location={"history"}
+                />
+              );
+            })
+          ) : (
+            <div className="logout-content">
+              <h2 className="h2">No videos added to watch history</h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
