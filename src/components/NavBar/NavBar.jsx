@@ -1,13 +1,10 @@
 import "../NavBar/NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useData } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 
 const NavBar = () => {
-  const { isAuthorized, authDispatch } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const { setSearchTerm, searchTerm } = useData();
 
   const logoutUser = () => {
     showToast("Logout Successful", "success");

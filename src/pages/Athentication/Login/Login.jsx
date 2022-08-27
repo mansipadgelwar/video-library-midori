@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../context";
 
 const Login = () => {
   const initialFormDetails = {
@@ -8,7 +7,6 @@ const Login = () => {
     password: "",
   };
 
-  const { loginUser, isAuthorizeid } = useAuth();
   const [formDetails, setFormDetails] = useState(initialFormDetails);
 
   const formDetailsHandler = () => {

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context";
 
 const Signup = () => {
   const initialFormDetails = {
@@ -12,7 +11,7 @@ const Signup = () => {
   };
 
   const currentLocation = useNavigate();
-  const { signUpUser, isAuthorized } = useAuth();
+
   const [formDetails, setFormDetails] = useState(initialFormDetails);
   const [showConfirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
   const [showPasswordIcon, setPasswordIcon] = useState(false);

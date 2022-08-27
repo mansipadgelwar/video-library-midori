@@ -1,11 +1,10 @@
 import "../css/VideoPage.css";
 import { useState } from "react";
-import { useServices } from "../../../context";
 import { PlaylistModal } from "../../modals/playlist-modal/playlist-modal";
 
 const VideoPanel = ({ video }) => {
   const { _id: id, title } = video;
-  const { handleWatchLaterVideos, handleLikedVideos, state } = useServices();
+
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
   const isVideoExistsInLiked =

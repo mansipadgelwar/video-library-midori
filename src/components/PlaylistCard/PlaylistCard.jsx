@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useToast } from "../../custom-hooks/useToast";
 import "../PlaylistCard/PlaylistCard.css";
-import { useAuth, useServices } from "../../context";
 import { NavLink } from "react-router-dom";
 
 const PlaylistCard = ({ playlist }) => {
   const { showToast } = useToast();
-  const { authToken } = useAuth();
-  const { dispatch } = useServices();
 
   const deletePlaylistFromDb = async (e, playlistId) => {
     e.preventDefault();

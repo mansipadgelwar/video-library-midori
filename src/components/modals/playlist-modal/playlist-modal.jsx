@@ -1,5 +1,4 @@
 import styles from "./playlist-modal.module.css";
-import { useServices } from "../../../context";
 import { useState } from "react";
 
 const PlaylistModal = ({
@@ -7,14 +6,6 @@ const PlaylistModal = ({
   showPlaylistModal,
   closePlaylistModal,
 }) => {
-  const {
-    state,
-    addOrRemoveVideoFromPlaylist,
-    newPlaylistName,
-    setNewPlaylistName,
-    handleCreateNewPlaylist,
-  } = useServices();
-
   const [showInputForm, setShowInputForm] = useState(false);
 
   if (!showPlaylistModal) {
