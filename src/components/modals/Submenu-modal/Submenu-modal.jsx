@@ -4,6 +4,7 @@ import {
   deleteVideoFromWatchLaterService,
 } from "../../../services";
 import { useToast } from "../../../custom-hooks/useToast";
+import { useAuth, useServices } from "../../../context";
 import { PlaylistModal } from "../playlist-modal/playlist-modal";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -16,6 +17,13 @@ const SubmenuModal = ({
   location,
 }) => {
   const { showToast } = useToast();
+  const { authToken } = useAuth();
+  const {
+    dispatch,
+    handleWatchLaterVideos,
+    addOrRemoveVideoFromPlaylist,
+    state,
+  } = useServices();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
   const video = { id, title };

@@ -1,8 +1,10 @@
 import { VideoCard, Sidebar } from "../../components";
+import { useServices } from "../../context";
 import { useParams } from "react-router-dom";
 
 const MyPlaylistPage = () => {
   const { playlistId } = useParams();
+  const { state } = useServices();
   const currentPlaylist = state.playlists.find(
     (item) => item._id === playlistId
   );

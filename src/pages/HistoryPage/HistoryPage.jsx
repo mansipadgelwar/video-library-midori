@@ -1,10 +1,13 @@
 import "../HistoryPage/HistoryPage.css";
 import { VideoCard, Sidebar } from "../../components";
+import { useServices, useAuth } from "../../context";
 import { clearCompleteHistoryOfUserService } from "../../services";
 import { useToast } from "../../custom-hooks/useToast";
 
 const HistoryPage = () => {
+  const { state, dispatch } = useServices();
   const { showToast } = useToast();
+  const { authToken } = useAuth();
 
   const clearAllHistory = async (e) => {
     e.preventDefault();

@@ -1,7 +1,10 @@
 import "../CategoryCard/CategoryCard.css";
+import { useData } from "../../context";
 import { Link } from "react-router-dom";
 
 const CategoryCard = ({ categoryName, srcImg }) => {
+  const { setClickedCategory } = useData();
+
   return (
     <div className="category-card-container">
       <div className="category-image">

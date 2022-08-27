@@ -1,10 +1,15 @@
 import "../VideoCard/VideoCard.css";
 import { Link } from "react-router-dom";
+import { useToast } from "../../custom-hooks/useToast";
+import { useAuth, useServices } from "../../context";
 import { addVideoToHistoryOfUserService } from "../../services";
 import { SubmenuModal } from "../modals/Submenu-modal/Submenu-modal";
 import { useState } from "react";
 
 const VideoCard = ({ id, title, location }) => {
+  const { showToast } = useToast();
+  const { isAuthorized, authToken } = useAuth();
+  const { dispatch, handleLikedVideos, state } = useServices();
   const [showSubMenus, setShowSubMenus] = useState(false);
 
   const findCurrentVideo = state.likes.find((item) => item.id === id);

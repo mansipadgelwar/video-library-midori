@@ -2,9 +2,11 @@ import "../Home/Home.css";
 import { Sidebar, CategoryCard } from "../../components";
 import { Ballroom, Contemprary, HipHop, Banner } from "../../assets";
 import { useNavigate } from "react-router-dom";
+import { useData } from "../../context";
 
 const Home = () => {
   const currentLocation = useNavigate();
+  const { setClickedCategory } = useData();
 
   const handleExploreButton = () => {
     currentLocation("/videolist");

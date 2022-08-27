@@ -6,10 +6,12 @@ import {
   VideoCard,
   Loader,
 } from "../../components";
+import { useData } from "../../context";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const VideoPage = () => {
+  const { videoLoader, videos, videoDispatch } = useData();
   const { videoId } = useParams();
 
   const currentVideo = videos.find((item) => item._id === videoId);

@@ -1,0 +1,99 @@
+import { createContext, useContext, useReducer } from "react";
+import { userLoginService, userSignupService } from "../../services";
+import { authReducer, initialAuthState } from "../../reducers";
+import { useToast } from "../../custom-hooks/useToast";
+import { useNavigate, useLocation } from "react-router-dom";
+
+const AuthContext = createContext();
+
+const AuthProvider = ({ children }) => {
+  const setAuthState = () => {
+    const getTokenFromLocalStorage = localStorage.getItem("token");
+    const getUserFromLocalStorage = localStorage.getItem("user");
+    if (getTokenFromLocalStorage) {
+      return {
+        ...initialAuthState,
+        authToken: JSON.parse(getTokenFromLocalStorage),
+        isAuthorized: true,
+        authUser: JSON.parse(getUserFromLocalStorage),
+      };
+    }
+    return initialAuthState;
+  };
+  const { showToast } = useToast();
+  const [authState, authDispatch] = useReducer(authReducer, setAuthState());
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const loginUser = async (email, password) => {
+    if (email && password) {
+      try {
+        const { data, status } = await userLoginService(email, password);
+        if (status === 200) {
+          showToast("Login Successful", "success");
+          authDispatch({
+            type: "INIT_AUTH",
+            payload: {
+              authToken: data.encodedToken,
+              authUser: data.foundUser,
+            },
+          });
+          localStorage.setItem("token", JSON.stringify(data.encodedToken));
+          localStorage.setItem("user", JSON.stringify(data.foundUser));
+          navigate(location.state?.from?.pathname || "/", { replace: true });
+        }
+      } catch (error) {
+        showToast(`Error while login`, "error");
+      }
+    }
+  };
+
+  const signUpUser = async (
+    email,
+    firstName,
+    lastName,
+    password,
+    confirmPassword
+  ) => {
+    if (confirmPassword !== password) {
+      showToast(`Passwords do not match`, "error");
+      return;
+    }
+    if (email && password && firstName && lastName) {
+      try {
+        const { data, status } = await userSignupService(
+          email,
+          password,
+          firstName,
+          lastName
+        );
+        if (status === 201) {
+          showToast("Signup Successful", "success");
+          authDispatch({
+            type: "INIT_AUTH",
+            payload: {
+              authToken: data.encodedToken,
+              authUser: data.createdUser,
+            },
+          });
+          localStorage.setItem("token", JSON.stringify(data.encodedToken));
+          localStorage.setItem("user", JSON.stringify(data.createdUser));
+        }
+      } catch (error) {
+        showToast(`Error while signing up user`, "error");
+      }
+    }
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{ ...authState, authDispatch, loginUser, signUpUser }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+const useAuth = () => useContext(AuthContext);
+
+export { useAuth, AuthProvider };

@@ -1,6 +1,8 @@
 import { VideoCard, Sidebar } from "../../components";
+import { useServices } from "../../context";
 
 const WatchLaterPage = () => {
+  const { state } = useServices();
   return (
     <div className="library-home-page">
       <div className="library-home-sidebar">

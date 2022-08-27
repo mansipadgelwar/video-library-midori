@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../CategoryChips/CategoryChips.css";
+import { useData } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 
 const CategoryChips = () => {
   const [categoryType, setCategory] = useState([]);
+  const { clickedCategory, setClickedCategory } = useData();
   const { showToast } = useToast();
 
   useEffect(() => {
